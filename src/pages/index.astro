@@ -1,0 +1,6 @@
+---
+// Detección de idioma del navegador
+const acceptLang = Astro.request.headers.get('accept-language') || '';
+const prefersEs = acceptLang.toLowerCase().includes('es');
+return Astro.redirect(prefersEs ? '/es/' : '/en/', 301);
+---

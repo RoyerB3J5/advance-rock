@@ -1,0 +1,42 @@
+---
+// Sin props, es puramente visual
+---
+
+<div id="page-loader">
+  <div class="flex flex-col justify-center items-center gap-6">
+    <div class="flex justify-center items-center w-[133px] h-[133px] relative">
+      <img src="/images/load.svg" alt="Loader Background" width="133" height="133" class="absolute w-[133px] h-[133px]" decoding="async" loading="eager"/>
+      <img src="/images/logo-small.svg" alt="Advance Rock Logo" width="60" height="60" class="w-10 h-10 " decoding="async" loading="eager"/>
+    </div>
+    <p class="text-white paragraph">Loading ...</p>
+  </div>
+</div>
+
+<style>
+  #page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #003b46; /* tu color oscuro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Reacciona a la clase del body */
+    transition: opacity 0.5s ease 0.6s; /* delay para que el hero entre primero */
+  }
+
+  /* Cuando el body tiene loader-done, el loader desaparece */
+  :global(body.loader-done) #page-loader {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  img[src*="load.svg"] {
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>

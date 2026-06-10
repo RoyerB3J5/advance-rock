@@ -1,0 +1,47 @@
+---
+type Translations = typeof import("../i18n/en").default;
+type WhoContent = Translations["about"]["who"];
+interface Props {
+  content: WhoContent;
+}
+const { content } = Astro.props as Props;
+---
+<section class="w-full h-screen bg-white overflow-hidden relative py-20" id="who-section">
+  
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(1.5rem,1fr)_minmax(0,746px)_minmax(0,534px)_minmax(1.5rem,1fr)] w-full h-full">
+    
+    {/* Contenido Izquierdo: Le damos z-10 y relative para asegurar que se quede por debajo de la imagen al crecer */}
+    <div class="col-start-1 lg:col-start-2 lg:col-end-3 px-6 lg:px-0 lg:pr-16 flex flex-col justify-between h-full gap-12 lg:gap-0 relative z-10 text-wrapper">
+      
+      <div class="flex flex-col justify-center items-start gap-6">
+        <h2 class="text-primary title">{content.title}</h2>
+        <p class="text-paragraph subtitle">{content.subtitle}</p>
+        <p class="text-paragraph paragraph">{content.description}</p>
+      </div>
+
+      <div class="w-full flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 lg:gap-0">
+        <img src="/images/logo-4.svg" alt="Logo" width="250" height="244" class="w-[200px] lg:w-[250px] h-auto" decoding="async" loading="lazy"/>
+        <p class="text-paragraph subtitle lg:w-[40%]">{content.description2}</p>
+      </div>
+
+    </div>
+
+    {/* Imagen Derecha: Le damos z-20. Es el "molde" estático. */}
+    <div class="col-start-1 lg:col-start-3 lg:col-end-5 relative h-[400px] lg:h-full z-20">
+      
+      <div class="absolute top-0 right-0 h-full w-auto gs-image-wrapper" style="aspect-ratio: 700/740;">
+        <img 
+          src="/images/who.webp" 
+          alt="Sobre Nosotros" 
+          class="w-full h-full absolute inset-0 object-cover object-center" 
+          decoding="async" 
+          loading="lazy"
+          width="2300"
+          height="1284"
+        />
+      </div>
+
+    </div>
+
+  </div>
+</section>

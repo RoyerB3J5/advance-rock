@@ -1,0 +1,30 @@
+---
+import en from '../../i18n/en';
+import es from '../../i18n/es';
+import Layout from '../../layouts/Layout.astro';
+import CallAction from '../../sections/CallAction.astro';
+import Confidence from '../../sections/Confidence.astro';
+import HeroMain from '../../sections/HeroMain.astro';
+import Info from '../../sections/Info.astro';
+import Projects from '../../sections/Projects.astro';
+import Services from '../../sections/Services.astro';
+import type { Language } from '../../types/language.type';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+export const defaultRedirect = '/en';
+
+const lang = Astro.params.lang as Language;
+const translations = { es, en };
+const t = translations[lang];
+---
+<Layout lang={lang} t={t} showLoader={true}>
+  <HeroMain content={t.main.hero} />
+  <Info content={t.main.information} />
+  <Services content={t.main.services}/>
+  <Projects content={t.main.projects}/>
+  <Confidence content={t.main.confidence}/>
+  <CallAction content={t.main.callAction}/>
+</Layout>

@@ -1,0 +1,330 @@
+---
+// Imports optimizados
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Chatbot from "../components/Chatbot.astro";
+import Loader from "../components/Loader.astro";
+
+type Translations = typeof import("../i18n/en").default;
+
+export interface Props {
+  lang: string;
+  t?: Translations;
+  showLoader?: boolean; 
+}
+
+const { lang, t, showLoader = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="overflow-x-clip scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style is:inline>
+      /* Estado inicial del body */
+      body { background: #003b46; } 
+
+      /* ESTADO INICIAL: Imagen del hero */
+      .hero-main-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        clip-path: inset(calc(50% - 258px) calc(50% - 200px));
+        transform: scale(0);
+      }
+
+      /* ESTADO 1: Aparece y crece la "caja" de 400x516 */
+      body.hero-scale-up .hero-main-image {
+        animation: heroScaleUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      @keyframes heroScaleUp {
+        from {
+          opacity: 0;
+          transform: scale(0);
+          clip-path: inset(calc(50% - 258px) calc(50% - 200px));
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+          clip-path: inset(calc(50% - 258px) calc(50% - 200px));
+        }
+      }
+
+      /* ESTADO 2: La máscara se expande revelando toda la imagen */
+      body.hero-fullscreen .hero-main-image {
+        animation: heroExpandFullscreen 0.8s ease-in-out forwards;
+      }
+
+      @keyframes heroExpandFullscreen {
+        from {
+          opacity: 1;
+          transform: scale(1);
+          clip-path: inset(calc(50% - 258px) calc(50% - 200px));
+          z-index: 100;
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+          clip-path: inset(0 0 0 0);
+          z-index: 0;
+        }
+      }
+
+      /* Estilos de revelado de contenido */
+      .hero-main-section .container-full {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      body.content-reveal .hero-main-section .container-full {
+        opacity: 1;
+        pointer-events: auto;
+        animation: fadeUp 0.6s ease-out forwards;
+      }
+
+      header#site-header {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      body.content-reveal header#site-header {
+        opacity: 1;
+        pointer-events: auto;
+        animation: fadeDown 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fadeDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+
+    <meta name="geo.region" content="US-FL" />
+    <meta name="geo.placename" content="Orlando" />
+    <meta name="geo.position" content="28.5383;-81.3792" />
+    <meta name="ICBM" content="28.5383, -81.3792" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://widgets.leadconnectorhq.com" />
+    <link rel="dns-prefetch" href="https://widgets.leadconnectorhq.com" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="generator" content={Astro.generator} />
+    <title>Advance Rock Concrete</title>
+    <meta name="description" content="Advance Rock Concrete provides the best concrete solutions for your construction needs." />
+    <meta name="keywords" content="Tree Services, Lead Generation, Growth System, Marketing Automation" />
+    <meta name="author" content="Treehubly" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://treehubly.com/" />
+
+    <link rel="alternate" hreflang="en" href="https://treehubly.com/en/" />
+    <link rel="alternate" hreflang="es" href="https://treehubly.com/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://treehubly.com/en/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Advance Rock Concrete - The Ultimate Solution" />
+    <meta property="og:description" content="Advance Rock Concrete provides the best concrete solutions for your construction needs." />
+    <meta property="og:url" content="https://treehubly.com/" />
+    <meta property="og:image" content="/images/fondo.png" />
+    <meta property="og:locale" content={lang === "es" ? "es_US" : "en_US"} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Treehubly" />
+    <meta name="twitter:title" content="Treehubly - The Growth System" />
+    <meta name="twitter:description" content="Treehubly helps tree companies generate better leads." />
+    <meta name="twitter:image" content="/images/fondo.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Treehubly",
+        "url": "https://treehubly.com/",
+        "logo": "https://treehubly.com/favicon.svg"
+      }
+    </script>
+  </head>
+  
+  <body
+    class="font-family antialiased overflow-x-clip bg-white flex flex-col justify-center items-center w-full"
+    data-show-loader={showLoader ? 'true' : 'false'}
+  >
+    {showLoader && <Loader />}
+    <Header content={t?.header} />
+    <main class="flex flex-col w-full items-center">
+      <slot />
+    </main>
+    <Footer content={t?.footer} />
+    <Chatbot />
+
+    <script>
+      import { initAnimations, ScrollTrigger } from '../utils/animations';
+
+      function setupSequence() {
+        const body = document.body;
+        const showLoader = body.getAttribute('data-show-loader') === 'true';
+        const heroImage = document.querySelector('.hero-main-image') as HTMLElement | null;
+        
+        // Selector robusto: busca por ID o por clases comunes de loaders
+        const loader = document.getElementById('page-loader') || 
+                       document.querySelector('.loader') || 
+                       document.querySelector('.js-loader') as HTMLElement | null;
+
+        let animationPhase = 0;
+
+        // Inicializar GSAP al mismo tiempo
+        try {
+          ScrollTrigger.refresh();
+          initAnimations();
+        } catch (e) {
+          console.warn("GSAP no inicializado aún:", e);
+        }
+
+        // FASE 0: Quitar Loader de forma segura
+        function removeLoaderAndStart() {
+          if (loader && showLoader) {
+            loader.style.transition = 'opacity 0.4s ease';
+            loader.style.opacity = '0';
+            
+            setTimeout(() => {
+              loader.remove();
+              body.style.background = ''; 
+              checkHeroAndProceed();
+            }, 400); 
+          } else {
+            checkHeroAndProceed();
+          }
+        }
+
+        // FASE 1: Validar si existe la imagen del Hero
+        function checkHeroAndProceed() {
+          if (!heroImage) {
+            revealContent(); // Si no hay imagen, muestra el header y contenido directo
+            return;
+          }
+          startHeroScaleUp();
+        }
+
+        // FASE 2: Animación de escala inicial de la imagen
+        function startHeroScaleUp() {
+          animationPhase = 1;
+          heroImage?.addEventListener('animationend', handleAnimationEnd);
+          body.classList.add('hero-scale-up');
+
+          // Mecanismo de seguridad por si falla el evento CSS
+          setTimeout(() => {
+            if (animationPhase === 1) startHeroFullscreen();
+          }, 700);
+        }
+
+        // FASE 3: Expansión a pantalla completa
+        function startHeroFullscreen() {
+          animationPhase = 2;
+          body.classList.remove('hero-scale-up'); 
+          body.classList.add('hero-fullscreen');
+
+          // Mecanismo de seguridad secundario
+          setTimeout(() => {
+            if (animationPhase === 2) revealContent();
+          }, 900);
+        }
+
+        // FASE 4: Revelar el Header y el Contenido restante
+        function revealContent() {
+          animationPhase = 3;
+          body.classList.add('content-reveal');
+        }
+
+        // Manejador de eventos de animación CSS
+        function handleAnimationEnd(e: AnimationEvent) {
+          if (animationPhase === 1 && e.animationName === 'heroScaleUp') {
+            startHeroFullscreen();
+          } else if (animationPhase === 2 && e.animationName === 'heroExpandFullscreen') {
+            revealContent();
+            heroImage?.removeEventListener('animationend', handleAnimationEnd);
+          }
+        }
+
+        // Ejecución inmediata (los scripts de Astro se ejecutan cuando el DOM está listo)
+        removeLoaderAndStart();
+      }
+
+      // Asegurar el disparo sin importar el estado del ciclo de vida de la página
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSequence);
+      } else {
+        setupSequence();
+      }
+    </script>
+  </body>
+</html>
+<!-- Consolidated IntersectionObserver for all animations and carousels -->
+<script is:inline >
+  document.addEventListener("DOMContentLoaded", () => {
+    if (DISABLE_ANIMATIONS) {
+      // Activar todas las animaciones inmediatamente sin esperar IntersectionObserver
+      document.querySelectorAll(
+        ".animation-up-fast, .animation-zoom-in, .animation-up-fast-2, .animation-zoom-in-2, .animation-fade-down, .animation-fade-left, .animation-zoom-out, .animation-fade-right, .animation-fade-left-2, .animation-up-fast-3 , .animation-zoom-in-3, .animation-fade-left-3, .container-image-fade, .image-fade"
+      ).forEach(el => el.classList.add("active"));
+      return;
+    }
+
+    // Observer para animaciones: services-header, animation-left, hero-content
+    const animationElements = document.querySelectorAll(
+      ".animation-up-fast, .animation-zoom-in, .animation-up-fast-2, .animation-zoom-in-2, .animation-fade-down, .animation-fade-left, .animation-zoom-out, .animation-fade-right, .animation-fade-left-2, .animation-up-fast-3 , .animation-zoom-in-3, .animation-fade-left-3, .container-image-fade, .image-fade"
+    );
+
+    const animationObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            animationObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    animationElements.forEach((element) => {
+      animationObserver.observe(element);
+    });
+
+    // Observer para carousels: .hero-carousel[data-interval]
+    const carousels = Array.from(document.querySelectorAll(".hero-carousel[data-interval]"));
+
+    if (carousels.length > 0 && "IntersectionObserver" in window) {
+      const carouselObserver = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Trigger custom event or initialization if needed
+              entry.target.dispatchEvent(new CustomEvent("carouselVisible"));
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { root: null, rootMargin: "400px" }
+      );
+
+      carousels.forEach((c) => carouselObserver.observe(c));
+    }
+  });
+</script>

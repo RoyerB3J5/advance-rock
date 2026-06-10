@@ -1,0 +1,43 @@
+---
+type Translations = typeof import("../i18n/en").default;
+type ProjectsContent = Translations["main"]["projects"];
+interface Props {
+  content: ProjectsContent;
+}
+const { content } = Astro.props as Props;
+---
+<section class="w-full flex flex-col justify-center items-center gap-8.5 py-20 bg-white overflow-hidden">
+  <div class="container-full flex justify-center items-stretch gap-6">
+    <div class="w-[52%] h-auto bg-secondary" style="aspect-ratio: 628/740;"></div>
+    <div class="w-[48%]  flex flex-col justify-between items-start grow">
+      <div class="flex flex-col justify-center items-start gap-6">
+        <h2 class="text-primary title-sm">{content.first.title}</h2>
+        <p class="text-paragraph paragraph">{content.first.description}</p>
+      </div>
+      <div class="flex flex-col justify-center items-start gap-6">
+        <div class="w-[60%] h-auto relative" style="aspect-ratio: 382/215;">
+          <img src="/images/modern.webp" alt="Moder Advance" class="w-full h-full object-cover absolute inset-0 object-center" width="382" height="215" decoding="async" loading="lazy"/>
+        </div>
+        <p class="text-paragraph paragraph">{content.first.description2}</p>
+      </div>
+    </div>
+  </div>
+  <p class="decoration whitespace-nowrap w-max">{content.text}</p>
+  <div class="container-full flex justify-center items-stretch gap-6">
+    <div class="w-[25%] h-full flex flex-col justify-center items-start gap-6 self-center">
+      <h2 class="text-primary title-sm">{content.second.title}</h2>
+      <p class="text-paragraph subtitle">{content.second.subtitle}</p>
+    </div>
+    <div class="w-[50%] h-auto bg-accent" style="aspect-ratio: 628/740;"></div>
+    <div class="w-[25%] grow flex flex-col justify-between items-start">
+      <div class="flex flex-col justify-center items-start gap-6">
+        <p class="text-paragraph paragraph">{content.second.description}</p>
+        <a href={content.second.button.href} class="cursor-pointer group flex justify-start items-center gap-2" >
+          <p class="text-primary paragraph-bold group-hover:text-accent transition-all duration-300 ease-in-out">{content.second.button.label}</p>
+          <img src="/images/arrow.svg" width="16" height="16" decoding="async" loading="lazy" class="w-4 h-4" alt="Arrow Right"/>
+        </a>
+      </div>
+      <img src="/images/logo-2.svg" alt="Logo" width="184" height="184" class="w-[184px] h-[184px]" decoding="async" loading="lazy"/>
+    </div>
+  </div>
+</section>

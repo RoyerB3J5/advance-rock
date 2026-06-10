@@ -1,0 +1,186 @@
+---
+import Button from './Button.astro';
+
+type Translations = typeof import('../i18n/en').default;
+type FooterContent = Translations['footer'];
+interface Props {
+  content?: FooterContent;
+}
+const { content, } = Astro.props as Props;
+
+// Obtener la ruta actual y normalizar el path sin prefijo de idioma
+const currentPath = Astro.url.pathname;
+// Normalizar: remover idioma y trailing slash
+const normalized =
+  currentPath.replace(/^\/(en|es)/, '').replace(/\/$/, '') || '/';
+// Detectar el idioma actual ('en' o 'es')
+const match = currentPath.match(/^\/(en|es)/);
+const lang = match ? match[1] : 'en';
+
+const infoContacts = [
+  {
+    icon:'phone',
+    label:'(980) 467-9337 <br/> Mon-Fri 7:00 AM - 5:00 PM',
+    href:'tel:+19804679337'
+  },
+  {
+    icon:'mail',
+    label:'info@advancerockconcrete.com',
+    href:'mailto:info@advance-rock.com'
+  },
+  {
+    icon:'pin-map-2',
+    label:'4919 Albemarle Rd suit <br/> 100, Charlotte, NC',
+    href:'#'
+  }
+]
+const socialMedia = [
+  {
+    icon:'facebook',
+    href:"#"
+  },
+  {
+    icon:'instagram',
+    href:"#"
+  }
+]
+---
+
+<footer class="flex flex-col justify-center items-center w-full">
+  <div
+    class='bg-[#002127] w-full flex justify-center items-center'
+  >
+    <div
+      class="container-full flex justify-between items-stretch py-20 h-full"
+    >
+      <div class="flex flex-col justify-center items-start gap-6 w-[261px] self-start">
+        <a
+          href={`/${lang}`}
+          aria-label="Ir a la página principal"
+          title="Advance Rock Concrete - Inicio"
+        >
+          <img
+            src="/images/logo-color.svg"
+            alt="Logo de Advance Rock Concrete"
+            width="216"
+            height="44"
+            class="cursor-pointer w-54 h-auto block "
+          />
+        </a>
+        <p class="text-white paragraph">{content?.description}</p>
+        <div class="flex justify-start items-center gap-2">
+            {
+              socialMedia.map((item)=>(
+                <a href={item.href} class="p-2">
+                  <img src={`/images/${item.icon}.svg`} width="24" height="24" class="w-6 h-6" decoding="async" loading="lazy" alt={item.icon}/>
+                </a>
+              ))
+            }
+          </div>
+      </div>
+      <div class="w-[1px]  bg-white/10"></div>    
+      <div class="flex flex-col justify-center items-start gap-6 self-start">
+        <div class="flex flex-col justify-center items-start gap-2">
+          <h3 class="text-white subtitle">{content?.quickLinks.title}</h3>
+          <div class="w-6 h-1 bg-accent"></div>
+        </div>
+        <ul class="flex flex-col justify-center items-start gap-4">
+          {
+            content?.quickLinks.links.map((item)=>(
+              <li>
+                  <a href={`/${item.href}`} class="paragraph text-white hover:text-secondary transition-all duration-300 ease-in-out">{item.label}
+                </a>
+              </li>
+              
+            ))
+          }
+        </ul>
+      </div>
+      <div class="w-[1px]  bg-white/10"></div>   
+      <div class="flex flex-col justify-center items-start gap-6 self-start">
+        <div class="flex flex-col justify-center items-start gap-2">
+          <h3 class="text-white subtitle">{content?.services.title}</h3>
+          <div class="w-6 h-1 bg-accent"></div>
+        </div>
+        <ul class="flex flex-col justify-center items-start gap-4">
+          {
+            content?.services.links.map((item)=>(
+              <li>
+                  <a href={`/${item.href}`} class="paragraph text-white hover:text-secondary transition-all duration-300 ease-in-out">{item.label}
+                </a>
+              </li>
+              
+            ))
+          }
+        </ul>
+      </div>
+      <div class="w-[1px]  bg-white/10"></div>   
+      <div class="flex flex-col justify-center items-start gap-6 w-[166px] self-start">
+        <div class="flex flex-col justify-center items-start gap-2">
+          <h3 class="text-white subtitle">{content?.servicesArea.title}</h3>
+          <div class="w-6 h-1 bg-accent"></div>
+        </div>
+        <p class="text-white paragraph">{content?.servicesArea.description}</p>
+        <ul class="flex flex-col justify-center items-start gap-4 ">
+          {
+            content?.servicesArea.areas.map((item)=>(
+              <li class="paragraph text-white list-disc list-inside ml-3">
+                {item}
+              </li>
+              
+            ))
+          }
+        </ul>
+      </div>
+      <div class="w-[1px]  bg-white/10"></div>   
+      <div class="flex flex-col justify-center items-start gap-8 self-start">
+        <div class="flex flex-col justify-center items-start gap-2">
+          <h3 class="text-white subtitle">{content?.touch.title}</h3>
+          <div class="w-6 h-1 bg-accent"></div>
+        </div>
+        <div class="flex flex-col justify-center items-start gap-8">
+          {
+            infoContacts.map((item)=>(
+              <div class="flex justify-start items-start gap-2">
+                <img src={`/images/${item.icon}.svg`} width="24" height="24" class="w-5 h-5" decoding="async" loading="lazy" alt={item.icon}/>
+                <a href={item.href} class=""><p set:html={item.label} class="paragraph  text-white hover:text-secondary transition-all duration-300 ease-in-out"></p></a>
+              </div>
+            ))
+          }
+          <Button
+            text={content?.touch.button.label}
+            href={content?.touch.button.href}
+            textClass="text-[17px]"
+            icon='arrow-w'
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-[#E5E5E5] w-full py-3.5 md:py-4.5 flex justify-center items-center px-5 xl:px-0"
+  >
+    <div
+      class="w-full max-w-screen md:max-w-7xl flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6"
+    >
+      <a href="https://inkshapegroup.com/en/">
+        <img
+          src="/images/inkshape.svg"
+          alt=" Logo de Inkshape Group"
+          width="208"
+          height="40"
+          class="w-27.5 md:w-34 h-auto block dark:hidden"
+        />
+      </a>
+      <p
+        class="text-[10px] md:text-[12px] lg:text-[13px] leading-[170%] md:leading-[120%] text-[#404040] dark:text-paragraph-dark font-normal text-center"
+      >
+        Copyright © 2026 by <a href="https://inkshapegroup.com"
+          >Inkshape Group</a
+        > | Privacy | <a href="/">Advance Rock Concrete</a> | Florida & Georgia | Call Now: <a
+          href="tel:+19804679337">(980) 467-9337</a
+        >
+      </p>
+    </div>
+  </div>
+</footer>

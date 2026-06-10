@@ -1,0 +1,22 @@
+---
+import Button from "../components/Button.astro";
+type Translations = typeof import("../i18n/en").default;
+type ConfidenceContent = Translations["main"]["confidence"];
+interface Props {
+  content: ConfidenceContent;
+}
+const { content } = Astro.props as Props;
+---
+<section class="w-full h-screen flex flex-col justify-center items-center gap-6 bg-[#002127]">
+  <div class='flex flex-col justify-center items-center text-center'>
+    <h2 class='title text-secondary'>{content.title1}</h2>
+    <h2 class="title text-white">{content.title2}</h2>
+  </div>
+  <p class="subtitle text-white">{content.description}</p>
+  <p class="paragraph text-white" set:html={content.description2}></p>
+  <Button
+      text={content.button.label}
+      href={content.button.href}
+      textClass="text-[17px]"
+    />
+</section>

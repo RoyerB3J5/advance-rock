@@ -1,0 +1,65 @@
+---
+type Translations = typeof import("../i18n/en").default;
+type CallActionContent = Translations["main"]["callAction"];
+interface Props {
+  content: CallActionContent;
+}
+const { content } = Astro.props as Props;
+const infoContacts = [
+  {
+    icon:'phone',
+    label:'(980) 467-9337',
+    href:'tel:+19804679337'
+  },
+  {
+    icon:'mail',
+    label:'info@advancerockconcrete.com',
+    href:'mailto:info@advance-rock.com'
+  },
+  {
+    icon:'pin-map-2',
+    label:'4919 Albemarle Rd suit 100, Charlotte, NC',
+    href:'#'
+  }
+]
+const socialMedia = [
+  {
+    icon:'facebook',
+    href:"#"
+  },
+  {
+    icon:'instagram',
+    href:"#"
+  }
+]
+---
+<section class="w-full flex justify-center items-center bg-[#002127] border-t border-white/20">
+  <div class="container-full flex flex-col justify-center items-center gap-[47px] py-20">
+    <h2 set:html={content.title} class="title text-white"></h2>
+    <div class="w-full bg-black/10 border border-white/20 rounded-2xl p-10 overflow-hidden flex justify-between items-stretch h-full">
+      <div class="flex flex-col justify-between items-start grow">
+        <img src='/images/logo-3.svg' width="140" height="137" class="w-[140px] h-[137px]" decoding="async" loading="lazy"/>
+        <div class="flex flex-col justify-center items-start gap-6">
+          {
+            infoContacts.map((item)=>(
+              <div class="flex justify-start items-center gap-2">
+                <img src={`/images/${item.icon}.svg`} width="24" height="24" class="w-5 h-5" decoding="async" loading="lazy" alt={item.icon}/>
+                <a href={item.href} class="paragraph text-white hover:text-secondary transition-all duration-300 ease-in-out">{item.label}</a>
+              </div>
+            ))
+          }
+          <div class="flex justify-start items-center gap-2">
+            {
+              socialMedia.map((item)=>(
+                <a href={item.href} class="p-2">
+                  <img src={`/images/${item.icon}.svg`} width="24" height="24" class="w-6 h-6" decoding="async" loading="lazy" alt={item.icon}/>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      <div class="w-[60%] h-auto bg-secondary" style="aspect-ratio:704/485 ;"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+import en from '../../../i18n/en';
+import es from '../../../i18n/es';
+import Layout from '../../../layouts/Layout.astro';
+import CallAction from '../../../sections/CallAction.astro';
+import Confidence from '../../../sections/Confidence.astro';
+import Examples from '../../../sections/Examples.astro';
+import Hero from '../../../sections/Hero.astro';
+import InfoServices from '../../../sections/InfoServices.astro';
+import Questions from '../../../sections/Questions.astro';
+import type { Language } from '../../../types/language.type';
+
+
+export function getStaticPaths() {
+  const services = [
+    'pool-construction',
+    'concrete-remodeling',
+    'concrete-supply',
+    'turnkey-projects',
+    'rental-equipment',
+  ];
+  const languages = ['es', 'en'];
+
+  return languages.flatMap((lang) =>
+    services.map((service) => ({
+      params: { lang, service },
+    }))
+  );
+}
+
+export const defaultRedirect = '/en';
+
+const { lang, service } = Astro.params as { lang: Language; service: string };
+const translations = { es, en };
+const t = translations[lang];
+const serviceData = (t.services as Record<string, any>)[service] ?? {};
+---
+<Layout lang={lang} t={t}>
+  <Hero content={serviceData.hero} />
+  <InfoServices content={serviceData.info} />
+  <Examples content={serviceData.examples} />
+  <CallAction content={t.main.callAction} />
+  <Confidence content={serviceData.confidence} />
+  <Questions content={serviceData.questions} />
+</Layout>

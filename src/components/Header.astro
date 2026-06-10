@@ -1,0 +1,430 @@
+---
+import Button from './Button.astro';
+import ChangeLanguage from './ChangeLanguage.astro';
+
+type Translations = typeof import('../i18n/en').default;
+type HeaderContent = Translations['header'];
+interface Props {
+  content?: HeaderContent;
+}
+const { content } = Astro.props as Props;
+
+// Obtener la ruta actual y normalizar el path sin prefijo de idioma
+const currentPath = Astro.url.pathname;
+// Normalizar: remover idioma y trailing slash
+const normalized =
+  currentPath.replace(/^\/(en|es)/, '').replace(/\/$/, '') || '/';
+// Detectar el idioma actual ('en' o 'es')
+const match = currentPath.match(/^\/(en|es)/);
+const lang = match ? match[1] : 'en';
+---
+
+<header
+  class={`fixed left-0 right-0 z-50 w-full flex flex-col justify-center items-center transition-top duration-300 ease-in-out border-0 top-0 `}
+  id="site-header"
+  style="background-color: rgba(var(--color-primary-rgb), 0); transition: background-color 0.1s ease-out, transform 0.3s ease-out;"
+>
+  <div class='container-full flex flex-col justify-center items-center'>
+    <div class='py-2.5 w-full flex justify-end items-center gap-4 border-b border-white/20'>
+      <img src="/images/pin-map.svg" alt="Pin Map" width="16" height="16" class="w-4 h-4" />
+      <p class="paragraph text-white">Charlotte, NC</p>
+      <div class='w-[1px] h-6 bg-white'></div>
+      <p class='paragraph text-white'>Greenville, SC</p>
+    </div>
+    <div
+      class={`w-full flex justify-between items-center relative py-6`}
+    >
+      <a
+          href={`/${lang}`}
+          aria-label="Ir a la página principal"
+          title="Advance Rock Concrete - Init"
+        >
+          <img
+            src="/images/logo.svg"
+            alt="Logo de Advance Rock Concrete"
+            width="180"
+            height="36"
+            class="cursor-pointer w-45 h-auto "
+          />
+        </a>
+      <!-- Menú desktop (lg y arriba) -->
+      <div
+        class="relative bg-transparent flex flex-row justify-center items-center h-auto w-auto z-10 transform translate-x-0 transition-transform duration-300 ease-out"
+      >
+        
+        <nav>
+          <ul class="hidden relative lg:flex items-center flex-row justify-center w-auto gap-6">
+            {
+              content?.nav.map((item, index) => {
+                const itemPathWithoutHash = item.href.split('#')[0];
+                const isActive =
+                  normalized === itemPathWithoutHash ||
+                  (index === 1 && normalized.startsWith('/services'));
+                const isServices = index === 1;
+                return (
+                  <li
+                    class={`flex flex-row items-center justify-center group hover:text-accent w-auto text-center ${isServices ? 'relative dropdown-parent' : ''} ${isActive ? 'bg-transparent ' : ''}`}
+                    id={`services-${index}`}
+                  >
+                    <a
+                      href={`/${lang}${item.href}`}
+                      class=" relative transition-colors duration-300 flex justify-center items-center"
+                    >
+                      <p
+                        class="paragraph text-white transition-all duration-300 ease-in-out"
+                        set:html={item.label}
+                      />
+                      <span
+                        class={`absolute -bottom-2 left-1/2 h-0.5 bg-accent transition-all duration-300 ease-out -translate-x-1/2 ${isActive ? 'w-8' : 'w-0 group-hover:w-8 group-hover:bg-accent'}`}
+                      />
+                    </a>
+                    {isServices && (
+                      <div class="dropdown-menu absolute top-9 left-0 mt-0 w-50 flex-col items-center bg-white z-40 hidden group-hover:flex opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 ease-out -translate-x-[25%] shadow-lg overflow-hidden rounded-lg">
+                        {content.services.map((sub) => (
+                          <div class="text-[14px] leading-[150%] font-semibold text-accent hover:bg-accent hover:text-white transition-colors duration-200 ease-in-out cursor-pointer px-6 w-full text-center py-2">
+                            <a
+                              href={`${sub.href}`}
+                              class="block w-full h-full"
+                            >
+                              {sub.label}
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                );
+              })
+            }
+          </ul> 
+        </nav>
+      </div>
+      <div class="flex justify-center items-centergap-6">
+        <Button
+          text={content?.buttons[0].label}
+          href={content?.buttons[0].href}
+          textClass="text-[17px]"
+        />
+        <ChangeLanguage />
+        <div class="hidden sm:flex lg:hidden justify-center items-center gap-7">
+          <button
+            type="button"
+            aria-label="Abrir menú de navegación"
+            title="Abrir menú"
+            class="flex items-center justify-center cursor-pointer"
+            id="hamburger-btn"
+          >
+            <img
+              src="/images/hamburger.svg"
+              alt="Menú"
+              width="24"
+              height="24"
+              class="w-6 h-6 block"
+            />
+            <span class="sr-only">Abrir menú de navegación</span>
+          </button>
+        </div>
+      </div>
+      <!-- Botones para móvil -->
+    </div>
+  </div>
+</header>
+
+<!-- Menú móvil independiente (lg para abajo) -->
+<div
+  class="fixed top-0 right-0 bottom-0 lg:hidden flex items-center bg-white  text-primary flex-col justify-center h-[85%] w-full z-60 py-6 gap-12 transform -translate-y-full transition-transform duration-300 ease-out"
+  id="mobile-menu"
+>
+  <img
+    src="/images/equis.svg"
+    alt="Cerrar menú"
+    width="24"
+    height="24"
+    class="block absolute top-6 right-6 cursor-pointer z-20"
+    id="close-btn"
+    aria-label="Cerrar menú de navegación"
+    title="Cerrar menú"
+    role="button"
+    tabindex="0"
+  />
+  <a
+          href={`/${lang}`}
+          aria-label="Ir a la página principal"
+          title="Advance Rock Concrete - Init"
+        >
+          <img
+            src="/images/logo.svg"
+            alt="Logo de Advance Rock Concrete"
+            width="180"
+            height="36"
+            class="cursor-pointer w-45 h-auto "
+          />
+        </a>
+  <nav class="w-full">
+    <ul class=" relative flex items-center flex-col justify-center w-full">
+      {
+        content?.nav.map((item, index) => {
+          const itemPathWithoutHash = item.href.split('#')[0];
+          const isActive =
+            normalized === itemPathWithoutHash ||
+            (index === 1 && normalized.startsWith('/services'));
+          const isServices = index === 1;
+          return (
+            <li
+              class={` flex flex-col items-center justify-center group gap-3.5 px-0 w-full py-5 text-center text-primary ${isServices ? 'relative' : ''} ${isActive ? 'bg-accent text-white uppercase' : ''}`}
+              id={`mobile-services-${index}`}
+            >
+              <a
+                href={`/${lang}${item.href}`}
+                class="relative transition-colors duration-300 flex justify-center items-center "
+              >
+                <p
+                  class="paragraph"
+                  set:html={item.label}
+                />
+              </a>
+              {isServices && (
+                <div
+                  class="flex-col justify-center items-center w-full bg-primary divide-y divide-accent hidden absolute z-20 top-0 translate-y-12.5"
+                  id="sub-menu-services"
+                >
+                  {content.services.map((sub) => (
+                    <a
+                      href={`/${lang}/services/${sub.href}`}
+                      class="paragraph text-white py-4 transition-colors duration-300 ease-in-out cursor-pointer px-6 w-full text-center"
+                    >
+                      {sub.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+
+  <div class="flex flex-col justify-center items-center gap-5">
+    <Button
+        text={content?.buttons[0].label}
+        textClass="text-[17px]"
+        href={content?.buttons[0].href}
+        target="_blank"
+        extraBtnClass={`bg-accent `}
+      />
+  </div>
+
+  <style>
+    /* Mejorar el comportamiento del dropdown */
+    .dropdown-parent:hover .dropdown-menu {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Crear un puente invisible entre el botón y el dropdown */
+    .dropdown-parent::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: -10px;
+      right: -10px;
+      height: 10px;
+      background: transparent;
+      z-index: 39;
+      pointer-events: auto;
+    }
+
+    /* Clase para texto solo visible para lectores de pantalla */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Asegurar que el dropdown se mantenga visible cuando se hace hover */
+    .dropdown-menu:hover {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Hacer que el dropdown mantenga el hover del padre */
+    .dropdown-menu {
+      margin-top: 0px;
+    }
+
+    /* Deshabilitar dropdown y puente en tamaños menores a lg */
+    @media (max-width: 1023px) {
+      .dropdown-parent::after {
+        display: none;
+      }
+
+      .dropdown-parent:hover .dropdown-menu {
+        display: none !important;
+      }
+
+      .dropdown-menu {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menu = document.getElementById('mobile-menu');
+      const openBtn = document.getElementById('hamburger-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const servicesDiv = document.getElementById('services-1'); // Desktop services (services is index 1)
+      const mobileservicesDiv = document.getElementById('mobile-services-1'); // Mobile services (services is index 1)
+      const subMenuservices = document.getElementById('sub-menu-services');
+      const body = document.body;
+
+      const isMobile = () => window.innerWidth < 1024;
+
+      function openMenu() {
+        if (isMobile()) {
+          menu.classList.replace('-translate-y-full', 'translate-y-0');
+          body.classList.add('overflow-hidden');
+        }
+      }
+
+      function closeMenu() {
+        if (isMobile()) {
+          menu.classList.replace('translate-y-0', '-translate-y-full');
+          body.classList.remove('overflow-hidden');
+        }
+      }
+
+      function toggleSubMenu(event) {
+        // Solo en móvil prestamos atención al toggle
+        if (!isMobile()) return;
+
+        // Seguridad: si no existe el subMenuservices, no hacemos nada
+        if (!subMenuservices) return;
+
+        const isSubMenuOpen = !subMenuservices.classList.contains('hidden');
+
+        // Si el submenu está cerrado, prevenimos la navegación y lo abrimos
+        if (!isSubMenuOpen) {
+          event.preventDefault();
+          subMenuservices.classList.remove('hidden');
+          subMenuservices.classList.add('flex');
+        }
+        // Si el submenu está abierto y se presiona de nuevo, cerramos el submenu
+        // y evitamos la navegación para que el click solo actúe como toggle
+        else {
+          event.preventDefault();
+          subMenuservices.classList.add('hidden');
+          subMenuservices.classList.remove('flex');
+        }
+      }
+
+      openBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+
+      // Agregar event listener al div padre para que al pulsar el div (no solo el <a>) se active el toggle
+      if (servicesDiv) {
+        servicesDiv.addEventListener('click', (e) => {
+          // Solo actuamos en móvil
+          if (!isMobile()) return;
+          // Ignorar clicks que vayan dirigidos al propio sub-menu (navegación de items)
+          if (e.target.closest('#sub-menu-services')) return;
+          toggleSubMenu(e);
+        });
+      }
+
+      if (mobileservicesDiv) {
+        mobileservicesDiv.addEventListener('click', (e) => {
+          if (!isMobile()) return;
+          if (e.target.closest('#sub-menu-services')) return;
+          toggleSubMenu(e);
+        });
+      }
+
+      // Asegurar estado inicial según tamaño
+      if (isMobile()) {
+        menu.classList.add('-translate-y-full');
+        menu.classList.remove('translate-y-0');
+        body.classList.remove('overflow-hidden');
+        if (subMenuservices) {
+          subMenuservices.classList.add('hidden');
+          subMenuservices.classList.remove('flex');
+        }
+      } else {
+        menu.classList.add('translate-y-0');
+        menu.classList.remove('-translate-y-full');
+        body.classList.remove('overflow-hidden');
+      }
+
+      window.addEventListener('resize', () => {
+        if (!isMobile()) {
+          menu.classList.add('translate-y-0');
+          menu.classList.remove('-translate-y-full');
+          body.classList.remove('overflow-hidden');
+          // Ocultar submenu en desktop
+          if (subMenuservices) {
+            subMenuservices.classList.add('hidden');
+            subMenuservices.classList.remove('flex');
+          }
+        } else {
+          // Asegura que el menú esté oculto al volver a móvil
+          menu.classList.add('-translate-y-full');
+          menu.classList.remove('translate-y-0');
+          body.classList.remove('overflow-hidden');
+          if (subMenuservices) {
+            subMenuservices.classList.add('hidden');
+            subMenuservices.classList.remove('flex');
+          }
+        }
+      });
+      const header = document.getElementById('site-header');
+      const viewportHeight = window.innerHeight;
+      let lastScroll = window.pageYOffset;
+
+      function updateHeaderBackground() {
+        const currentScroll = window.pageYOffset;
+        const colorVar ='--color-primary-rgb';
+        
+        // Calcular la opacidad: 0 al inicio, 1 cuando se alcance 50vh
+        const opacity = Math.min(currentScroll / (viewportHeight * 0.5), 1);
+        
+        // Actualizar el fondo del header con la opacidad calculada
+        header.style.backgroundColor = `rgba(var(${colorVar}), ${opacity})`;
+      }
+
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        updateHeaderBackground();
+
+        // Mostrar/ocultar header según dirección del scroll desde el inicio
+        if (currentScroll > lastScroll && currentScroll > 100) {
+          // Scroll hacia abajo: escondemos el header
+          header.style.transform = 'translateY(-120%)';
+        } else {
+          // Scroll hacia arriba: mostramos el header
+          header.style.transform = 'translateY(0)';
+        }
+
+        lastScroll = currentScroll;
+      });
+
+      const observer = new MutationObserver(() => {
+        updateHeaderBackground();
+      });
+
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    });
+  </script>
+</div>
