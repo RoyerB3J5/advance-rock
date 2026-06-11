@@ -1,0 +1,45 @@
+---
+import en from '../../../../i18n/en';
+import es from '../../../../i18n/es';
+import Layout from '../../../../layouts/Layout.astro';
+import CallAction from '../../../../sections/CallAction.astro';
+import Confidence from '../../../../sections/Confidence.astro';
+import ContentExamples from '../../../../sections/ContentExamples.astro';
+import GridExamples from '../../../../sections/GridExamples.astro';
+import Hero from '../../../../sections/Hero.astro';
+import InfoContent from '../../../../sections/InfoContent.astro';
+import InfoContentAnimation from '../../../../sections/InfoContentAnimation.astro';
+import Questions from '../../../../sections/Questions.astro';
+import type { Language } from '../../../../types/language.type';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+export const defaultRedirect = '/en';
+
+const lang = Astro.params.lang as Language;
+const translations = { es, en };
+const t = translations[lang];
+---
+<Layout lang={lang} t={t}>
+  <Hero content={t.medo.hero}/>
+  <section class="bg-white flex flex-col justify-center items-center py-20 gap-8.5 w-full">
+    <InfoContent content={t.medo.info}/>
+    <p class="decoration whitespace-nowrap w-max">{t.medo.textMove}</p>
+    <ContentExamples content={t.medo.examples}/>
+  </section>
+  <section class="bg-[#002127] flex flex-col justify-center items-center py-20 w-full">
+    <InfoContent content={t.medo.info2} styleType='bg-and-order' list={t.medo.info2.second}/>
+  </section>
+  {/*<InfoContent content={t.medo.info3}/> */}
+  <section class="bg-white flex flex-col justify-center items-center py-20 gap-20 w-full ">
+    <div class="container-full flex justify-center items-center">
+      <GridExamples content={t.medo.examples2.items} />
+    </div>
+  </section>
+  <InfoContentAnimation content={t.medo.info4}/>
+  <CallAction content={t.main.callAction}/>
+  <Confidence content={t.medo.confidence}/>
+  <Questions content={t.medo.questions}/>
+</Layout>

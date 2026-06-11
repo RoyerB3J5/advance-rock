@@ -771,6 +771,154 @@ export default {
       },
     },
   },
+  medo: {
+    hero: {
+      title: "Construye Tu Futuro <br/> Con Nosotros",
+      button: {
+        label: "Cotización gratuita",
+        href: "#",
+      },
+      back: "services-5-hero",
+    },
+    info: {
+      title: "Más Que Un Negocio, Un Sistema Completo",
+      subtitle:
+        "No está adquiriendo una oportunidad aislada. Está ingresando a una estructura diseñada para generar crecimiento sostenible.",
+      description:
+        "Advance Rock ha desarrollado un ecosistema empresarial que integra servicios de concreto, construcción, renta de equipos y logística. Esto permite a los participantes operar dentro de una red activa, respaldada por experiencia, infraestructura y procesos establecidos.",
+      image: "services-5-info",
+    },
+    textMove: "Drive Your Own Success",
+    examples: {
+      title: "Crece Con Un Modelo Probado",
+      description:
+        "Aprovecha herramientas y recursos que facilitan el desarrollo de tu negocio.",
+      items: [
+        {
+          image: "services-5-exp-1",
+          title: "Operación Activa",
+          description: "Forme parte de una estructura que ya funciona.",
+          list: [],
+        },
+        {
+          image: "services-5-exp-2",
+          title: "Diversificación Comercial",
+          description: "Acceda a múltiples líneas de negocio.",
+          list: [],
+        },
+        {
+          image: "services-5-exp-3",
+          title: "Respaldo Empresarial",
+          description: "Aproveche experiencia y soporte operativo.",
+          list: [],
+        },
+      ],
+    },
+    info2: {
+      title: "Conviértase En Operador MEDO",
+      subtitle:
+        "Una oportunidad para generar ingresos dentro de una operación real de transporte de concreto.",
+      description:
+        "El programa MEDO permite participar en el negocio del transporte de concreto mediante un modelo respaldado por una estructura operativa consolidada. Usted se integra a un sistema diseñado para generar actividad comercial desde el inicio.",
+      second: [
+        {
+          title: "Operación De Camiones Mixer",
+          description:
+            "Participe en el transporte de concreto dentro del sistema.",
+        },
+        {
+          title: "Generación De Ingresos",
+          description: "Equipos confiables diseñados para un alto rendimiento.",
+        },
+        {
+          title: "Soporte Operativo",
+          description:
+            "Trabaje con el respaldo de una organización establecida.",
+        },
+      ],
+      image: "services-5-info-1",
+    },
+    info3: {
+      title: "Venda Sin Infraestructura",
+      subtitle:
+        "Desarrolle oportunidades comerciales utilizando una plataforma ya estructurada.",
+      description:
+        "Las Sucursales Virtuales permiten comercializar servicios de concreto, construcción y renta sin la necesidad de realizar grandes inversiones en instalaciones o equipos. El modelo está diseñado para facilitar la expansión comercial y acelerar el crecimiento.",
+      image: "services-5-info-2",
+    },
+    examples2: {
+      items: [
+        {
+          image: "services-5-exp-4",
+          title: "Acceso A Clientes",
+          description: "Conéctese con una red comercial activa.",
+          list: [],
+        },
+        {
+          image: "services-5-exp-5",
+          title: "Plataforma Estructurada",
+          description: "AUtilice procesos y herramientas ya desarrollados.",
+          list: [],
+        },
+        {
+          image: "services-5-exp-3",
+          title: "Menor Inversión Inicial",
+          description: "Inicie operaciones sin infraestructura pesada.",
+          list: [],
+        },
+      ],
+    },
+    info4: {
+      title: "Construya Su Futuro Con Un Modelo Probado",
+      subtitle:
+        "Una oportunidad diseñada para quienes buscan crecer dentro de la industria de la construcción en Estados Unidos.",
+      description:
+        "Ya sea a través del programa MEDO o de una Sucursal Virtual, tendrá acceso a una estructura empresarial creada para impulsar el desarrollo comercial, reducir barreras de entrada y aprovechar oportunidades reales de negocio.",
+      image: "services-5-info-3",
+    },
+    confidence: {
+      title1: "Haz Crecer Tu",
+      title2: "Futuro Con MEDO",
+      description: "Únete a una red con oportunidades reales.",
+      description2:
+        "Accede a un modelo probado y desarrolla tu negocio con el <br/> respaldo de nuestra experiencia.",
+      button: {
+        label: "Cotización gratuita",
+        href: "#",
+      },
+      img: "serv-5-confidence",
+    },
+    questions: {
+      title: "Preguntas <br/> Frecuentes",
+      items: [
+        {
+          question: "¿Qué es el programa MEDO?",
+          answer:
+            "Es una oportunidad para formar parte de nuestro ecosistema empresarial dentro de la industria de la construcción.",
+        },
+        {
+          question: "¿Necesito experiencia previa?",
+          answer:
+            "No necesariamente. Brindamos orientación y acceso a nuestro modelo operativo.",
+        },
+        {
+          question: "¿Puedo operar mi propio camión?",
+          answer:
+            "Sí. Nuestro programa permite desarrollar oportunidades mediante la operación de unidades dentro de nuestra red.",
+        },
+        {
+          question: "¿Qué es una sucursal virtual?",
+          answer:
+            "Es un modelo que permite generar oportunidades comerciales utilizando nuestra estructura y respaldo.",
+        },
+        {
+          question: "¿Qué beneficios obtengo al unirme?",
+          answer:
+            "Acceso a una red consolidada, soporte operativo y oportunidades reales de crecimiento.",
+        },
+      ],
+    },
+  },
   footer: {
     description:
       "Reliable concrete solutions across North & South Carlina. Built on precision, driven by performance, trusted for results that last.",
