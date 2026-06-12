@@ -923,6 +923,48 @@ export default {
       ],
     },
   },
+  branchs: {
+    hero: {
+      title: "NUESTRAS <br/> SUCURSALES",
+      button: {
+        label: "Cotización gratuita",
+        href: "#",
+      },
+      back: "branchs-hero",
+    },
+  },
+  contact: {
+    questions: {
+      title: "Preguntas <br/> Frecuentes",
+      items: [
+        {
+          question: "¿Qué tipos de servicios de concreto ofrecen?",
+          answer:
+            "Ofrecemos una amplia variedad de soluciones en concreto, incluyendo cimentaciones, entradas vehiculares, aceras, bombeo de concreto, proyectos residenciales, desarrollos comerciales y proyectos llave en mano.",
+        },
+        {
+          question: "¿Trabajan en proyectos residenciales y comerciales?",
+          answer:
+            "Sí. Contamos con la experiencia, el equipo y los recursos necesarios para desarrollar proyectos de cualquier escala, desde mejoras residenciales hasta construcciones comerciales de gran envergadura.",
+        },
+        {
+          question: "¿Cómo puedo solicitar una cotización?",
+          answer:
+            "Puede completar nuestro formulario de contacto o comunicarse directamente con nuestro equipo. Analizaremos los requerimientos de su proyecto y le proporcionaremos una cotización personalizada.",
+        },
+        {
+          question: "¿En qué áreas brindan servicio?",
+          answer:
+            "Atendemos proyectos en Carolina del Norte y Carolina del Sur, ofreciendo soluciones de concreto confiables, ejecución profesional y entregas puntuales.",
+        },
+        {
+          question: "¿Por qué elegirnos para su proyecto?",
+          answer:
+            "Combinamos experiencia, equipos modernos, planificación eficiente y un firme compromiso con la calidad para ofrecer soluciones duraderas, precisas y adaptadas a las necesidades de cada cliente.",
+        },
+      ],
+    },
+  },
   footer: {
     description:
       "Soluciones de concreto confiables en Carolina del Norte y del Sur. Construidos sobre la precisión, impulsadas por el rendimiento, confiables para resultados duraderos.",

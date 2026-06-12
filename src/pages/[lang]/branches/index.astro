@@ -2,7 +2,9 @@
 import en from '../../../i18n/en';
 import es from '../../../i18n/es';
 import Layout from '../../../layouts/Layout.astro';
-import ProjectsGallery from '../../../sections/ProjectsGallery.astro';
+import Areas from '../../../sections/Areas.astro';
+import CallAction from '../../../sections/CallAction.astro';
+import Hero from '../../../sections/Hero.astro';
 
 import type { Language } from '../../../types/language.type';
 
@@ -16,6 +18,8 @@ const lang = Astro.params.lang as Language;
 const translations = { es, en };
 const t = translations[lang];
 ---
-<Layout lang={lang} t={t} showLoader={true}>
-  <ProjectsGallery />
+<Layout lang={lang} t={t}>
+  <Hero content={t.branchs.hero}/>
+  <Areas />
+  <CallAction content={t.main.callAction}/>
 </Layout>
