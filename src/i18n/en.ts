@@ -7,7 +7,7 @@ export default {
       },
       {
         label:
-          'Services <img src="/images/arrow-d-g.svg" alt="Arrow" class="inline-block w-6 h-6 ml-1"/>',
+          'Services',
         href: "/services",
       },
       {
@@ -62,7 +62,7 @@ export default {
   },
   main: {
     hero: {
-      title: "Reliable Concrete. <br/> Proven Results.",
+      title: "Reliable Concrete. <br/> Proven <br class='block md:hidden'/> Results.",
       button: {
         label: "Get Your Free Quote",
         href: "#",

@@ -16,7 +16,7 @@ const sizes = [
 ---
 
 <section class="bg-white w-full flex justify-center items-center relative">
-  <div class="container-full flex flex-col justify-center items-center gap-8 pt-40 pb-8 w-full px-4">
+  <div class="container-full flex flex-col justify-center items-center gap-8 pb-8 w-full px-4 header-margin">
     
     <div class="flex justify-center items-center gap-6">
       {
@@ -97,7 +97,7 @@ const sizes = [
   </div>
 </div>
 
-<script>
+<script is:inline>
   // Variables de la Galería de tamaños (S, M, L)
   const buttons = document.querySelectorAll('.size-btn');
   const container = document.getElementById('gallery-container');
@@ -106,7 +106,7 @@ const sizes = [
   // Elementos del Lightbox / Popup
   const galleryImages = document.querySelectorAll('.gallery-img');
   const modal = document.getElementById('lightbox-modal');
-  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxImg = document.getElementById('lightbox-img');
   const closeBtn = document.getElementById('close-lightbox');
   const prevBtn = document.getElementById('prev-lightbox');
   const nextBtn = document.getElementById('next-lightbox');
@@ -115,7 +115,7 @@ const sizes = [
   let currentIndex = 0;
   const totalImages = 32;
 
-  const columnClasses: Record<string, string> = {
+  const columnClasses = {
     s: 'columns-6',
     m: 'columns-3',
     l: 'columns-1'
@@ -162,7 +162,7 @@ const sizes = [
   // --- LÓGICA DEL POPUP / LIGHTBOX ---
 
   // Función para actualizar la imagen dentro del modal
-  const updateLightboxImage = (index: number) => {
+  const updateLightboxImage = (index) => {
     if (!lightboxImg) return;
     // Efecto sutil de transición al cambiar de imagen interna
     lightboxImg.style.opacity = '0';
@@ -176,7 +176,7 @@ const sizes = [
   // Abrir el modal al hacer clic en cualquier imagen
   galleryImages.forEach(img => {
     img.addEventListener('click', (e) => {
-      const target = e.target as HTMLImageElement;
+      const target = e.target;
       const indexAttr = target.getAttribute('data-index');
       
       if (!modal || !indexAttr) return;
@@ -199,7 +199,7 @@ const sizes = [
   
   // Cerrar si hacen clic en el fondo negro fuera de la imagen
   modal?.addEventListener('click', (e) => {
-    if (e.target === modal || (e.target as HTMLElement).classList.contains('relative')) {
+    if (e.target === modal || (e.target).classList.contains('relative')) {
       closeModal();
     }
   });
@@ -228,3 +228,10 @@ const sizes = [
     if (e.key === 'ArrowLeft') prevImage();
   });
 </script>
+
+<style>
+  .header-margin {
+    /* Evita que el header fixed tape el contenido */
+    padding-top: var(--header-height); /* 80px es el valor por defecto si aún no carga el JS */
+  }
+</style>

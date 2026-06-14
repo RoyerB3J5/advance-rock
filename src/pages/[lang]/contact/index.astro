@@ -18,6 +18,14 @@ const translations = { es, en };
 const t = translations[lang];
 ---
 <Layout lang={lang} t={t} showLoader={true}>
-  <CallAction content={t.main.callAction}/>
+  <section class="header-margin flex w-full bg-[#002127] justify-center items-center">
+    <CallAction content={t.main.callAction}/>
+  </section>
   <Questions content={t.contact.questions}/>
+  <style>
+    .header-margin {
+      /* Evita que el header fixed tape el contenido */
+      padding-top: var(--header-height); /* 80px es el valor por defecto si aún no carga el JS */
+    }
+  </style>
 </Layout>
