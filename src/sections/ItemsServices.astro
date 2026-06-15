@@ -6,7 +6,7 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section class="w-full flex flex-col bg-white py-20">
+<section class="w-full flex flex-col bg-white py-20 ">
   {
     content.map((item, index) => {
       const isPar = index % 2 === 0;

@@ -6,30 +6,30 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section class="w-full h-screen bg-white overflow-hidden relative py-20" id="who-section">
+<section class="js-who-section w-full h-screen bg-white overflow-hidden relative py-12 3xl:py-20">
   
   <div class="grid grid-cols-1 lg:grid-cols-[minmax(1.5rem,1fr)_minmax(0,746px)_minmax(0,534px)_minmax(1.5rem,1fr)] w-full h-full">
     
-    {/* Contenido Izquierdo: Le damos z-10 y relative para asegurar que se quede por debajo de la imagen al crecer */}
+    {/* Contenido Izquierdo */}
     <div class="col-start-1 lg:col-start-2 lg:col-end-3 px-6 lg:px-0 lg:pr-16 flex flex-col justify-between h-full gap-12 lg:gap-0 relative z-10 text-wrapper">
       
-      <div class="flex flex-col justify-center items-start gap-6">
-        <h2 class="text-primary title">{content.title}</h2>
-        <p class="text-paragraph subtitle">{content.subtitle}</p>
+      <div class="flex flex-col justify-center items-start gap-6 js-who-first">
+        <h2 class="text-primary title text-4xl font-bold">{content.title}</h2>
+        <p class="text-paragraph subtitle text-xl">{content.subtitle}</p>
         <p class="text-paragraph paragraph">{content.description}</p>
       </div>
 
-      <div class="w-full flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 lg:gap-0">
+      <div class="w-full flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 lg:gap-0 js-who-second">
         <img src="/images/logo-4.svg" alt="Logo" width="250" height="244" class="w-[200px] lg:w-[250px] h-auto" decoding="async" loading="lazy"/>
         <p class="text-paragraph subtitle lg:w-[40%]">{content.description2}</p>
       </div>
 
     </div>
 
-    {/* Imagen Derecha: Le damos z-20. Es el "molde" estático. */}
-    <div class="col-start-1 lg:col-start-3 lg:col-end-5 relative h-[400px] lg:h-full z-20">
+    {/* Imagen Derecha */}
+    <div class="col-start-1 lg:col-start-3 lg:col-end-5 relative h-[400px] lg:h-full z-20 js-who-image">
       
-      <div class="absolute top-0 right-0 h-full w-auto gs-image-wrapper" style="aspect-ratio: 700/740;">
+      <div class="absolute top-0 right-0 h-full w-auto js-image-wrapper" style="aspect-ratio: 700/740;">
         <img 
           src="/images/who.webp" 
           alt="Sobre Nosotros" 
@@ -45,3 +45,104 @@ const { content } = Astro.props as Props;
 
   </div>
 </section>
+
+<script>
+  import { gsap, ScrollTrigger } from '../utils/animations';
+
+  let whoTriggers: any[] = [];
+
+  const destroyWhoAnimation = () => {
+    whoTriggers.forEach(trigger => {
+      if (trigger) trigger.kill(true); // Restaura los paddings y clases de Tailwind originales al destruir
+    });
+    whoTriggers = [];
+  };
+
+  const initWhoAnimation = () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    destroyWhoAnimation();
+
+    const sections = document.querySelectorAll('.js-who-section');
+    
+    sections.forEach((section) => {
+      const panelGrowth = section.querySelector('.js-who-image');
+      const imageWrapper = section.querySelector('.js-image-wrapper') as HTMLElement;
+      const contentBlock1 = section.querySelector('.js-who-first');
+      const fadeLeftP = section.querySelector('.js-who-second');
+
+      if (!panelGrowth || !imageWrapper || !contentBlock1 || !fadeLeftP) return;
+
+      // === 1. ESTADOS INICIALES ===
+      gsap.set(panelGrowth, { opacity: 0, scale: 0, transformOrigin: "top right" });
+      gsap.set(contentBlock1, { opacity: 0, y: 100 });
+      gsap.set(fadeLeftP, { opacity: 0, y: 100 });
+      gsap.set(imageWrapper, { width: "auto", aspectRatio: "700/740" });
+
+      // === 2. TIMELINE CON PINNING ===
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",         
+          end: "+=2500", // Un poco más de aire para que la expansión final sea súper fluida
+          pin: true,
+          pinSpacing: true,        
+          scrub: 1,                 
+          invalidateOnRefresh: true 
+        }
+      });
+
+      // FASE 1: Revelado de la imagen en su molde inicial
+      tl.to(panelGrowth, { 
+        opacity: 1, 
+        scale: 1, 
+        duration: 1, 
+        ease: "none" 
+      })
+
+      // FASE 2: Entrada del texto superior
+      .to(contentBlock1, { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8, 
+        ease: "power2.out"
+      }, "-=0.6")
+
+      // FASE 3: Entrada del texto inferior
+      .to(fadeLeftP, { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8, 
+        ease: "power2.out" 
+      }, "-=0.2")
+
+      // FASE 4: EXPANSIÓN TOTAL (Llenado de pantalla y remoción de paddings)
+      // Agrupamos ambos movimientos bajo la misma etiqueta de tiempo para que ocurran a la vez
+      .addLabel('granExpansion', '+=0.2')
+      
+      // 1. Expandimos la imagen a pantalla completa
+      .to(imageWrapper, {
+        width: "100vw",
+        aspectRatio: "auto",
+        duration: 1.5,
+        ease: "power2.inOut"
+      }, 'granExpansion')
+      
+      // 2. Llevamos los paddings verticales de la sección a 0 simultáneamente
+      .to(section, {
+        paddingTop: 0,
+        paddingBottom: 0,
+        duration: 1.5,
+        ease: "power2.inOut"
+      }, 'granExpansion');
+
+      if (tl.scrollTrigger) whoTriggers.push(tl.scrollTrigger);
+    });
+
+    ScrollTrigger.refresh();
+  };
+
+  document.addEventListener('DOMContentLoaded', initWhoAnimation);
+  document.addEventListener('astro:page-load', initWhoAnimation);
+  document.addEventListener('astro:before-swap', destroyWhoAnimation);
+</script>

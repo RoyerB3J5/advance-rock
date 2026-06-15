@@ -77,7 +77,7 @@ const lang = Astro.params.lang as Language;
             <h3 class={`text-[40px] font-paragraph font-bold leading-[110%] ${colorContent[index].textTitle}`}>{item.title}</h3>
             <p class={`${colorContent[index].textDescription} paragraph`}>{item.description}</p>
           </div>
-          <a href={`/${lang}/services/${item.button.href}`} class={`paragraph-bold ${colorContent[index].textButton} button-decoration hidden group-hover:inline-block transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100`}>
+          <a href={`/${lang}/services${item.button.href}`} class={`paragraph-bold ${colorContent[index].textButton} button-decoration hidden group-hover:inline-block transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100`}>
             {item.button.label}
           </a>
           <p class="text-[20px] font-paragraph leading-[150%] font-normal group-hover:hidden transition-all duration-300 ease-in-out text-white opacity-100 group-hover:opacity-0">

@@ -81,36 +81,33 @@ const { content } = Astro.props as Props;
 </section>
 
 <script>
-  import { gsap, ScrollTrigger } from '../utils/animations';
+  import { gsap } from '../utils/animations';
 
   document.addEventListener('DOMContentLoaded', () => {
-    
     const section = document.querySelector('#information-animated-section');
     if (!section) return;
 
-    // Buscamos los elementos
     const textBlock  = section.querySelector('.js-anim-text-block');
     const camion     = section.querySelector('.js-anim-camion');
     const grid       = section.querySelector('.js-anim-grid');
     const logoImg    = section.querySelector('.js-anim-logo'); 
-    const logoTrack  = section.querySelector('.js-logo-track'); // Seleccionamos el carril
+    const logoTrack  = section.querySelector('.js-logo-track');
     const darkPanel  = section.querySelector('.js-dark-panel');
     const whitePanel = section.querySelector('.js-white-panel');
     const bluePanel  = section.querySelector('.js-blue-panel');
 
-    // Validación estricta
     if (!textBlock || !camion || !grid || !logoImg || !logoTrack || !darkPanel || !whitePanel || !bluePanel) {
       console.warn('Faltan elementos en el DOM para iniciar GSAP');
       return;
     }
 
-    // 1. Preparación
+    // 1. Preparación de estados iniciales
     gsap.set([grid, logoImg], { opacity: 0, y: 50 });
     gsap.set(camion, { opacity: 0, x: 150 });
     gsap.set(textBlock, { opacity: 0, x: -150 });
     gsap.set(whitePanel, { xPercent: 100 });
 
-    // 2. Timeline
+    // 2. Timeline atado a ScrollTrigger con scrub
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -118,45 +115,41 @@ const { content } = Astro.props as Props;
         end: "+=1500",
         pin: true,
         scrub: 1,
-        invalidateOnRefresh: true // Importante para recalcular distancias si la pantalla cambia de tamaño
+        invalidateOnRefresh: true
       }
     });
 
-    // FASE 1: Animación de entrada
-    tl.to(textBlock, { opacity: 1, x: 0, duration: 1, ease: "power2.out" })
-      .to(camion,    { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, "<")
+    // FASE 1: Animación de entrada (Mantenemos power2.out para adelantarse sutilmente al scroll)
+    tl.to(textBlock, { opacity: 1, x: 0, duration: 1, ease: "power2.out", immediateRender: false })
+      .to(camion,    { opacity: 1, x: 0, duration: 1, ease: "power2.out", immediateRender: false }, "<")
       .to({}, { duration: 0.5 })
-      .to(grid, { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
-      .to(logoImg, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "<");
+      .to(grid, { opacity: 1, y: 0, duration: 1, ease: "power2.out", immediateRender: false })
+      .to(logoImg, { opacity: 1, y: 0, duration: 1, ease: "power2.out", immediateRender: false }, "<");
 
-    tl.to({}, { duration: 0.5 }); // Pausa
+    tl.to({}, { duration: 0.5 }); // Pausa de lectura
 
-    // FASE 2: Transición
+    // FASE 2: Transición de Paneles y Movimiento (Cambiado a ease: "none" para respuesta directa al scroll)
     tl.add("slide");
 
-    tl.to(darkPanel, { xPercent: -100, duration: 2, ease: "power2.inOut" }, "slide")
-      .to(bluePanel, { left: "0%", width: "38%", duration: 2, ease: "power2.inOut" }, "slide")
-      .to(whitePanel, { xPercent: 0, duration: 2, ease: "power2.inOut" }, "slide");
+    tl.to(darkPanel, { xPercent: -100, duration: 2, ease: "none" }, "slide")
+      .to(bluePanel, { left: "0%", width: "38%", duration: 2, ease: "none" }, "slide")
+      .to(whitePanel, { xPercent: 0, duration: 2, ease: "none" }, "slide");
 
-    // Mover camión
+    // Mover camión de forma lineal con el scroll
     tl.to(camion, { 
       right: "auto", 
       left: "-65%",  
       duration: 2, 
-      ease: "power2.inOut" 
+      ease: "none" 
     }, "slide");
 
-    // SOLUCIÓN DEFINITIVA PARA EL LOGO:
-    // Movemos el logo usando 'x' basándonos en el ancho de su propio carril.
-    // Esto asegura un deslizamiento físico impecable sin importar la resolución.
+    // Desplazamiento del logo por carril (Sincronía perfecta al scroll)
     tl.to(logoImg, {
       x: () => {
-        // Ancho del carril menos el ancho del logo (117px) para que quede pegado a la izquierda
         return -((logoTrack as HTMLElement).offsetWidth - 117); 
       },
       duration: 2,
-      ease: "power2.inOut"
+      ease: "none"
     }, "slide");
-
   });
 </script>

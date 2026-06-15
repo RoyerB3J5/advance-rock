@@ -1,0 +1,60 @@
+---
+interface Props {
+  text: string
+}
+const { text } = Astro.props as Props
+---
+<section class="w-full bg-white flex justify-center items-center overflow-hidden py-8">
+  <p class="decoration whitespace-nowrap w-max will-change-transform" data-scroll-text>{text}</p>
+</section>
+
+<script>
+  let lastScrollY = window.scrollY;
+  let isInViewport = false;
+  
+  // Añadimos un acumulador para la posición X y un factor de velocidad
+  let currentX = 0; 
+  const SPEED_FACTOR = 0.05; // Aumenta o disminuye para cambiar la velocidad del movimiento
+
+  const textElement = document.querySelector(
+    '[data-scroll-text]'
+  ) as HTMLElement | null;
+
+  if (textElement) {
+    // Detectar si la sección está en viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isInViewport = entry.isIntersecting;
+          // Actualizamos el lastScrollY al entrar para evitar saltos bruscos
+          if (isInViewport) {
+            lastScrollY = window.scrollY;
+          }
+        });
+      },
+      { threshold: 0.1 } // Un umbral menor para que empiece la animación apenas asome
+    );
+
+    // Observamos el elemento padre (o la sección) para mayor precisión
+    const section = textElement.parentElement;
+    if (section) observer.observe(section);
+
+    // Escuchar scroll
+    window.addEventListener('scroll', () => {
+      if (!isInViewport) return;
+
+      const currentScrollY = window.scrollY;
+      
+      // Calculamos cuánto scroll se ha movido desde el último frame
+      const deltaScroll = currentScrollY - lastScrollY;
+
+      // Restamos el delta para que al bajar (delta positivo) se mueva a la izquierda
+      // Multiplicamos por la velocidad para controlar el ritmo
+      currentX -= deltaScroll * SPEED_FACTOR;
+
+      textElement.style.transform = `translateX(${currentX}px)`;
+
+      lastScrollY = currentScrollY;
+    });
+  }
+</script>

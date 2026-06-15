@@ -218,6 +218,7 @@ export default {
         label: "Get Your Free Quote",
         href: "#",
       },
+      img: "hero-confidence",
     },
     callAction: {
       title: "Where Strong <br/> Projects Begin",

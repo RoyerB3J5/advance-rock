@@ -2,10 +2,12 @@
 import en from '../../i18n/en';
 import es from '../../i18n/es';
 import Layout from '../../layouts/Layout.astro';
+import Building from '../../sections/Building.astro';
 import CallAction from '../../sections/CallAction.astro';
 import Confidence from '../../sections/Confidence.astro';
 import HeroMain from '../../sections/HeroMain.astro';
 import Info from '../../sections/Info.astro';
+import MoveText from '../../sections/MoveText.astro';
 import Projects from '../../sections/Projects.astro';
 import Services from '../../sections/Services.astro';
 import type { Language } from '../../types/language.type';
@@ -25,6 +27,8 @@ const t = translations[lang];
   <Info content={t.main.information} />
   <Services content={t.main.services}/>
   <Projects content={t.main.projects}/>
+  <MoveText text={t.main.projects.text}/>
+  <Building content={t.main.projects} />
   <Confidence content={t.main.confidence}/>
   <CallAction content={t.main.callAction}/>
 </Layout>

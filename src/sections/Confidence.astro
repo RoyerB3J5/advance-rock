@@ -7,16 +7,160 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section class="w-full h-screen flex flex-col justify-center items-center gap-6 bg-[#002127]">
-  <div class='flex flex-col justify-center items-center text-center'>
-    <h2 class='title text-secondary'>{content.title1}</h2>
-    <h2 class="title text-white">{content.title2}</h2>
+<section id="confidence-section" class="w-full h-screen flex flex-col justify-center items-center gap-6 bg-[#002127] relative z-10 overflow-hidden">
+  
+  <div class="js-inner-container flex flex-col justify-center items-center gap-6 w-full h-full">
+    
+    <div class='flex flex-col justify-center items-center text-center z-20'>
+      <h2 class='title text-secondary js-first-title font-bold text-4xl'>{content.title1}</h2>
+      <h2 class="title text-white js-second-title font-bold text-4xl">{content.title2}</h2>
+    </div>
+    
+    <div class="flex flex-col justify-center items-center gap-6 js-content z-20"> 
+      <p class="subtitle text-white">{content.description}</p>
+      <p class="paragraph text-white text-center" set:html={content.description2}></p>
+      <Button
+          text={content.button.label}
+          href={content.button.href}
+          textClass="text-[17px]"
+        />
+    </div>
+    
+    <div class="absolute z-10 bottom-0 js-image aspect-[543/700]">
+      <div class="relative w-full h-full">
+        <img src={`/images/${content.img}.webp`} class="absolute w-full h-full object-cover object-center inset-0" width="2200" height="1228" decoding="async" loading="lazy"/>
+      </div>
+    </div>
+
   </div>
-  <p class="subtitle text-white">{content.description}</p>
-  <p class="paragraph text-white" set:html={content.description2}></p>
-  <Button
-      text={content.button.label}
-      href={content.button.href}
-      textClass="text-[17px]"
-    />
+  
 </section>
+
+<style>
+  .js-inner-container,
+  .js-first-title,
+  .js-second-title,
+  .js-image,
+  .js-content {
+    will-change: transform, opacity;
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger } from '../utils/animations';
+
+  const initAnimation = () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = document.querySelector('#confidence-section');
+    if (!section) return;
+
+    const innerContainer = section.querySelector('.js-inner-container') as HTMLElement;
+    const firstTitle = section.querySelector('.js-first-title') as HTMLElement;
+    const secondTitle = section.querySelector('.js-second-title') as HTMLElement;
+    const image = section.querySelector('.js-image') as HTMLElement;
+    const content = section.querySelector('.js-content') as HTMLElement;
+
+    if (!innerContainer || !firstTitle || !secondTitle || !image || !content) return;
+
+    // ==========================================
+    // 1. ESTADOS INICIALES ABSOLUTOS
+    // ==========================================
+    gsap.set(innerContainer, { y: 250, opacity: 0 });
+    gsap.set(firstTitle, { y: 80, scale: 2, opacity: 0 }); // Bajé la escala inicial a 2 para una transición más limpia
+    
+    gsap.set(secondTitle, { y: 20, opacity: 0 });
+    gsap.set(content, { y: 50, opacity: 0 });
+    
+    // Imagen sólida al 100% (Sin opacidades por tu corrección)
+    gsap.set(image, { 
+      y: '100%', 
+      width: '100vw', 
+      maxHeight: '100vh',
+      left: '50%',
+      xPercent: -50
+    });
+
+    // ==========================================
+    // 2. SCROLLTRIGGER DE ENTRADA (MÁS ANTICIPADO)
+    // ==========================================
+    const entranceTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom', 
+        end: 'top top',       
+        scrub: 1
+      }
+    });
+
+    // El contenedor tarda todo el recorrido del scroll de entrada (duration: 1)
+    entranceTl.to(innerContainer, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: 'none'
+    }, 0)
+    // El Primer Título se anima mucho más rápido (duration: 0.4). 
+    // Terminará de posicionarse antes de la mitad del camino del scroll.
+    .to(firstTitle, {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      duration: 0.4, 
+      ease: 'power1.out'
+    }, 0); 
+
+
+    // ==========================================
+    // 3. SCROLLTRIGGER PRINCIPAL (AJUSTE DE TIEMPOS MUERTOS)
+    // ==========================================
+    const mainTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: '+=3500',
+        scrub: 1,
+        pin: true,
+        pinSpacing: true,
+        invalidateOnRefresh: true
+      }
+    });
+
+    // Fase A: El segundo título aparece de forma más ágil (duration: 0.5 en vez de 0.8)
+    mainTl.to(secondTitle, {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      ease: 'power2.out'
+    }, '+=0.05'); // Reducido el delay de espera inicial
+
+    // Fase B: Coreografía de la Imagen (Inicia casi de inmediato)
+    // Cambiamos el delay de '+=0.2' a '+=0.05' para que la imagen salga volando rápido
+    mainTl.addLabel('viajeImagen', '+=0.05');
+    
+    // 1. Movimiento Vertical Continuo (Sube hasta salir por el techo)
+    mainTl.to(image, {
+      y: '-150%',
+      duration: 3.0, 
+      ease: 'none'   
+    }, 'viajeImagen');
+
+    // 2. Encogimiento al 30% en el primer tercio (30%) del viaje
+    mainTl.to(image, {
+      width: '30vw',
+      duration: 0.9, // 3.0 * 0.3 = 0.9s exactos
+      ease: 'power2.out' 
+    }, 'viajeImagen');
+
+    // Fase C: El contenido aparece al 70% exacto de la subida de la imagen
+    // 3.0 * 0.7 = 2.1s desde que inició 'viajeImagen'
+    mainTl.to(content, {
+      y: 0,
+      opacity: 1,
+      duration: 0.7,
+      ease: 'power2.out'
+    }, 'viajeImagen+=2.1');
+  };
+
+  document.addEventListener('DOMContentLoaded', initAnimation);
+</script>

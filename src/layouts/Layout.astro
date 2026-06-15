@@ -278,13 +278,6 @@ const { lang, t, showLoader = true } = Astro.props;
 <!-- Consolidated IntersectionObserver for all animations and carousels -->
 <script is:inline >
   document.addEventListener("DOMContentLoaded", () => {
-    if (DISABLE_ANIMATIONS) {
-      // Activar todas las animaciones inmediatamente sin esperar IntersectionObserver
-      document.querySelectorAll(
-        ".animation-up-fast, .animation-zoom-in, .animation-up-fast-2, .animation-zoom-in-2, .animation-fade-down, .animation-fade-left, .animation-zoom-out, .animation-fade-right, .animation-fade-left-2, .animation-up-fast-3 , .animation-zoom-in-3, .animation-fade-left-3, .container-image-fade, .image-fade"
-      ).forEach(el => el.classList.add("active"));
-      return;
-    }
 
     // Observer para animaciones: services-header, animation-left, hero-content
     const animationElements = document.querySelectorAll(

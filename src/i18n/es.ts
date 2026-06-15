@@ -219,7 +219,7 @@ export default {
         label: "Cotización gratuita",
         href: "#",
       },
-      img: "confidence",
+      img: "hero-confidence",
     },
     callAction: {
       title: "donde comienzan los <br/> proyectos sólidos",
