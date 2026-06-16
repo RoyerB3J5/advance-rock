@@ -5,7 +5,7 @@ interface Props {
 const { text } = Astro.props as Props
 ---
 <section class="w-full bg-white flex justify-center items-center overflow-hidden py-8">
-  <p class="decoration will-change-transform" data-scroll-text>{text}</p>
+  <p class="decoration whitespace-nowrap" data-scroll-text>{text}</p>
 </section>
 
 <script>
