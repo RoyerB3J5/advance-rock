@@ -1,6 +1,26 @@
----
-// Detección de idioma del navegador
-const acceptLang = Astro.request.headers.get('accept-language') || '';
-const prefersEs = acceptLang.toLowerCase().includes('es');
-return Astro.redirect(prefersEs ? '/es/' : '/en/', 301);
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecting...</title>
+  
+  <!-- Redirección inmediata para Bots/SEO (al idioma por defecto) -->
+  <meta http-equiv="refresh" content="0;url=/en/" />
+  
+  <!-- Evita que Google indexe esta raíz vacía -->
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Redirección inmediata para usuarios reales -->
+  <script is:inline>
+    const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
+    if (userLang.includes('es')) {
+      window.location.href = '/es/';
+    } else {
+      window.location.href = '/en/';
+    }
+  </script>
+</head>
+<body style="background-color: #000000;">
+  <!-- Pon aquí el color de fondo de tu web si no es negro, para que el salto sea invisible -->
+</body>
+</html>
