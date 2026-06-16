@@ -150,6 +150,7 @@ const { content } = Astro.props as Props;
       },
       duration: 2,
       ease: "none"
-    }, "slide");
+    }, "slide")
+    .to({}, { duration: 0.3 }); 
   });
 </script>

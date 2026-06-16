@@ -8,6 +8,7 @@ import ContentExamples from '../../../../sections/ContentExamples.astro';
 import GridExamples from '../../../../sections/GridExamples.astro';
 import Hero from '../../../../sections/Hero.astro';
 import InfoContent from '../../../../sections/InfoContent.astro';
+import InfoContent2 from '../../../../sections/InfoContent2.astro';
 import InfoContentAnimation from '../../../../sections/InfoContentAnimation.astro';
 import Questions from '../../../../sections/Questions.astro';
 import type { Language } from '../../../../types/language.type';
@@ -26,16 +27,16 @@ const t = translations[lang];
   <Hero content={t.medo.hero}/>
   <section class="bg-white flex flex-col justify-center items-center py-20 gap-8.5 w-full">
     <InfoContent content={t.medo.info}/>
-    <p class="decoration whitespace-nowrap w-max">{t.medo.textMove}</p>
+    <p class="decoration whitespace-nowrap " data-scroll-text>{t.medo.textMove}</p>
     <ContentExamples content={t.medo.examples}/>
   </section>
-  <section class="bg-[#002127] flex flex-col justify-center items-center py-20 w-full">
+  <section class="bg-[#002127] flex flex-col justify-center items-center w-full">
     <InfoContent content={t.medo.info2} styleType='bg-and-order' list={t.medo.info2.second}/>
   </section>
-  {/*<InfoContent content={t.medo.info3}/> */}
-  <section class="bg-white flex flex-col justify-center items-center py-20 gap-20 w-full ">
+  <InfoContent2 content={t.medo.info3}/>
+  <section class="bg-white flex flex-col justify-center items-center py-12 3xl:py-20 gap-20 w-full">
     <div class="container-full flex justify-center items-center">
-      <GridExamples content={t.medo.examples2.items} />
+      <GridExamples content={t.medo.examples2.items} animationUp={true}/>
     </div>
   </section>
   <InfoContentAnimation content={t.medo.info4}/>
@@ -43,3 +44,8 @@ const t = translations[lang];
   <Confidence content={t.medo.confidence}/>
   <Questions content={t.medo.questions}/>
 </Layout>
+<script>
+import { initScrollText } from "../../../../utils/scrollText";
+
+  initScrollText();
+</script>

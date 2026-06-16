@@ -1,5 +1,4 @@
 ---
-import QuestionsAccordion from './QuestionsAccordion';
 type Translations = typeof import("../i18n/en").default;
 type QuestionsContent = Translations['services']['pool-construction']['questions'];
 interface Props {
@@ -7,4 +6,145 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<QuestionsAccordion content={content} client:load />
+<section class="flex flex-col justify-center items-center bg-[#002127] w-full py-12">
+  <div class="container-full flex flex-col justify-center items-center gap-8 w-full px-4">
+    <h2
+      set:html={content.title}
+      class="text-white title text-center animation-fade-down"
+    ></h2>
+
+    <div class="w-full flex flex-col justify-center items-center gap-6">
+      {content.items.map((item, index) => {
+        const isOpenDefault = index === 0;
+        const isPar = index % 2 === 0;
+        
+        return (
+          <div
+            class={`accordion-item w-full flex justify-between items-start p-4 md:p-6 bg-[#001E23] border border-white/20 transition-all duration-300 ease-in-out ${isPar ? 'animation-fade-right' : 'animation-fade-left-2'}`}
+            data-open={isOpenDefault ? "true" : "false"}
+          >
+            <div
+              class={`accordion-inner flex flex-col justify-start items-start w-full transition-all duration-300 ease-in-out ${
+                isOpenDefault ? "gap-6" : "gap-0"
+              }`}
+            >
+              <div class="w-full flex justify-between items-center gap-4">
+                <h3 class="subtitle text-white text-left">{item.question}</h3>
+                
+                {/* Botón Mobile */}
+                <button
+                  type="button"
+                  class="accordion-toggle shrink-0 bg-none border-none cursor-pointer p-0 hover:opacity-80 transition-opacity block md:hidden"
+                  aria-label={isOpenDefault ? "Cerrar pregunta" : "Abrir pregunta"}
+                >
+                  <img
+                    src={isOpenDefault ? "/images/minus.svg" : "/images/plus.svg"}
+                    alt={isOpenDefault ? "Menos" : "Más"}
+                    width="24"
+                    height="24"
+                    class="w-8 h-8 accordion-icon"
+                    decoding="async"
+                    loading="lazy"
+                  />
+                </button>
+              </div>
+
+              <div
+                class={`accordion-content overflow-hidden transition-all duration-300 ease-in-out w-full md:w-[60%] ${
+                  isOpenDefault ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                }`}
+              >
+                <p class="text-white paragraph text-left">{item.answer}</p>
+              </div>
+            </div>
+            
+            {/* Botón Desktop */}
+            <button
+              type="button"
+              class="accordion-toggle shrink-0 ml-4 bg-none border-none cursor-pointer p-0 hover:opacity-80 transition-opacity hidden md:block"
+              aria-label={isOpenDefault ? "Cerrar pregunta" : "Abrir pregunta"}
+            >
+              <img
+                src={isOpenDefault ? "/images/minus.svg" : "/images/plus.svg"}
+                alt={isOpenDefault ? "Menos" : "Más"}
+                width="24"
+                height="24"
+                class="w-8 h-8 accordion-icon"
+                decoding="async"
+                loading="lazy"
+              />
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Este script se ejecuta del lado del cliente automáticamente por Astro
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  accordionItems.forEach((item) => {
+    const toggles = item.querySelectorAll('.accordion-toggle');
+    const innerContainer = item.querySelector('.accordion-inner');
+    const contentPanel = item.querySelector('.accordion-content');
+    const icons = item.querySelectorAll('.accordion-icon');
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const isCurrentlyOpen = item.getAttribute('data-open') === 'true';
+
+        if (!isCurrentlyOpen) {
+          // Cierra todos los demás contenedores (Comportamiento acordeón estricto)
+          accordionItems.forEach((otherItem) => {
+            if (otherItem !== item && otherItem.getAttribute('data-open') === 'true') {
+              closeItem(otherItem);
+            }
+          });
+          // Abre el contenedor actual
+          openItem(item, innerContainer, contentPanel, icons);
+        } else {
+          // Cierra el contenedor actual si se vuelve a clickear
+          closeItem(item, innerContainer, contentPanel, icons);
+        }
+      });
+    });
+  });
+
+  function openItem(item: Element, inner: Element | null, content: Element | null, icons: NodeListOf<Element>) {
+    item.setAttribute('data-open', 'true');
+    inner?.classList.remove('gap-0');
+    inner?.classList.add('gap-6');
+    
+    content?.classList.remove('max-h-0', 'opacity-0');
+    content?.classList.add('max-h-96', 'opacity-100');
+
+    icons.forEach((img) => {
+      img.setAttribute('src', '/images/minus.svg');
+      img.setAttribute('alt', 'Menos');
+    });
+
+    item.querySelectorAll('.accordion-toggle').forEach(t => t.setAttribute('aria-label', 'Cerrar pregunta'));
+  }
+
+  function closeItem(item: Element, inner?: Element | null, content?: Element | null, icons?: NodeListOf<Element>) {
+    const targetInner = inner || item.querySelector('.accordion-inner');
+    const targetContent = content || item.querySelector('.accordion-content');
+    const targetIcons = icons || item.querySelectorAll('.accordion-icon');
+
+    item.setAttribute('data-open', 'false');
+    targetInner?.classList.remove('gap-6');
+    targetInner?.classList.add('gap-0');
+
+    targetContent?.classList.remove('max-h-96', 'opacity-100');
+    targetContent?.classList.add('max-h-0', 'opacity-0');
+
+    targetIcons.forEach((img) => {
+      img.setAttribute('src', '/images/plus.svg');
+      img.setAttribute('alt', 'Más');
+    });
+
+    item.querySelectorAll('.accordion-toggle').forEach(t => t.setAttribute('aria-label', 'Abrir pregunta'));
+  }
+</script>

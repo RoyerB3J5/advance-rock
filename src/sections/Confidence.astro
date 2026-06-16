@@ -66,8 +66,8 @@ const { content } = Astro.props as Props;
     // ==========================================
     // 1. ESTADOS INICIALES ABSOLUTOS
     // ==========================================
-    gsap.set(innerContainer, { y: 250, opacity: 0 });
-    gsap.set(firstTitle, { y: 80, scale: 2, opacity: 0 }); // Bajé la escala inicial a 2 para una transición más limpia
+    gsap.set(innerContainer, { y: 150, opacity: 0 });
+    gsap.set(firstTitle, { y: 80, scale: 3, opacity: 0 }); // Bajé la escala inicial a 2 para una transición más limpia
     
     gsap.set(secondTitle, { y: 20, opacity: 0 });
     gsap.set(content, { y: 50, opacity: 0 });
@@ -97,7 +97,7 @@ const { content } = Astro.props as Props;
     entranceTl.to(innerContainer, {
       y: 0,
       opacity: 1,
-      duration: 1,
+      duration: 0.3,
       ease: 'none'
     }, 0)
     // El Primer Título se anima mucho más rápido (duration: 0.4). 
@@ -106,7 +106,7 @@ const { content } = Astro.props as Props;
       y: 0,
       scale: 1,
       opacity: 1,
-      duration: 0.4, 
+      duration: 1, 
       ease: 'power1.out'
     }, 0); 
 

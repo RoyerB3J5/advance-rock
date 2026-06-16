@@ -104,12 +104,16 @@ html {
   paint-order: stroke fill; /* <--- ESTA ES LA CLAVE */
 
   font-family: Montserrat;
-  font-size: 110px;
+  font-size: 150px;
   font-style: normal;
   font-weight: 900;
   line-height: 120%;
 }
-
+@media (min-width: 1600px) {
+  .decoration {
+    font-size: 200px;
+  }
+}
 @keyframes fadeUpFast {
   from {
     opacity: 0;

@@ -8,10 +8,89 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<div class="container-full flex flex-col justify-center items-start  gap-6">
-    <div class="flex flex-col justify-center items-start gap-6">
+<div class="container-full flex flex-col justify-center items-start  gap-6 js-example-row">
+    <div class="flex flex-col justify-center items-start gap-6 js-example-content">
       <h2 set:html={content.title} class="text-primary title-sm text-left"></h2>
       <p set:html={content.description} class="text-paragraph paragraph"></p>
     </div>
     <GridExamples content={content.items}/>
-  </div>
+</div>
+
+<script>
+  import { gsap, ScrollTrigger } from '../utils/animations';
+
+  let servicesTriggers: any[] = [];
+
+  const destroyServicesAnimation = () => {
+    servicesTriggers.forEach(trigger => {
+      if (trigger) trigger.kill(true);
+    });
+    servicesTriggers = [];
+  };
+
+  const initServicesAnimation = () => {
+    gsap.registerPlugin(ScrollTrigger);
+    destroyServicesAnimation();
+
+    const rows = document.querySelectorAll('.js-example-row');
+    
+    rows.forEach((row) => {
+      const contentText = row.querySelector('.js-example-content') as HTMLElement;
+      
+      // SOLUCIÓN 1: Usamos querySelectorAll para capturar TODOS los items del .map()
+      const gridItems = row.querySelectorAll('.js-example-item');
+
+      if (!contentText || gridItems.length === 0) return;
+
+      const textXOffset = -50; // Reducido un poco para que no viaje una distancia exagerada
+
+      // === ESTADOS INICIALES ===
+      gsap.set(contentText, { 
+        opacity: 0, 
+        x: textXOffset 
+      });
+
+      gsap.set(gridItems, { 
+        opacity: 0, 
+        y: 200 // SOLUCIÓN 2: Cambiado de yPercent: 100 a 60px para suavizar la velocidad de subida
+      });
+
+      // === TIMELINE DE SCROLL CONTINUO ===
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: row,
+          // SOLUCIÓN 3: "top bottom" inicia la animación APENAS la sección asoma por abajo de la pantalla
+          start: "top bottom",         
+          // SOLUCIÓN 4: Al terminar en "bottom center", estiramos la duración del scroll para que no sea abrupto
+          end: "bottom 90%", 
+          scrub: 1.2, // Un scrub de 1.2 le da un ligero retraso de amortiguación muy suave al mouse
+          invalidateOnRefresh: true
+        }
+      });
+
+      // Entrada del bloque de texto
+      tl.to(contentText, { 
+        opacity: 1, 
+        x: 0, 
+        duration: 0.8, 
+        ease: "none" // "none" mantiene velocidad constante 1:1 con tu scroll
+      });
+
+      // SOLUCIÓN 5: Animamos todas las tarjetas usando stagger (entrada escalonada)
+      tl.to(gridItems, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "none"
+      }, "-=0.4"); // Comienza a integrarse un poco antes de que termine el texto
+
+      if (tl.scrollTrigger) servicesTriggers.push(tl.scrollTrigger);
+    });
+
+    ScrollTrigger.refresh();
+  };
+
+  document.addEventListener('DOMContentLoaded', initServicesAnimation);
+  document.addEventListener('astro:page-load', initServicesAnimation);
+  document.addEventListener('astro:before-swap', destroyServicesAnimation);
+</script>
