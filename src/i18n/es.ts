@@ -6,8 +6,7 @@ export default {
         href: "/about",
       },
       {
-        label:
-          'Servicios ',
+        label: "Servicios ",
         href: "/services",
       },
       {
@@ -62,7 +61,8 @@ export default {
   },
   main: {
     hero: {
-      title: "Concreto Confiable. <br/> Resultados <br class='block md:hidden'/> Comprobados.",
+      title:
+        "Concreto Confiable. <br/> Resultados <br class='block md:hidden'/> Comprobados.",
       button: {
         label: "Cotización Gratis",
         href: "#",
@@ -603,7 +603,7 @@ export default {
           label: "Cotización gratuita",
           href: "#",
         },
-        back: "services-1-hero",
+        back: "services-4-hero",
       },
       info: {
         title: "Una Solución Completa Desde El Inicio",

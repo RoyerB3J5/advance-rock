@@ -1,5 +1,4 @@
 ---
-import { normalize } from 'astro:schema';
 import Button from './Button.astro';
 import ChangeLanguage from './ChangeLanguage.astro';
 
@@ -13,19 +12,18 @@ const { content } = Astro.props as Props;
 // Obtener la ruta actual y normalizar el path sin prefijo de idioma
 const currentPath = Astro.url.pathname;
 // Normalizar: remover idioma y trailing slash
-const normalized =
-  currentPath.replace(/^\/(en|es)/, '').replace(/\/$/, '') || '/';
+const normalized = currentPath.replace(/^\/(en|es)/, '').replace(/\/$/, '') || '/';
 // Detectar el idioma actual ('en' o 'es')
 const match = currentPath.match(/^\/(en|es)/);
 const lang = match ? match[1] : 'en';
-const isContactPage = normalized === '/contact' ;
+const isContactPage = normalized === '/contact';
 const isProjectPage = normalized === '/projects';
 ---
 
 <header
-  class={`fixed left-0 right-0 z-50 w-full flex flex-col justify-center items-center transition-top duration-300 ease-in-out border-0 top-0 `}
+  class={`fixed left-0 right-0 z-50 w-full flex flex-col justify-center items-center top-0`}
   id="site-header"
-  style="background-color: rgba(var(--color-primary-rgb), 0); transition: background-color 0.1s ease-out, transform 0.3s ease-out;"
+  style="background-color: transparent; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); transition: background-color 0.3s ease-out, backdrop-filter 0.3s ease-out, -webkit-backdrop-filter 0.3s ease-out;"
 >
   <div class='container-full flex flex-col justify-center items-center'>
     <div class='py-2.5 w-full flex justify-end items-center gap-4 border-b border-white/20'>
@@ -40,9 +38,7 @@ const isProjectPage = normalized === '/projects';
       <div class={`w-[1px] h-6 ${isProjectPage?'bg-primary':'bg-white'}`}></div>
       <p class={`paragraph ${isProjectPage?'text-primary':'text-white'}`}>Greenville, SC</p>
     </div>
-    <div
-      class={`w-full flex justify-between items-center relative py-6`}
-    >
+    <div class={`w-full flex justify-between items-center relative py-6`}>
       <a
           href={`/${lang}`}
           aria-label="Ir a la página principal"
@@ -63,7 +59,6 @@ const isProjectPage = normalized === '/projects';
             class="cursor-pointer w-40 md:w-45 h-auto "
           />) }          
         </a>
-      <!-- Menú desktop (lg y arriba) -->
       <div
         class="relative bg-transparent flex flex-row justify-center items-center h-auto w-auto z-10 transform translate-x-0 transition-transform duration-300 ease-out"
       >
@@ -147,12 +142,10 @@ const isProjectPage = normalized === '/projects';
             <span class="sr-only">Abrir menú de navegación</span>
           </button>
       </div>
-      <!-- Botones para móvil -->
     </div>
   </div>
 </header>
 
-<!-- Menú móvil independiente (lg para abajo) -->
 <div
   class="fixed top-0 right-0 bottom-0 lg:hidden flex items-center bg-primary  text-white flex-col justify-center h-[85%] w-full z-60 py-6 gap-12 transform -translate-y-full transition-transform duration-300 ease-out"
   id="mobile-menu"
@@ -245,14 +238,12 @@ const isProjectPage = normalized === '/projects';
   </div>
 
   <style>
-    /* Mejorar el comportamiento del dropdown */
+    /* Estilos del dropdown heredados */
     .dropdown-parent:hover .dropdown-menu {
       display: flex !important;
       opacity: 1 !important;
       pointer-events: auto !important;
     }
-
-    /* Crear un puente invisible entre el botón y el dropdown */
     .dropdown-parent::after {
       content: '';
       position: absolute;
@@ -264,8 +255,6 @@ const isProjectPage = normalized === '/projects';
       z-index: 39;
       pointer-events: auto;
     }
-
-    /* Clase para texto solo visible para lectores de pantalla */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -277,199 +266,125 @@ const isProjectPage = normalized === '/projects';
       white-space: nowrap;
       border: 0;
     }
-
-    /* Asegurar que el dropdown se mantenga visible cuando se hace hover */
     .dropdown-menu:hover {
       display: flex !important;
       opacity: 1 !important;
       pointer-events: auto !important;
     }
-
-    /* Hacer que el dropdown mantenga el hover del padre */
-    .dropdown-menu {
-      margin-top: 0px;
-    }
-
-    /* Deshabilitar dropdown y puente en tamaños menores a lg */
     @media (max-width: 1023px) {
-      .dropdown-parent::after {
-        display: none;
-      }
-
-      .dropdown-parent:hover .dropdown-menu {
-        display: none !important;
-      }
-
-      .dropdown-menu {
-        display: none !important;
-      }
+      .dropdown-parent::after { display: none; }
+      .dropdown-parent:hover .dropdown-menu { display: none !important; }
+      .dropdown-menu { display: none !important; }
     }
   </style>
-
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menu = document.getElementById('mobile-menu');
-      const openBtn = document.getElementById('hamburger-btn');
-      const closeBtn = document.getElementById('close-btn');
-      const servicesDiv = document.getElementById('services-1'); // Desktop services (services is index 1)
-      const mobileservicesDiv = document.getElementById('mobile-services-1'); // Mobile services (services is index 1)
-      const subMenuservices = document.getElementById('sub-menu-services');
-      const body = document.body;
-
-      const isMobile = () => window.innerWidth < 1024;
-
-      function openMenu() {
-        if (isMobile()) {
-          menu.classList.replace('-translate-y-full', 'translate-y-0');
-          body.classList.add('overflow-hidden');
-        }
-      }
-
-      function closeMenu() {
-        if (isMobile()) {
-          menu.classList.replace('translate-y-0', '-translate-y-full');
-          body.classList.remove('overflow-hidden');
-        }
-      }
-
-      function toggleSubMenu(event) {
-        // Solo en móvil prestamos atención al toggle
-        if (!isMobile()) return;
-
-        // Seguridad: si no existe el subMenuservices, no hacemos nada
-        if (!subMenuservices) return;
-
-        const isSubMenuOpen = !subMenuservices.classList.contains('hidden');
-
-        // Si el submenu está cerrado, prevenimos la navegación y lo abrimos
-        if (!isSubMenuOpen) {
-          event.preventDefault();
-          subMenuservices.classList.remove('hidden');
-          subMenuservices.classList.add('flex');
-        }
-        // Si el submenu está abierto y se presiona de nuevo, cerramos el submenu
-        // y evitamos la navegación para que el click solo actúe como toggle
-        else {
-          event.preventDefault();
-          subMenuservices.classList.add('hidden');
-          subMenuservices.classList.remove('flex');
-        }
-      }
-
-      openBtn.addEventListener('click', openMenu);
-      closeBtn.addEventListener('click', closeMenu);
-
-      // Agregar event listener al div padre para que al pulsar el div (no solo el <a>) se active el toggle
-      if (servicesDiv) {
-        servicesDiv.addEventListener('click', (e) => {
-          // Solo actuamos en móvil
-          if (!isMobile()) return;
-          // Ignorar clicks que vayan dirigidos al propio sub-menu (navegación de items)
-          if (e.target.closest('#sub-menu-services')) return;
-          toggleSubMenu(e);
-        });
-      }
-
-      if (mobileservicesDiv) {
-        mobileservicesDiv.addEventListener('click', (e) => {
-          if (!isMobile()) return;
-          if (e.target.closest('#sub-menu-services')) return;
-          toggleSubMenu(e);
-        });
-      }
-
-      // Asegurar estado inicial según tamaño
-      if (isMobile()) {
-        menu.classList.add('-translate-y-full');
-        menu.classList.remove('translate-y-0');
-        body.classList.remove('overflow-hidden');
-        if (subMenuservices) {
-          subMenuservices.classList.add('hidden');
-          subMenuservices.classList.remove('flex');
-        }
-      } else {
-        menu.classList.add('translate-y-0');
-        menu.classList.remove('-translate-y-full');
-        body.classList.remove('overflow-hidden');
-      }
-
-      window.addEventListener('resize', () => {
-        if (!isMobile()) {
-          menu.classList.add('translate-y-0');
-          menu.classList.remove('-translate-y-full');
-          body.classList.remove('overflow-hidden');
-          // Ocultar submenu en desktop
-          if (subMenuservices) {
-            subMenuservices.classList.add('hidden');
-            subMenuservices.classList.remove('flex');
-          }
-        } else {
-          // Asegura que el menú esté oculto al volver a móvil
-          menu.classList.add('-translate-y-full');
-          menu.classList.remove('translate-y-0');
-          body.classList.remove('overflow-hidden');
-          if (subMenuservices) {
-            subMenuservices.classList.add('hidden');
-            subMenuservices.classList.remove('flex');
-          }
-        }
-      });
-      const header = document.getElementById('site-header');
-      const viewportHeight = window.innerHeight;
-      let lastScroll = window.pageYOffset;
-
-      function updateHeaderBackground() {
-        const currentScroll = window.pageYOffset;
-        const colorVar ='--color-primary-rgb';
-        
-        // Calcular la opacidad: 0 al inicio, 1 cuando se alcance 50vh
-        const opacity = Math.min(currentScroll / (viewportHeight * 0.5), 1);
-        
-        // Actualizar el fondo del header con la opacidad calculada
-        header.style.backgroundColor = `rgba(var(${colorVar}), ${opacity})`;
-      }
-
-      window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        updateHeaderBackground();
-
-        // Mostrar/ocultar header según dirección del scroll desde el inicio
-        if (currentScroll > lastScroll && currentScroll > 100) {
-          // Scroll hacia abajo: escondemos el header
-          header.style.transform = 'translateY(-120%)';
-        } else {
-          // Scroll hacia arriba: mostramos el header
-          header.style.transform = 'translateY(0)';
-        }
-
-        lastScroll = currentScroll;
-      });
-
-      const observer = new MutationObserver(() => {
-        updateHeaderBackground();
-      });
-
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['class'],
-      });
-    });
-  </script>
 </div>
+
 <script>
-  function updateHeaderHeight() {
-        const header = document.getElementById('site-header');
-        if (header) {
-          const height = header.offsetHeight;
-          // Guardamos la altura en una variable CSS global
-          document.documentElement.style.setProperty('--header-height', `${height}px`);
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. LÓGICA DEL MENÚ MÓVIL (Intacta)
+    const menu = document.getElementById('mobile-menu');
+    const openBtn = document.getElementById('hamburger-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const servicesDiv = document.getElementById('services-1');
+    const mobileservicesDiv = document.getElementById('mobile-services-1');
+    const subMenuservices = document.getElementById('sub-menu-services');
+    const body = document.body;
+
+    const isMobile = () => window.innerWidth < 1024;
+
+    function openMenu() {
+      if (isMobile() && menu) {
+        menu.classList.replace('-translate-y-full', 'translate-y-0');
+        body.classList.add('overflow-hidden');
+      }
+    }
+
+    function closeMenu() {
+      if (isMobile() && menu) {
+        menu.classList.replace('translate-y-0', '-translate-y-full');
+        body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function toggleSubMenu(event: Event) {
+      if (!isMobile() || !subMenuservices) return;
+      const isSubMenuOpen = !subMenuservices.classList.contains('hidden');
+      event.preventDefault();
+      if (!isSubMenuOpen) {
+        subMenuservices.classList.remove('hidden');
+        subMenuservices.classList.add('flex');
+      } else {
+        subMenuservices.classList.add('hidden');
+        subMenuservices.classList.remove('flex');
+      }
+    }
+
+    if(openBtn) openBtn.addEventListener('click', openMenu);
+    if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+    if (servicesDiv) {
+      servicesDiv.addEventListener('click', (e) => {
+        if (!isMobile() || (e.target as HTMLElement).closest('#sub-menu-services')) return;
+        toggleSubMenu(e);
+      });
+    }
+
+    if (mobileservicesDiv) {
+      mobileservicesDiv.addEventListener('click', (e) => {
+        if (!isMobile() || (e.target as HTMLElement).closest('#sub-menu-services')) return;
+        toggleSubMenu(e);
+      });
+    }
+
+    // 2. LÓGICA DEL HEADER (Fondo y GSAP ScrollTrigger)
+    const header : HTMLElement | null = document.getElementById('site-header');
+    if (!header) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Actualizar fondo/blur independientemente de la página (unificado)
+    const updateHeaderStyle = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      if (scrollY > 50) {
+        header.style.backgroundColor = 'rgba(var(--color-primary-rgb), 0.9)';
+        header.style.backdropFilter = 'blur(12px)';
+      } else {
+        header.style.backgroundColor = 'transparent';
+        header.style.backdropFilter = 'blur(0px)';
+      }
+    };
+
+    window.addEventListener('scroll', updateHeaderStyle, { passive: true });
+    updateHeaderStyle(); // Aplicar al cargar
+
+    // Usar ScrollTrigger para ocultar/mostrar el header
+    // Esto se sincroniza perfectamente con el resto de tus animaciones GSAP
+    ScrollTrigger.create({
+      start: "top top",
+      end: "max",
+      onUpdate: (self) => {
+        const viewportHeight = window.innerHeight;
+        
+        // Si el usuario hace scroll hacia abajo (1) y ya pasó la primera sección (viewportHeight)
+        if (self.direction === 1 && window.scrollY > viewportHeight) {
+          gsap.to(header, { yPercent: -120, duration: 0.3, ease: "power2.out", overwrite: true });
+        } 
+        // Si el usuario hace scroll hacia arriba (-1)
+        else if (self.direction === -1) {
+          gsap.to(header, { yPercent: 0, duration: 0.3, ease: "power2.out", overwrite: true });
         }
       }
+    });
 
-      // Ejecutar al cargar la página
-      updateHeaderHeight();
-
-      // Opcional: Actualizar si la ventana cambia de tamaño (responsive)
-      window.addEventListener('resize', updateHeaderHeight);
+    // 3. ACTUALIZAR VARIABLE CSS DE ALTURA
+    function updateHeaderHeight() {
+      const height = header?.offsetHeight || 0;
+      document.documentElement.style.setProperty('--header-height', `${height}px`);
+    }
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+  });
 </script>

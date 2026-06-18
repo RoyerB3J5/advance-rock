@@ -18,7 +18,7 @@ const lang = Astro.params.lang as Language;
 const translations = { es, en };
 const t = translations[lang];
 ---
-<Layout lang={lang} t={t}>
+<Layout lang={lang} t={t} showLoader={true}>
   <Hero content={t.servicesPage.hero}/>
   <ItemsServices content={t.servicesPage.items}/>
   <CallAction content={t.main.callAction}/>

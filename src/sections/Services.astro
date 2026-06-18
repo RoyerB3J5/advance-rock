@@ -53,7 +53,7 @@ const colorContent = [
 ]
 const lang = Astro.params.lang as Language;
 ---
-<section class="relative w-full h-screen overflow-hidden">
+<section data-scroll-snap class="relative w-full h-screen overflow-hidden">
   <img src='/images/services.webp' class="w-full h-full absolute object-cover object-[50%_80%] inset-0" width="2100" height="1313" decoding="async" loading="lazy"/>
   <div class="absolute w-full h-full bg-black/30"></div>
   <div class="w-full h-full grid grid-cols-4 grid-rows-2 justify-center items-center relative">

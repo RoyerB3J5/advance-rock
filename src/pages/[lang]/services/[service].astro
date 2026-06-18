@@ -35,7 +35,7 @@ const translations = { es, en };
 const t = translations[lang];
 const serviceData = (t.services as Record<string, any>)[service] ?? {};
 ---
-<Layout lang={lang} t={t}>
+<Layout lang={lang} t={t} showLoader={true}>
   <Hero content={serviceData.hero} />
   <InfoServices content={serviceData.info} />
   <Examples content={serviceData.examples} />

@@ -56,10 +56,8 @@ const { content } = Astro.props as Props;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top top",         
-        end: "+=1300",            
-        pin: true,
-        pinSpacing: true,         // Crea espaciador en el flujo de documentos
+        start: "top 80%",         
+        end: "+=700",     
         scrub: 1,                 
         invalidateOnRefresh: true 
       }
@@ -81,7 +79,7 @@ const { content } = Astro.props as Props;
       duration: 0.8, 
       ease: "power2.inOut", 
       immediateRender: false 
-    }, "-=0.8")
+    }, "-=0.6")
 
     // El párrafo entra al mismo tiempo que la imagen (<) de la Fase 3
     .to(rightContent, { 

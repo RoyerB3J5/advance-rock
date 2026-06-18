@@ -600,7 +600,7 @@ export default {
           label: "Cotización gratuita",
           href: "#",
         },
-        back: "services-1-hero",
+        back: "services-4-hero",
       },
       info: {
         title: "Una Solución Completa Desde El Inicio",

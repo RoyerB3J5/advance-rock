@@ -23,7 +23,7 @@ const lang = Astro.params.lang as Language;
 const translations = { es, en };
 const t = translations[lang];
 ---
-<Layout lang={lang} t={t}>
+<Layout lang={lang} t={t} showLoader={true}>
   <Hero content={t.medo.hero}/>
   <section class="bg-white flex flex-col justify-center items-center py-20 gap-8.5 w-full">
     <InfoContent content={t.medo.info}/>
@@ -34,7 +34,7 @@ const t = translations[lang];
     <InfoContent content={t.medo.info2} styleType='bg-and-order' list={t.medo.info2.second}/>
   </section>
   <InfoContent2 content={t.medo.info3}/>
-  <section class="bg-white flex flex-col justify-center items-center py-12 3xl:py-20 gap-20 w-full">
+  <section data-scroll-snap class="bg-white flex flex-col justify-center items-center py-12 3xl:py-20 gap-20 w-full">
     <div class="container-full flex justify-center items-center">
       <GridExamples content={t.medo.examples2.items} animationUp={true}/>
     </div>
@@ -45,7 +45,10 @@ const t = translations[lang];
   <Questions content={t.medo.questions}/>
 </Layout>
 <script>
-import { initScrollText } from "../../../../utils/scrollText";
+  import { initGlobalScrollSnap } from '../../../../utils/scrollSnapper';
 
-  initScrollText();
+  document.addEventListener('DOMContentLoaded', () => {
+    // Esto se ejecuta una sola vez y lee todas las secciones del documento actual
+    initGlobalScrollSnap();
+  });
 </script>

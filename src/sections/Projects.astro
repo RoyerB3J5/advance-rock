@@ -56,10 +56,8 @@ const { content } = Astro.props as Props;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top top",         
-        end: "+=1300",            
-        pin: true,
-        pinSpacing: true,         // Crea espaciador en el flujo de documentos
+        start: "top 80%",         
+        end: "+=700",            
         scrub: 1,                 
         invalidateOnRefresh: true 
       }

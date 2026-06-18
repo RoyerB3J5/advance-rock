@@ -60,7 +60,7 @@ const { content } = Astro.props as Props;
         scrollTrigger: {
           trigger: row,
           // SOLUCIÓN 3: "top bottom" inicia la animación APENAS la sección asoma por abajo de la pantalla
-          start: "top bottom",         
+          start: "top 70%",         
           // SOLUCIÓN 4: Al terminar en "bottom center", estiramos la duración del scroll para que no sea abrupto
           end: "bottom 90%", 
           scrub: 1.2, // Un scrub de 1.2 le da un ligero retraso de amortiguación muy suave al mouse
@@ -81,8 +81,9 @@ const { content } = Astro.props as Props;
         opacity: 1,
         y: 0,
         duration: 1.2,
-        ease: "none"
-      }, "-=0.4"); // Comienza a integrarse un poco antes de que termine el texto
+        ease: "power2.out", // "power2.out" se siente mejor para elementos individuales
+        stagger: 0.4 // <--- ESTO es lo que hace que entren uno por uno cada 0.2 segundos
+      }, "-=0.1");// Comienza a integrarse un poco antes de que termine el texto
 
       if (tl.scrollTrigger) servicesTriggers.push(tl.scrollTrigger);
     });

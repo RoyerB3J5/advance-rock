@@ -18,8 +18,16 @@ const lang = Astro.params.lang as Language;
 const translations = { es, en };
 const t = translations[lang];
 ---
-<Layout lang={lang} t={t}>
+<Layout lang={lang} t={t} showLoader={true}>
   <Hero content={t.about.hero}/>
   <Who content={t.about.who}/>
   <CallAction content={t.main.callAction}/>
 </Layout>
+<script>
+  import { initGlobalScrollSnap } from '../../../utils/scrollSnapper';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Esto se ejecuta una sola vez y lee todas las secciones del documento actual
+    initGlobalScrollSnap();
+  });
+</script>

@@ -32,3 +32,11 @@ const t = translations[lang];
   <Confidence content={t.main.confidence}/>
   <CallAction content={t.main.callAction}/>
 </Layout>
+<script>
+  import { initGlobalScrollSnap } from '../../utils/scrollSnapper';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Esto se ejecuta una sola vez y lee todas las secciones del documento actual
+    initGlobalScrollSnap();
+  });
+</script>
