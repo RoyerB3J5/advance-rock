@@ -4,5 +4,6 @@
   },
   "workbench.editorAssociations": {
     "*.svg": "default"
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

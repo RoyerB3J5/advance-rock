@@ -14,8 +14,11 @@ const AmountItems = content.length
 
 <div class={`w-full grid ${AmountItems > 2 ? 'grid-cols-3' : 'grid-cols-2'}  justify-center items-start gap-6 `}>
       {
-        content.map((item)=>( 
-          <div class={`js-example-item flex flex-col justify-center items-start  ${AmountItems > 2 ? 'gap-4 ' : 'gap-6'} ${animationUp?'animation-up-fast':''}`}>
+        content.map((item,index)=>( 
+          <div 
+            class={`js-example-item flex flex-col justify-center items-start ${AmountItems > 2 ? 'gap-4 ' : 'gap-6'} ${animationUp ? 'animation-up-fast' : ''}`}
+            style={animationUp ? `animation-delay: ${index * 200}ms;` : ''}
+          >
             <div class="w-full h-auto relative" style="aspect-ratio: 628/414;">
               <img 
                 class="w-full h-full object-cover object-center absolute inset-0" 

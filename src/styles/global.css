@@ -6,7 +6,9 @@
   --font-family: "Montserrat", sans-serif;
   --font-paragraph: "Heebo", sans-serif;
   --color-primary: #003b46;
+  --color-primary-rgb: rgb(0, 33, 39);
   --color-secondary: #00acc4;
+  --color-primary-back:#002127;
   --color-accent: #ed1846;
   --color-back: #f3f3f4;
   --color-paragraph: #5b5b5b;

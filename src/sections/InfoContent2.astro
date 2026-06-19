@@ -61,7 +61,7 @@ const { content } = Astro.props as Props;
       if (!image || !content) return;
 
       const imageOrigin =  "top right";
-      const textXOffset =  -80;
+      const textXOffset =  -100;
 
       // === ESTADOS INICIALES ===
       gsap.set(image, { 
@@ -72,17 +72,15 @@ const { content } = Astro.props as Props;
       
       gsap.set(content, { 
         opacity: 0, 
-        x: textXOffset 
+        xPercent: textXOffset 
       });
 
       // === TIMELINE DE SCROLL CONTINUO ===
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: row,
-          pin: true,
-          pinSpacing: true, 
-          start: "top top",         
-          end: "+=1300", 
+          start: "top 80%",         
+          end: "+=700", 
           scrub: 1,                 
           invalidateOnRefresh: true
         }
@@ -96,9 +94,9 @@ const { content } = Astro.props as Props;
       })
       .to(content, { 
         opacity: 1, 
-        x: 0, // Regresa a su posición original (0) provocando el fade left o fade right correspondiente
-        duration: 0.7, 
-        ease: "power1.out"
+        xPercent: 0, // Regresa a su posición original (0) provocando el fade left o fade right correspondiente
+        duration: 0.8, 
+        ease: "power2.out"
       }, "-=0.5");
 
       if (tl.scrollTrigger) servicesTriggers.push(tl.scrollTrigger);

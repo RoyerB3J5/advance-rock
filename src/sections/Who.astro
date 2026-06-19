@@ -53,14 +53,13 @@ const { content } = Astro.props as Props;
 
   const destroyWhoAnimation = () => {
     whoTriggers.forEach(trigger => {
-      if (trigger) trigger.kill(true); // Restaura los paddings y clases de Tailwind originales al destruir
+      if (trigger) trigger.kill(true); 
     });
     whoTriggers = [];
   };
 
   const initWhoAnimation = () => {
     gsap.registerPlugin(ScrollTrigger);
-
     destroyWhoAnimation();
 
     const sections = document.querySelectorAll('.js-who-section');
@@ -79,52 +78,63 @@ const { content } = Astro.props as Props;
       gsap.set(fadeLeftP, { opacity: 0, y: 100 });
       gsap.set(imageWrapper, { width: "auto", aspectRatio: "700/740" });
 
-      // === 2. TIMELINE CON PINNING ===
+
+      const introDistance = window.innerHeight * 0.75; 
+
+      const pinDistance = 3500; 
+
+
+      const pinTrigger = ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        pin: true,
+        pinSpacing: true,
+        end: `+=${pinDistance}`,
+        invalidateOnRefresh: true
+      });
+      if (pinTrigger) whoTriggers.push(pinTrigger);
+
+      // === 4. TIMELINE DE ANIMACIONES (Inicia de manera anticipada) ===
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top top",         
-          end: "+=2500", // Un poco más de aire para que la expansión final sea súper fluida
-          pin: true,
-          pinSpacing: true,        
-          scrub: 1,                 
+          start: "top 75%", // Comienza a animar mucho antes de congelarse
+          end: `+=${introDistance + pinDistance}`, // Abarca todo el recorrido combinado
+          scrub: 2, // Inercia tersa y premium
           invalidateOnRefresh: true 
         }
       });
 
-      // FASE 1: Revelado de la imagen en su molde inicial
+      // --- FASE 1: Animaciones de Entrada (Ocurren en el trayecto de subida) ---
       tl.to(panelGrowth, { 
         opacity: 1, 
         scale: 1, 
-        duration: 1, 
+        duration: introDistance * 0.4, 
         ease: "none" 
       })
-
-      // FASE 2: Entrada del texto superior
+      // Entrada del primer bloque de texto
       .to(contentBlock1, { 
         opacity: 1, 
         y: 0, 
-        duration: 0.8, 
+        duration: introDistance * 0.4, 
         ease: "power2.out"
-      }, "-=0.6")
-
-      // FASE 3: Entrada del texto inferior
+      }, `-=${introDistance * 0.2}`)
+      // Entrada del segundo bloque de texto (Logo y párrafo inferior)
       .to(fadeLeftP, { 
         opacity: 1, 
         y: 0, 
-        duration: 0.8, 
+        duration: introDistance * 0.4, 
         ease: "power2.out" 
-      }, "-=0.2")
+      }, `-=${introDistance * 0.1}`);
 
-      // FASE 4: EXPANSIÓN TOTAL (Llenado de pantalla y remoción de paddings)
-      // Agrupamos ambos movimientos bajo la misma etiqueta de tiempo para que ocurran a la vez
-      .addLabel('granExpansion', '+=0.2')
+      // --- FASE 2: Gran Expansión (Arranca justo en el píxel donde se activa el Pin) ---
+      tl.addLabel('granExpansion', introDistance)
       
       // 1. Expandimos la imagen a pantalla completa
       .to(imageWrapper, {
         width: "100vw",
         aspectRatio: "auto",
-        duration: 1.5,
+        duration: pinDistance,
         ease: "power2.inOut"
       }, 'granExpansion')
       
@@ -132,9 +142,10 @@ const { content } = Astro.props as Props;
       .to(section, {
         paddingTop: 0,
         paddingBottom: 0,
-        duration: 1.5,
+        duration: pinDistance,
         ease: "power2.inOut"
-      }, 'granExpansion');
+      }, 'granExpansion')
+
 
       if (tl.scrollTrigger) whoTriggers.push(tl.scrollTrigger);
     });

@@ -46,9 +46,10 @@ const t = translations[lang];
 </Layout>
 <script>
   import { initGlobalScrollSnap } from '../../../../utils/scrollSnapper';
-
+  import { initScrollText } from "../../../../utils/scrollText";
   document.addEventListener('DOMContentLoaded', () => {
     // Esto se ejecuta una sola vez y lee todas las secciones del documento actual
     initGlobalScrollSnap();
   });
+  initScrollText();
 </script>

@@ -7,160 +7,165 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section data-scroll-snap id="confidence-section" class="w-full h-screen flex flex-col justify-center items-center gap-6 bg-[#002127] relative z-10 overflow-hidden">
-  
-  <div class="js-inner-container flex flex-col justify-center items-center gap-6 w-full h-full">
-    
-    <div class='flex flex-col justify-center items-center text-center z-20'>
-      <h2 class='title text-secondary js-first-title font-bold text-4xl'>{content.title1}</h2>
-      <h2 class="title text-white js-second-title font-bold text-4xl">{content.title2}</h2>
+<section data-scroll-snap id="confidence-section" class="w-full h-screen flex flex-col justify-center items-center gap-6 bg-primary-back relative z-10 overflow-hidden js-confidence-section py-12 3xl:py-20">  
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(1.5rem,1fr)_minmax(0,640px)_minmax(0,640px)_minmax(1.5rem,1fr)] w-full h-full">
+    {/* Contenido Izquierdo */}
+    <div class="col-start-1 lg:col-start-2 lg:col-end-3 px-6 lg:px-0 flex flex-col justify-center h-full relative z-10 js-confidence-content">
+      <div class="w-full max-w-[640px] flex flex-col gap-6 items-start">
+        <h2 class='title text-secondary  font-bold text-start' set:html={content.title1}> </h2>
+        <div class="flex flex-col justify-center items-start gap-6 js-content z-20"> 
+          <p class="subtitle text-white">{content.description}</p>
+          <p class="paragraph text-white text-start"  set:html={content.description2}></p>
+          <Button
+              text={content.button.label}
+              href={content.button.href}
+              textClass="text-[17px]"
+            />
+        </div>
+      </div>
     </div>
-    
-    <div class="flex flex-col justify-center items-center gap-6 js-content z-20"> 
-      <p class="subtitle text-white">{content.description}</p>
-      <p class="paragraph text-white text-center" set:html={content.description2}></p>
-      <Button
-          text={content.button.label}
-          href={content.button.href}
-          textClass="text-[17px]"
-        />
-    </div>
-    
-    <div class="absolute z-10 bottom-0 js-image aspect-[543/700]">
-      <div class="relative w-full h-full">
+    {/* Imagen Derecha */}
+    <div class="col-start-1 lg:col-start-3 lg:col-end-5 relative h-[400px] w-auto lg:h-full z-20 js-confidence-image" style="aspect-ratio: 1/1;">
+      <div class="absolute inset-0 w-full h-full">
         <img src={`/images/${content.img}.webp`} class="absolute w-full h-full object-cover object-center inset-0" width="2200" height="1228" decoding="async" loading="lazy"/>
       </div>
     </div>
-
-  </div>
-  
+  </div> 
 </section>
-
-<style>
-  .js-inner-container,
-  .js-first-title,
-  .js-second-title,
-  .js-image,
-  .js-content {
-    will-change: transform, opacity;
-  }
-</style>
-
 <script>
   import { gsap, ScrollTrigger } from '../utils/animations';
 
-  const initAnimation = () => {
-    gsap.registerPlugin(ScrollTrigger);
+  let servicesTriggers: any[] = [];
 
-    const section = document.querySelector('#confidence-section');
-    if (!section) return;
-
-    const innerContainer = section.querySelector('.js-inner-container') as HTMLElement;
-    const firstTitle = section.querySelector('.js-first-title') as HTMLElement;
-    const secondTitle = section.querySelector('.js-second-title') as HTMLElement;
-    const image = section.querySelector('.js-image') as HTMLElement;
-    const content = section.querySelector('.js-content') as HTMLElement;
-
-    if (!innerContainer || !firstTitle || !secondTitle || !image || !content) return;
-
-    // ==========================================
-    // 1. ESTADOS INICIALES ABSOLUTOS
-    // ==========================================
-    gsap.set(innerContainer, { y: 150, opacity: 0 });
-    gsap.set(firstTitle, { y: 80, scale: 3, opacity: 0 }); // Bajé la escala inicial a 2 para una transición más limpia
-    
-    gsap.set(secondTitle, { y: 20, opacity: 0 });
-    gsap.set(content, { y: 50, opacity: 0 });
-    
-    // Imagen sólida al 100% (Sin opacidades por tu corrección)
-    gsap.set(image, { 
-      y: '100%', 
-      width: '100vw', 
-      maxHeight: '100vh',
-      left: '50%',
-      xPercent: -50
+  const destroyServicesAnimation = () => {
+    servicesTriggers.forEach(trigger => {
+      if (trigger) trigger.kill(true);
     });
+    servicesTriggers = [];
 
-    // ==========================================
-    // 2. SCROLLTRIGGER DE ENTRADA (MÁS ANTICIPADO)
-    // ==========================================
-    const entranceTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top bottom', 
-        end: 'top top',       
-        scrub: 1
-      }
+    const rows = document.querySelectorAll('.js-confidence-section');
+    rows.forEach(row => {
+      const image = row.querySelector('.js-confidence-image');
+      if (image) gsap.set(image, { clearProps: "all" });
     });
-
-    // El contenedor tarda todo el recorrido del scroll de entrada (duration: 1)
-    entranceTl.to(innerContainer, {
-      y: 0,
-      opacity: 1,
-      duration: 0.3,
-      ease: 'none'
-    }, 0)
-    // El Primer Título se anima mucho más rápido (duration: 0.4). 
-    // Terminará de posicionarse antes de la mitad del camino del scroll.
-    .to(firstTitle, {
-      y: 0,
-      scale: 1,
-      opacity: 1,
-      duration: 1, 
-      ease: 'power1.out'
-    }, 0); 
-
-
-    // ==========================================
-    // 3. SCROLLTRIGGER PRINCIPAL (AJUSTE DE TIEMPOS MUERTOS)
-    // ==========================================
-    const mainTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: '+=3500',
-        scrub: 1,
-        pin: true,
-        pinSpacing: true,
-        invalidateOnRefresh: true
-      }
-    });
-
-    // Fase A: El segundo título aparece de forma más ágil (duration: 0.5 en vez de 0.8)
-    mainTl.to(secondTitle, {
-      y: 0,
-      opacity: 1,
-      duration: 0.5,
-      ease: 'power2.out'
-    }, '+=0.05'); // Reducido el delay de espera inicial
-
-    // Fase B: Coreografía de la Imagen (Inicia casi de inmediato)
-    // Cambiamos el delay de '+=0.2' a '+=0.05' para que la imagen salga volando rápido
-    mainTl.addLabel('viajeImagen', '+=0.05');
-    
-    // 1. Movimiento Vertical Continuo (Sube hasta salir por el techo)
-    mainTl.to(image, {
-      y: '-150%',
-      duration: 3.0, 
-      ease: 'none'   
-    }, 'viajeImagen');
-
-    // 2. Encogimiento al 30% en el primer tercio (30%) del viaje
-    mainTl.to(image, {
-      width: '30vw',
-      duration: 0.9, // 3.0 * 0.3 = 0.9s exactos
-      ease: 'power2.out' 
-    }, 'viajeImagen');
-
-    // Fase C: El contenido aparece al 70% exacto de la subida de la imagen
-    // 3.0 * 0.7 = 2.1s desde que inició 'viajeImagen'
-    mainTl.to(content, {
-      y: 0,
-      opacity: 1,
-      duration: 0.7,
-      ease: 'power2.out'
-    }, 'viajeImagen+=2.1');
   };
 
-  document.addEventListener('DOMContentLoaded', initAnimation);
+  const initServicesAnimation = () => {
+    gsap.registerPlugin(ScrollTrigger);
+    destroyServicesAnimation();
+
+    const rows = document.querySelectorAll('.js-confidence-section');
+
+    rows.forEach((row) => {
+      const image = row.querySelector('.js-confidence-image') as HTMLElement;
+      const content = row.querySelector('.js-confidence-content') as HTMLElement;
+
+      if (!image || !content) return;
+
+      const imageOrigin = "top right";
+
+      gsap.set(row, { position: "relative", overflow: "hidden" });
+      
+      const rect = image.getBoundingClientRect();
+      const rowRect = row.getBoundingClientRect();
+      
+      const initialTop = rect.top - rowRect.top;
+      const initialLeft = rect.left - rowRect.left;
+      const initialWidth = rect.width;
+      const initialHeight = rect.height;
+
+      gsap.set(image, {
+        position: "absolute",
+        top: initialTop,
+        left: initialLeft,
+        width: initialWidth,
+        height: initialHeight,
+        aspectRatio: "auto"
+      });
+
+      gsap.set(image, { 
+        scale: 0, 
+        opacity: 0, 
+        transformOrigin: imageOrigin 
+      });
+      
+      gsap.set(content, { 
+        opacity: 0, 
+        xPercent: -100 
+      });
+
+      // 1. CALCULAMOS LAS DISTANCIAS REALES DE SCROLL
+      // Distancia desde que asoma la sección (80%) hasta que se pega arriba (0%)
+      const introDistance = window.innerHeight * 0.75; 
+      // Los píxeles que durará congelada arriba haciendo la gran expansión
+      const pinDistance = 3500; 
+
+      const pinTrigger = ScrollTrigger.create({
+        trigger: row,
+        start: "top top",
+        pin: true,
+        pinSpacing: true,
+        end: `+=${pinDistance}`,
+        invalidateOnRefresh: true
+      });
+      if (pinTrigger) servicesTriggers.push(pinTrigger);
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: row,
+          start: "top 75%",
+          end: `+=${introDistance + pinDistance}`, // El recorrido total combinando ambos
+          scrub: 1,                 
+          invalidateOnRefresh: true
+        }
+      });
+
+      // TRUCO PRO: Al usar 'scrub', si usamos las distancias en píxeles como "duration",
+      // la animación se sincronizará perfectamente con la velocidad del scroll del usuario.
+
+      // --- FASE 1: Animación de entrada (Se ejecuta mientras la sección sube de 80% a 0%) ---
+      tl.to(image, { 
+        opacity: 1, 
+        scale: 1, 
+        duration: introDistance * 0.5, // Ocupa la mitad del trayecto de entrada
+        ease: "none" 
+      })
+      .to(content, { 
+        opacity: 1, 
+        xPercent: 0, 
+        duration: introDistance * 0.5, // Ocupa la otra mitad
+        ease: "power2.out"
+      }, `-=${introDistance * 0.1}`) // Un pequeño solapamiento para fluidez
+
+      // --- FASE 2: Gran Expansión (Empieza justo en el píxel donde la sección se clava en "top top") ---
+      // Colocamos una etiqueta exactamente en la posición de 'introDistance'
+      .addLabel('granExpansion', introDistance)
+      
+      .to(image, {
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        duration: pinDistance, // Se expande a lo largo de los 2500px que dura el Pin
+        ease: "power2.inOut"
+      }, 'granExpansion')
+      
+      .to(row, {
+        paddingTop: 0,
+        paddingBottom: 0,
+        duration: pinDistance,
+        ease: "power2.inOut"
+      }, 'granExpansion')
+
+      .to({}, { duration: pinDistance * 0.1 }); // Un pequeño respiro de scroll al final
+
+      if (tl.scrollTrigger) servicesTriggers.push(tl.scrollTrigger);
+    });
+
+    ScrollTrigger.refresh();
+  };
+
+  document.addEventListener('DOMContentLoaded', initServicesAnimation);
+  document.addEventListener('astro:page-load', initServicesAnimation);
+  document.addEventListener('astro:before-swap', destroyServicesAnimation);
 </script>

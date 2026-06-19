@@ -210,11 +210,11 @@ export default {
       text: "Construido para una Fuerza Duradera",
     },
     confidence: {
-      title1: "COMIENZA TU PROYECTO",
-      title2: "CON CONFIANZA",
+      title1:
+        "COMIENZA TU PROYECTO <span class='text-white'>CON <br/> CONFIANZA</span>",
       description: "Experiencia, precisión y compromiso en cada proyecto.",
       description2:
-        "Hagamos realidad tu proyecto con soluciones de concreto diseñadas para <br/> ofrecer resistencia, eficiencia y un desempeño excepcional.",
+        "Hagamos realidad tu proyecto con soluciones de concreto diseñadas <br/> para  ofrecer resistencia, eficiencia y un desempeño excepcional.",
       button: {
         label: "Cotización gratuita",
         href: "#",
@@ -376,11 +376,11 @@ export default {
         ],
       },
       confidence: {
-        title1: "Convierte Tu Patio",
-        title2: "En Un Espacio Único",
+        title1:
+          "Convierte Tu Patio <span class='text-white'>En Un <br/> Espacio Único</span>",
         description: "Piscinas diseñadas para tu estilo de vida.",
         description2:
-          "Creamos piscinas funcionales, elegantes y duraderas que <br/> transforman cualquier espacio exterior.",
+          "Creamos piscinas funcionales, elegantes y duraderas <br/> que  transforman cualquier espacio exterior.",
         button: {
           label: "Cotización gratuita",
           href: "#",
@@ -465,11 +465,11 @@ export default {
         ],
       },
       confidence: {
-        title1: "Renueva Tus",
-        title2: "Espacios Con Estilo",
+        title1:
+          "Renueva Tus <br/> <span class='text-white'>Espacios Con <br/> Estilo</span>",
         description: "Soluciones en concreto con impacto duradero.",
         description2:
-          "Transformamos áreas exteriores en espacios modernos, <br/> funcionales y resistentes.",
+          "Transformamos áreas exteriores en espacios <br/> modernos, funcionales y resistentes.",
         button: {
           label: "Cotización gratuita",
           href: "#",
@@ -554,8 +554,8 @@ export default {
         ],
       },
       confidence: {
-        title1: "Concreto Listo",
-        title2: "Cuando Lo Necesitas",
+        title1:
+          "Concreto Listo <span class='text-white'>Cuando <br/> Lo Necesitas</span>",
         description: "Calidad, puntualidad y eficiencia garantizadas.",
         description2:
           "Recibe concreto premezclado con entregas confiables para <br/> mantener tu proyecto en marcha.",
@@ -643,11 +643,11 @@ export default {
         ],
       },
       confidence: {
-        title1: "Todo Tu Proyecto",
-        title2: "En Un Solo Lugar",
+        title1:
+          "Todo Tu <br/> Proyecto <br/> <span class='text-white'>En Un Solo <br/> Lugar</span>",
         description: "Una solución completa, sin complicaciones.",
         description2:
-          "Nos encargamos de cada etapa para que puedas enfocarte en los resultados.",
+          "Nos encargamos de cada etapa para que puedas <br/> enfocarte en los resultados.",
         button: {
           label: "Cotización gratuita",
           href: "#",
@@ -732,11 +732,11 @@ export default {
         ],
       },
       confidence: {
-        title1: "Los Recursos Que",
-        title2: "Tu Proyecto Necesita",
+        title1:
+          "Los Recursos Que <br/> <span class='text-white'>Tu Proyecto <br/> Necesita</span>",
         description: "Equipos y espacios listos para trabajar.",
         description2:
-          "Impulsa tus operaciones con soluciones flexibles, confiables y <br/> adaptadas a tus necesidades.",
+          "Impulsa tus operaciones con soluciones flexibles, <br/> confiables y  adaptadas a tus necesidades.",
         button: {
           label: "Cotización gratuita",
           href: "#",
@@ -881,11 +881,11 @@ export default {
       image: "services-5-info-3",
     },
     confidence: {
-      title1: "Haz Crecer Tu",
-      title2: "Futuro Con MEDO",
+      title1:
+        "Haz Crecer Tu <br/> <span class='text-white'>Futuro Con <br/> MEDO</span>",
       description: "Únete a una red con oportunidades reales.",
       description2:
-        "Accede a un modelo probado y desarrolla tu negocio con el <br/> respaldo de nuestra experiencia.",
+        "Accede a un modelo probado y desarrolla tu negocio <br/> con el  respaldo de nuestra experiencia.",
       button: {
         label: "Cotización gratuita",
         href: "#",
