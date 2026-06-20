@@ -6,19 +6,19 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section id="fleet-section" class="w-full flex flex-col justify-center items-center pt-12 3xl:pt-20 pb-8.5 h-screen 3xl:h-auto bg-white overflow-hidden relative z-10">
-  <div  class="container-full flex justify-center items-stretch gap-6 h-full">
+<section id="fleet-section" class="w-full flex flex-col justify-center items-center pt-16  md:pt-12 3xl:pt-20 pb-4 md:pb-8.5 h-auto md:h-screen 3xl:h-auto bg-white overflow-hidden relative z-10">
+  <div  class="container-full flex flex-col justify-center items-centeritems-stretch gap-6 h-full">
     <div class="h-full w-auto 3xl:w-[52%] 3xl:h-auto bg-secondary js-panel-growth" style="aspect-ratio: 628/740;"></div>
-    <div class="w-[48%]  flex flex-col justify-between items-start grow">
+    <div class="w-full md:w-[48%]  flex flex-col justify-between items-start grow gap-6">
       <div class="flex flex-col justify-center items-start gap-6 js-content-block-1">
         <h2 class="text-primary title-sm">{content.first.title}</h2>
         <p class="text-paragraph paragraph">{content.first.description}</p>
       </div>
       <div class="flex flex-col justify-center items-start gap-6 js-content-block-2">
-        <div class="w-[50%] 3xl:w-[60%] h-auto relative" style="aspect-ratio: 382/215;">
+        <div class="w-full md:w-[50%] 3xl:w-[60%] h-auto relative" style="aspect-ratio: 382/215;">
           <img src="/images/modern.webp" alt="Moder Advance" class="w-full h-full object-cover absolute inset-0 object-center js-image-growth" width="382" height="215" decoding="async" loading="lazy"/>
         </div>
-        <p class="text-paragraph paragraph js-fade-left-p w-[70%] 3xl:w-[90%]">{content.first.description2}</p>
+        <p class="text-paragraph paragraph js-fade-left-p w-full md:w-[70%] 3xl:w-[90%]">{content.first.description2}</p>
       </div>
     </div>
   </div>
@@ -71,8 +71,6 @@ const { content } = Astro.props as Props;
       ease: "none" 
     })
 
-    // FASE 2: Entra el primer bloque de texto (Tiempo: 0.4s a 1.2s)
-    // Se dispara al 40% del crecimiento del panel turquesa
     .to(contentBlock1, { 
       opacity: 1, 
       x: 0, 

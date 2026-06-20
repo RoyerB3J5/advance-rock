@@ -52,6 +52,10 @@ export default {
         href: "/en/services/rental-equipment",
       },
     ],
+    all: {
+      label: "All Services",
+      href: "/en/services/",
+    },
     buttons: [
       {
         label: "Get a Quote",
@@ -61,8 +65,7 @@ export default {
   },
   main: {
     hero: {
-      title:
-        "Reliable Concrete. <br/> Proven <br class='block md:hidden'/> Results.",
+      title: "Reliable Concrete. <br/> Proven Results.",
       button: {
         label: "Get Your Free Quote",
         href: "#",
@@ -104,11 +107,12 @@ export default {
         items: [
           {
             title: "Client-Focused Approach",
-            description: "Solutions tailored to your project goals",
+            description: "Soluciones de presupuesto a tu medida",
           },
           {
             title: "Long-Term Performance",
-            description: "Built for <br/> durability and lasting value",
+            description:
+              "Built for <br class='hidden md:block'/> durability and lasting value",
           },
           {
             title: "Quality-Driven Process",
@@ -205,15 +209,15 @@ export default {
           href: "#",
         },
       },
-      text: "Built For Lasting Strength",
+      text: "<span class='hidden md:inline'>Drive Your Own </span> Success",
     },
     confidence: {
       title1:
-        "Start Building <span class='text-white'>With <br/> Confidence</span>",
+        "Start  <br class='block md:hidden'/> Building <br class='block md:hidden'/> <span class='text-white'>With <br class='hidden md:block'/> Confidence</span>",
       description:
         "Partner with a team committed to precision, reliability, and results built to last.",
       description2:
-        "Let’s bring your project to life with expert concrete solutions designed <br/> for strength, efficiency, and exceptional performance.",
+        "Let’s bring your project to life with expert concrete solutions designed <br class='hidden md:block'/> for strength, efficiency, and exceptional performance.",
       button: {
         label: "Get Your Free Quote",
         href: "#",
@@ -221,7 +225,7 @@ export default {
       img: "hero-confidence",
     },
     callAction: {
-      title: "Where Strong <br/> Projects Begin",
+      title: "Where Strong <br ='hidden md:block'/> Projects Begin",
     },
   },
   about: {
@@ -729,7 +733,8 @@ export default {
         ],
       },
       confidence: {
-        title1: "Los Recursos Que <br/> <span class='text-white'>Tu Proyecto <br/> Necesita</span>",
+        title1:
+          "Los Recursos Que <br/> <span class='text-white'>Tu Proyecto <br/> Necesita</span>",
         description: "Equipos y espacios listos para trabajar.",
         description2:
           "Impulsa tus operaciones con soluciones flexibles, <br/> confiables y  adaptadas a tus necesidades.",
@@ -877,7 +882,8 @@ export default {
       image: "services-5-info-3",
     },
     confidence: {
-      title1: "Haz Crecer Tu <br/> <span class='text-white'>Futuro Con <br/> MEDO</span>",
+      title1:
+        "Haz Crecer Tu <br/> <span class='text-white'>Futuro Con <br/> MEDO</span>",
       description: "Únete a una red con oportunidades reales.",
       description2:
         "Accede a un modelo probado y desarrolla tu negocio <br/> con el  respaldo de nuestra experiencia.",
@@ -920,7 +926,7 @@ export default {
   },
   branchs: {
     hero: {
-      title: "NUESTRAS <br/> SUCURSALES",
+      title: "operadores de <br/> sucursales virtuales",
       button: {
         label: "Cotización gratuita",
         href: "#",

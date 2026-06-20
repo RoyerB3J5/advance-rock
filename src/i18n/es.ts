@@ -52,6 +52,10 @@ export default {
         href: "/es/services/rental-equipment",
       },
     ],
+    all: {
+      label: "Todos los Servicios",
+      href: "/es/services/",
+    },
     buttons: [
       {
         label: "Cotización Gratis",
@@ -104,7 +108,7 @@ export default {
         items: [
           {
             title: "Enfoque en el cliente",
-            description: "Soluciones a tu medida.",
+            description: "Soluciones de presupuesto a tu medida",
           },
           {
             title: "Rendimiento duradero",
@@ -207,7 +211,7 @@ export default {
           href: "#",
         },
       },
-      text: "Construido para una Fuerza Duradera",
+      text: "<span class='hidden md:inline'>Drive Your Own </span> Success",
     },
     confidence: {
       title1:
@@ -222,7 +226,7 @@ export default {
       img: "hero-confidence",
     },
     callAction: {
-      title: "donde comienzan los <br/> proyectos sólidos",
+      title: "donde comienzan los <br class='hidden md:block'/> proyectos sólidos",
     },
   },
   about: {
@@ -925,7 +929,7 @@ export default {
   },
   branchs: {
     hero: {
-      title: "NUESTRAS <br/> SUCURSALES",
+      title: "operadores de <br/> sucursales virtuales",
       button: {
         label: "Cotización gratuita",
         href: "#",

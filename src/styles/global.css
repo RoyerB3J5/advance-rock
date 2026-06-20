@@ -8,7 +8,7 @@
   --color-primary: #003b46;
   --color-primary-rgb: rgb(0, 33, 39);
   --color-secondary: #00acc4;
-  --color-primary-back:#002127;
+  --color-primary-back: #002127;
   --color-accent: #ed1846;
   --color-back: #f3f3f4;
   --color-paragraph: #5b5b5b;
@@ -55,7 +55,11 @@ html {
   text-transform: uppercase;
   line-height: 110%;
 }
-
+@media (max-width: 769px) {
+  .title {
+    font-size: 32px;
+  }
+}
 .title-sm {
   font-family: var(--font-family);
   font-size: 40px;
@@ -63,12 +67,21 @@ html {
   text-transform: uppercase;
   line-height: 120%;
 }
-
+@media (max-width: 769px) {
+  .title-sm {
+    font-size: 32px;
+  }
+}
 .paragraph {
   font-family: var(--font-paragraph);
   font-size: 17px;
   font-weight: 400;
   line-height: 150%;
+}
+@media (max-width: 769px) {
+  .paragraph {
+    font-size: 15px;
+  }
 }
 
 .subtitle {
@@ -76,6 +89,12 @@ html {
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;
+}
+
+@media (max-width: 769px) {
+  .subtitle {
+    font-size: 15px;
+  }
 }
 .subtitle-dark {
   font-family: var(--font-paragraph);
@@ -89,7 +108,11 @@ html {
   font-weight: 700;
   line-height: 150%;
 }
-
+@media (max-width: 769px) {
+  .paragraph-bold {
+    font-size: 15px;
+  }
+}
 .button-decoration {
   text-decoration-line: underline;
   text-decoration-style: solid;
@@ -104,12 +127,17 @@ html {
   -webkit-text-stroke-color: #003b46;
   -webkit-text-fill-color: #ffffff; /* Tu fondo blanco */
   paint-order: stroke fill; /* <--- ESTA ES LA CLAVE */
-
   font-family: Montserrat;
   font-size: 150px;
   font-style: normal;
   font-weight: 900;
   line-height: 120%;
+}
+
+@media (max-width: 769px) {
+  .decoration {
+    line-height: 100%;
+  }
 }
 
 .trigger-hero-animation .hero-main-image {

@@ -6,14 +6,14 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section id="fleet-section-2" class="w-full flex flex-col justify-center items-center pb-12 3xl:pb-20 pt-8.5 h-screen bg-white overflow-hidden relative z-20">
-  <div class="container-full flex justify-between 3xl:justify-center items-stretch gap-6 h-full">
-    <div class="w-[25%] h-full flex flex-col justify-center items-start gap-6 self-center content-left">
+<section id="fleet-section-2" class="w-full flex flex-col justify-center items-center pb-16 md:pb-12 3xl:pb-20 pt-4 md:pt-8.5 h-auto md:h-screen bg-white overflow-hidden relative z-20">
+  <div class="container-full flex flex-col md:flex-row justify-center md:justify-between 3xl:justify-center items-stretch gap-6 h-full">
+    <div class="w-full md:w-[25%] h-full flex flex-col justify-center items-start gap-6 self-center content-left">
       <h2 class="text-primary title-sm">{content.second.title}</h2>
       <p class="text-paragraph subtitle">{content.second.subtitle}</p>
     </div>
-    <div class="h-full w-auto 3xl:w-[50%] 3xl:h-auto bg-accent js-second-video" style="aspect-ratio: 628/740;"></div>
-    <div class="w-[25%] grow flex flex-col justify-between items-start js-right-content">
+    <div class="w-full h-auto md:h-full md:w-auto 3xl:w-[50%] 3xl:h-auto bg-accent js-second-video" style="aspect-ratio: 628/740;"></div>
+    <div class="w-full md:w-[25%] grow flex flex-col justify-center md:justify-between items-start js-right-content gap-6">
       <div class="flex flex-col justify-center items-start gap-6">
         <p class="text-paragraph paragraph">{content.second.description}</p>
         <a href={content.second.button.href} class="cursor-pointer group flex justify-start items-center gap-2" >
@@ -30,64 +30,87 @@ const { content } = Astro.props as Props;
   import { gsap, ScrollTrigger } from '../utils/animations';
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Registramos el plugin ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
     const section = document.querySelector('#fleet-section-2');
     if (!section) return;
 
-    // Buscamos los elementos con selectores JS dedicados
-    const secondVideo  = section.querySelector('.js-second-video');
-    const contentLeft = section.querySelector('.content-left');
-    const rightContent   = section.querySelector('.js-right-content');
+    const secondVideo = section.querySelector('.js-second-video');
+    const contentLeft  = section.querySelector('.content-left');
+    const rightContent = section.querySelector('.js-right-content');
 
-    // Validación estricta
     if (!secondVideo || !contentLeft || !rightContent) {
       console.warn('Faltan elementos en el DOM para iniciar la animación de GSAP en la sección Fleet');
       return;
     }
 
-    // 1. Preparación de estados iniciales
-    gsap.set(secondVideo, { opacity: 0, scale: 0, transformOrigin: "top left" });
-    gsap.set(contentLeft, { opacity: 0, xPercent: -100 });
-    gsap.set(rightContent, { opacity: 0, xPercent: 100 });
+    let mm = gsap.matchMedia();
 
-    // 2. Timeline SÍNCRONO con el Scroll (Scrub + Pin)
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",         
-        end: "+=700",     
-        scrub: 1,                 
-        invalidateOnRefresh: true 
-      }
+    // ==========================================
+    // 1. ESCRITORIO (730px en adelante) - Mantiene tu lógica original
+    // ==========================================
+    mm.add("(min-width: 730px)", () => {
+      gsap.set(secondVideo, { opacity: 0, scale: 0, transformOrigin: "top left" });
+      gsap.set(contentLeft, { opacity: 0, xPercent: -100 });
+      gsap.set(rightContent, { opacity: 0, xPercent: 100 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",         
+          end: "+=700",     
+          scrub: 1,                 
+          invalidateOnRefresh: true 
+        }
+      });
+
+      tl.to(secondVideo, { opacity: 1, scale: 1, duration: 1, ease: "none" })
+        .to(contentLeft, { opacity: 1, xPercent: 0, duration: 0.8, ease: "power2.inOut", immediateRender: false }, "-=0.6")
+        .to(rightContent, { opacity: 1, xPercent: 0, duration: 0.8, ease: "power2.inOut" }, "<");
     });
 
-    // FASE 1: El Panel Turquesa empieza a crecer (Tiempo: 0.0s a 1.0s)
-    tl.to(secondVideo, { 
-      opacity: 1, 
-      scale: 1, 
-      duration: 1, 
-      ease: "none" 
-    })
+    // ==========================================
+    // 2. MÓVIL Y TABLET (729px hacia abajo) - NUEVA LOGICA SECUENCIAL
+    // ==========================================
+    mm.add("(max-width: 729px)", () => {
+      // Ajustamos sutilmente los valores iniciales para que la entrada fluya mejor en vertical
+      gsap.set(contentLeft, { opacity: 0, xPercent: -100 });
+      gsap.set(secondVideo, { opacity: 0, scale: 0, transformOrigin: "top left" });
+      gsap.set(rightContent, { opacity: 0, xPercent: 100 });
 
-    // FASE 2: Entra el primer bloque de texto (Tiempo: 0.4s a 1.2s)
-    // Se dispara al 40% del crecimiento del panel turquesa
-    .to(contentLeft, { 
-      opacity: 1, 
-      xPercent: 0, 
-      duration: 0.8, 
-      ease: "power2.inOut", 
-      immediateRender: false 
-    }, "-=0.6")
+      const tlMobile = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%", // Comienza un poco antes al hacer scroll en el móvil
+          end: "+=900",     // Ofrece un recorrido cómodo para que se completen las 3 animaciones fijas
+          scrub: 1
+        }
+      });
 
-    // El párrafo entra al mismo tiempo que la imagen (<) de la Fase 3
-    .to(rightContent, { 
-      opacity: 1, 
-      xPercent: 0, 
-      duration: 0.8, 
-      ease: "power2.inOut" 
-    }, "<");
+      // Animaciones encadenadas en orden estricto y continuo (sin posiciones relativas como "<" o "-=")
+      tlMobile
+        // 1. Primero entra contentLeft
+        .to(contentLeft, { 
+          opacity: 1, 
+          xPercent: 0, 
+          duration: 1, 
+          ease: "power2.out" 
+        })
+        // 2. Luego aparece secondVideo
+        .to(secondVideo, { 
+          opacity: 1, 
+          scale: 1, 
+          duration: 1, 
+          ease: "power2.out" 
+        })
+        // 3. Por último entra rightContent
+        .to(rightContent, { 
+          opacity: 1, 
+          xPercent: 0, 
+          duration: 1, 
+          ease: "power2.out" 
+        });
+    });
     
   });
 </script>

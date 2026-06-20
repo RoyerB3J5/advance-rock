@@ -7,42 +7,25 @@ interface Props {
 const { content } = Astro.props as Props;
 ---
 <section data-scroll-snap class="w-full">
-  <div id="information-animated-section" class="relative w-full h-screen overflow-hidden bg-white">
-    
-    <div class="js-white-panel absolute top-0 right-0 w-[62%] h-full flex flex-col justify-between items-end z-10 bg-white pr-[max(2rem,calc(50vw-640px))] py-10 3xl:py-20">
-      <div class="flex flex-col justify-center items-start gap-6 max-w-[519px]">
-        <h2 set:html={content.third.title} class="title text-accent"></h2>
-        <p class="subtitle text-paragraph">{content.third.para1}</p>
-        <p class="paragraph text-paragraph">{content.third.para2}</p>
-        <a href="#" class="text-paragraph paragraph-bold flex justify-start items-center gap-2">
-          <p>{content.third.link}</p>
-          <img src="/images/arrow.svg" width="16" height="16" decoding="async" loading="lazy" class="w-4 h-4" alt="Arrow Right"/>
-        </a>
-      </div>
-      <div class="grid grid-cols-4 justify-center items-center gap-4">
-        {
-          content.third.items.map((item)=>( 
-            <div class="flex flex-col justify-start items-start gap-2 p-4 rounded-[4px] border border-[#D9D9D9] max-w-[170px]">
-              <h3 class="text-primary paragraph-bold">{item.title}</h3>
-              <p class="text-paragraph paragraph" set:html={item.description}></p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <div class="js-dark-panel absolute top-0 left-0 w-[60%] h-full flex flex-col z-20">
-      <div class="w-full h-[70%] 3xl:h-[67%] bg-[#001f24] flex flex-col justify-start pl-[max(2rem,calc(50vw-640px))] py-20">
-        <div class="flex flex-col justify-start items-start gap-6 w-[70%] js-anim-text-block">
+  <div id="information-animated-section" class="relative w-full h-auto md:h-screen overflow-hidden bg-white flex flex-col justify-center items-center md:block">
+    <div class="js-dark-panel relative md:absolute top-0 left-0 w-full md:w-[60%] h-full flex flex-col z-20">
+      <div class="w-full h-auto md:h-[70%] 3xl:h-[67%] bg-[#001f24] flex flex-col justify-start md:pl-[max(2rem,calc(50vw-640px))] pt-16 md:py-20 pb-[35vh] md:pb-0 relative">
+        <img 
+          src="/images/camion.webp" 
+          alt="Camión" 
+          class="js-anim-camion absolute right-[-75%] bottom-8  w-[140%]  h-auto max-w-none pointer-events-none block md:hidden"
+          width="2752" height="1156" decoding="async" loading="lazy" 
+        />
+        <div class="flex flex-col justify-start items-start gap-6 w-full md:w-[70%] js-anim-text-block px-4 md:px-0">
           <h2 class="text-white title" set:html={content.first.title}></h2>
-          <p class="text-white subtitle w-[80%]">{content.first.description}</p>
+          <p class="text-white subtitle w-full md:w-[80%]">{content.first.description}</p>
         </div>
       </div>
-      <div class="w-full h-[30%] 3xl:h-[33%] bg-[#002b31] flex justify-start items-center pl-[max(2rem,calc(50vw-640px))] py-20">
-        <div class="grid grid-cols-2 gap-x-8 gap-y-6 w-full text-white js-anim-grid">
+      <div class="w-full h-full md:h-[30%] 3xl:h-[33%] bg-[#002b31] flex justify-start items-center md:pl-[max(2rem,calc(50vw-640px))] py-6 md:py-20 px-4 md:px-0 ">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 w-full text-white js-anim-grid">
           {
             content.second.map((item)=>( 
-              <div class="flex justify-start items-start gap-2">
+              <div class="flex justify-start items-start gap-2 js-anim-grid-item">
                 <img src="/images/check.svg" width="24" height="24" decoding="async" loading="lazy" class="w-6 h-6" alt="Check"/>
                 <div class="flex flex-col justify-center items-start ">
                   <h3 class="paragraph-bold">{item.title}</h3>
@@ -55,28 +38,47 @@ const { content } = Astro.props as Props;
       </div>
     </div>
 
-    <div class="js-blue-panel absolute top-0 left-[60%] w-[40%] h-full bg-[#00a3c4] z-30">
+    <div class="js-blue-panel relative md:absolute md:top-0 md:left-[60%] w-full md:w-[40%] h-full bg-[#00a3c4] z-30 py-8 md:py-30 flex flex-col justify-end items-end min-h-[35vh] md:min-h-auto">
       
       <img 
         src="/images/camion.webp" 
         alt="Camión" 
-        class="js-anim-camion absolute top-[2%] 3xl:top-[3%] right-[-65%] w-[190%] h-auto max-w-none pointer-events-none"
+        class="js-anim-camion absolute left-[40%] md:left-auto top-8 md:top-[2%] 3xl:top-[3%] md:right-[-65%] w-[140%] md:w-[190%] h-auto max-w-none pointer-events-none"
         width="2752" height="1156" decoding="async" loading="lazy" 
       />
 
-      <div class="absolute bottom-20 w-full px-[max(2rem,calc(50vw-640px))] pointer-events-none">
-        <div class="relative w-full h-[114px] js-logo-track">
+      <div class="relative md:absolute md:bottom-20 w-full md:px-[max(2rem,calc(50vw-640px))] pointer-events-none px-4 md:px-0">
+        <div class="relative w-full h-16 md:h-[114px] js-logo-track">
           <img 
             src="/images/logo-small-2.svg" 
             width="117" height="114" decoding="async" loading="lazy" 
-            class="js-anim-logo absolute top-0 right-0 w-[117px] h-[114px] pointer-events-auto" 
+            class="js-anim-logo absolute top-0 right-0 h-16 w-auto md:w-[117px] md:h-[114px] pointer-events-auto" 
             alt="Logo"
           />
         </div>
       </div>
-
     </div>
-
+    <div class="js-white-panel relative md:absolute md:top-0 md:right-0 w-full md:w-[62%] h-full flex flex-col justify-center md:justify-between items-center md:items-end z-10 bg-white px-4 md:pr-[max(2rem,calc(50vw-640px))] py-16 md:py-10 3xl:py-20 gap-8 md:gap-0">
+      <div class="flex flex-col justify-center items-start gap-6 max-w-[519px]">
+        <h2 set:html={content.third.title} class="title text-accent order-2 md:order-1 js-content-white"></h2>
+        <p class="subtitle text-paragraph order-1 md:order-2 js-content-white ">{content.third.para1}</p>
+        <p class="paragraph text-paragraph order-3 js-content-white">{content.third.para2}</p>
+        <a href="#" class=" flex justify-start items-center gap-2 order-4 js-content-white">
+          <p class='text-[#002E36] paragraph-bold'>{content.third.link}</p>
+          <img src="/images/arrow.svg" width="16" height="16" decoding="async" loading="lazy" class="w-4 h-4" alt="Arrow Right"/>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 justify-center items-center gap-6 md:gap-4 w-full">
+        {
+          content.third.items.map((item)=>( 
+            <div class="flex flex-col justify-start items-start gap-2 px-4 py-2 md:p-4 rounded-0 md:rounded-[4px] border border-[#D9D9D9] max-w-none md:max-w-[170px] js-content-white-item">
+              <h3 class="text-primary paragraph-bold">{item.title}</h3>
+              <p class="text-paragraph paragraph" set:html={item.description}></p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>
 
@@ -88,7 +90,6 @@ const { content } = Astro.props as Props;
     if (!section) return;
 
     const textBlock  = section.querySelector('.js-anim-text-block');
-    const camion     = section.querySelector('.js-anim-camion');
     const grid       = section.querySelector('.js-anim-grid');
     const logoImg    = section.querySelector('.js-anim-logo'); 
     const logoTrack  = section.querySelector('.js-logo-track');
@@ -96,61 +97,136 @@ const { content } = Astro.props as Props;
     const whitePanel = section.querySelector('.js-white-panel');
     const bluePanel  = section.querySelector('.js-blue-panel');
 
-    if (!textBlock || !camion || !grid || !logoImg || !logoTrack || !darkPanel || !whitePanel || !bluePanel) {
+    const camiones = section.querySelectorAll('.js-anim-camion');
+    const camionEscritorio = camiones[1] || camiones[0]; 
+
+    if (!textBlock || camiones.length === 0 || !grid || !logoImg || !logoTrack || !darkPanel || !whitePanel || !bluePanel) {
       console.warn('Faltan elementos en el DOM para iniciar GSAP');
       return;
     }
 
-    // 1. Preparación de estados iniciales
-    gsap.set([grid, logoImg], { opacity: 0, y: 50 });
-    gsap.set(camion, { opacity: 0, x: 150 });
-    gsap.set(textBlock, { opacity: 0, x: -150 });
-    gsap.set(whitePanel, { xPercent: 100 });
+    // ==========================================
+    // SOLUCIÓN AL PROBLEMA DE ORDER:
+    // Convertimos a Array y ordenamos según el CSS real de la pantalla actual
+    // ==========================================
+    const obtenerElementosOrdenados = (selector: string) => {
+      return Array.from(section.querySelectorAll(selector)).sort((a, b) => {
+        const orderA = parseInt(window.getComputedStyle(a).order) || 0;
+        const orderB = parseInt(window.getComputedStyle(b).order) || 0;
+        return orderA - orderB;
+      });
+    };
 
-    // 2. Timeline atado a ScrollTrigger con scrub
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "+=1500",
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true
-      }
+    let mm = gsap.matchMedia();
+
+    // ==========================================
+    // 1. ESCRITORIO (730px en adelante)
+    // ==========================================
+    mm.add("(min-width: 730px)", () => {
+      // Obtenemos los elementos ordenados visualmente para escritorio
+      const whiteContents = obtenerElementosOrdenados('.js-content-white');
+
+      gsap.set([grid, logoImg], { opacity: 0, y: 50 });
+      gsap.set(camionEscritorio, { opacity: 0, x: 150 });
+      gsap.set(textBlock, { opacity: 0, xPercent: -100 });
+      gsap.set(whitePanel, { xPercent: 100 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=1500",
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      tl.to(textBlock, { opacity: 1, xPercent: 0, duration: 1, ease: "power2.out", immediateRender: false })
+        .to(camionEscritorio, { opacity: 1, x: 0, duration: 1, ease: "power2.out", immediateRender: false }, "<")
+        .to({}, { duration: 0.5 })
+        .to(grid, { opacity: 1, y: 0, duration: 1, ease: "power2.out", immediateRender: false })
+        .to(logoImg, { opacity: 1, y: 0, duration: 1, ease: "power2.out", immediateRender: false }, "<");
+
+      tl.to({}, { duration: 0.5 });
+
+      tl.add("slide");
+      tl.to(darkPanel, { xPercent: -100, duration: 2, ease: "none" }, "slide")
+        .to(bluePanel, { left: "0%", width: "38%", duration: 2, ease: "none" }, "slide")
+        .to(whitePanel, { xPercent: 0, duration: 2, ease: "none" }, "slide");
+
+      tl.to(camionEscritorio, { right: "auto", left: "-65%", duration: 2, ease: "none" }, "slide");
+
+      tl.to(logoImg, {
+        x: () => -((logoTrack as HTMLElement).offsetWidth - 117),
+        duration: 2,
+        ease: "none"
+      }, "slide")
+      .to({}, { duration: 0.3 }); 
     });
 
-    // FASE 1: Animación de entrada (Mantenemos power2.out para adelantarse sutilmente al scroll)
-    tl.to(textBlock, { opacity: 1, x: 0, duration: 1, ease: "power2.out", immediateRender: false })
-      .to(camion,    { opacity: 1, x: 0, duration: 1, ease: "power2.out", immediateRender: false }, "<")
-      .to({}, { duration: 0.5 })
-      .to(grid, { opacity: 1, y: 0, duration: 1, ease: "power2.out", immediateRender: false })
-      .to(logoImg, { opacity: 1, y: 0, duration: 1, ease: "power2.out", immediateRender: false }, "<");
+    // ==========================================
+    // 2. MÓVIL Y TABLET (729px hacia abajo)
+    // ==========================================
+    mm.add("(max-width: 729px)", () => {
+      const camion1 = camiones[0]; 
+      const camion2 = camiones[1]; 
+      const gridItems = section.querySelectorAll('.js-anim-grid-item');
+      const whiteItems = section.querySelectorAll('.js-content-white-item');
 
-    tl.to({}, { duration: 0.5 }); // Pausa de lectura
+      // Obtenemos los elementos ordenados visualmente para móvil (Subtítulo -> Título -> Párrafo -> Link)
+      const whiteContents = obtenerElementosOrdenados('.js-content-white');
 
-    // FASE 2: Transición de Paneles y Movimiento (Cambiado a ease: "none" para respuesta directa al scroll)
-    tl.add("slide");
+      // Estados iniciales preparados
+      gsap.set(textBlock, { opacity: 0, xPercent: -100 });
+      if (camion1) gsap.set(camion1, { xPercent: 100 }); 
+      if (camion2) gsap.set(camion2, { opacity: 0, xPercent: 100 }); 
+      gsap.set(gridItems, { opacity: 0, xPercent: -100 });
+      gsap.set(logoImg, { opacity: 0, xPercent: 100 });
+      gsap.set(whiteContents, { opacity: 0, xPercent: -100 });
+      gsap.set(whiteItems, { opacity: 0, xPercent: 100 });
 
-    tl.to(darkPanel, { xPercent: -100, duration: 2, ease: "none" }, "slide")
-      .to(bluePanel, { left: "0%", width: "38%", duration: 2, ease: "none" }, "slide")
-      .to(whitePanel, { xPercent: 0, duration: 2, ease: "none" }, "slide");
+      const tlMobile = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "+=1800", 
+          scrub: 1
+        }
+      });
 
-    // Mover camión de forma lineal con el scroll
-    tl.to(camion, { 
-      right: "auto", 
-      left: "-65%",  
-      duration: 2, 
-      ease: "none" 
-    }, "slide");
+      // 1. Text Block
+      tlMobile.to(textBlock, { opacity: 1, xPercent: 0, duration: 0.8, ease: "power2.inOut" });
 
-    // Desplazamiento del logo por carril (Sincronía perfecta al scroll)
-    tl.to(logoImg, {
-      x: () => {
-        return -((logoTrack as HTMLElement).offsetWidth - 117); 
-      },
-      duration: 2,
-      ease: "none"
-    }, "slide")
-    .to({}, { duration: 0.3 }); 
+      // 2. Primer Camión
+      if (camion1) {
+        tlMobile.to(camion1, { xPercent: 0, duration: 1.5, ease: "power2.out" })       
+                .to({}, { duration: 1 })                                             
+                .to(camion1, { xPercent: -90, duration: 3.5, ease: "none" }, "+=0.2");    
+      }
+
+      // 3. Grid Items
+      if (gridItems.length > 0) {
+        tlMobile.to(gridItems, { opacity: 1, xPercent: 0, duration: 1, ease: "power2.inOut", stagger: 0.2 });
+      }
+
+      // 4. Segundo Camión
+      if (camion2) {
+        tlMobile.to(camion2, { opacity: 1, xPercent: 0, duration: 1.5, ease: "power2.out" }) 
+                .to({}, { duration: 0.5 })                                                   
+                .to(camion2, { xPercent: -90, duration: 3.5, ease: "power2.in" });           
+      }
+      tlMobile.to(logoImg, { opacity: 1, xPercent: 0, duration: 0.8, ease: "power2.inOut" }, "<");
+
+      // 6. Elementos js-content-white (¡AHORA SÍ RESPETA EL STAGGER VISUAL!)
+      if (whiteContents.length > 0) {
+        tlMobile.to(whiteContents, { opacity: 1, xPercent: 0, duration: 1, ease: "power2.inOut", stagger: 0.2 });
+      }
+
+      // 7. Cada js-content-white-item
+      if (whiteItems.length > 0) {
+        tlMobile.to(whiteItems, { opacity: 1, xPercent: 0, duration: 1.2, ease: "power2.inOut", stagger: 0.2 });
+      }
+    });
   });
 </script>

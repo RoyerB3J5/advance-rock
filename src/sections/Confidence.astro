@@ -10,12 +10,12 @@ const { content } = Astro.props as Props;
 <section data-scroll-snap id="confidence-section" class="w-full h-screen flex flex-col justify-center items-center gap-6 bg-primary-back relative z-10 overflow-hidden js-confidence-section py-12 3xl:py-20">  
   <div class="grid grid-cols-1 lg:grid-cols-[minmax(1.5rem,1fr)_minmax(0,640px)_minmax(0,640px)_minmax(1.5rem,1fr)] w-full h-full">
     {/* Contenido Izquierdo */}
-    <div class="col-start-1 lg:col-start-2 lg:col-end-3 px-6 lg:px-0 flex flex-col justify-center h-full relative z-10 js-confidence-content">
-      <div class="w-full max-w-[640px] flex flex-col gap-6 items-start">
-        <h2 class='title text-secondary  font-bold text-start' set:html={content.title1}> </h2>
-        <div class="flex flex-col justify-center items-start gap-6 js-content z-20"> 
-          <p class="subtitle text-white">{content.description}</p>
-          <p class="paragraph text-white text-start"  set:html={content.description2}></p>
+    <div class="col-start-1 lg:col-start-2 lg:col-end-3 px-4 lg:px-0 flex flex-col justify-center h-full relative z-10 js-confidence-content">
+      <div class="w-full max-w-[640px] flex flex-col gap-6 items-center md:items-start ">
+        <h2 class='title text-secondary  font-bold text-center md:text-start js-item-content' set:html={content.title1}> </h2>
+        <div class="flex flex-col justify-center items-center md:items-start gap-6 js-content z-20 js-item-content "> 
+          <p class="subtitle text-white text-center md:text-start w-full md:w-[80%]">{content.description}</p>
+          <p class="paragraph text-white text-center md:text-start"  set:html={content.description2}></p>
           <Button
               text={content.button.label}
               href={content.button.href}
@@ -25,13 +25,14 @@ const { content } = Astro.props as Props;
       </div>
     </div>
     {/* Imagen Derecha */}
-    <div class="col-start-1 lg:col-start-3 lg:col-end-5 relative h-[400px] w-auto lg:h-full z-20 js-confidence-image" style="aspect-ratio: 1/1;">
+    <div class="col-start-1 lg:col-start-3 lg:col-end-5 relative h-[400px] w-auto lg:h-full z-20 js-confidence-image " style="aspect-ratio: 1/1;">
       <div class="absolute inset-0 w-full h-full">
         <img src={`/images/${content.img}.webp`} class="absolute w-full h-full object-cover object-center inset-0" width="2200" height="1228" decoding="async" loading="lazy"/>
       </div>
     </div>
   </div> 
 </section>
+
 <script>
   import { gsap, ScrollTrigger } from '../utils/animations';
 
@@ -46,7 +47,12 @@ const { content } = Astro.props as Props;
     const rows = document.querySelectorAll('.js-confidence-section');
     rows.forEach(row => {
       const image = row.querySelector('.js-confidence-image');
+      const content = row.querySelector('.js-confidence-content');
+      const itemContents = row.querySelectorAll('.js-item-content');
+      
       if (image) gsap.set(image, { clearProps: "all" });
+      if (content) gsap.set(content, { clearProps: "all" });
+      if (itemContents) itemContents.forEach(el => gsap.set(el, { clearProps: "all" }));
     });
   };
 
@@ -55,111 +61,161 @@ const { content } = Astro.props as Props;
     destroyServicesAnimation();
 
     const rows = document.querySelectorAll('.js-confidence-section');
+    let mm = gsap.matchMedia();
 
     rows.forEach((row) => {
       const image = row.querySelector('.js-confidence-image') as HTMLElement;
       const content = row.querySelector('.js-confidence-content') as HTMLElement;
+      const itemContents = row.querySelectorAll('.js-item-content');
 
       if (!image || !content) return;
 
-      const imageOrigin = "top right";
+      // ==========================================
+      // 1. ESCRITORIO (730px en adelante)
+      // ==========================================
+      mm.add("(min-width: 730px)", () => {
+        const imageOrigin = "top right";
+        gsap.set(row, { position: "relative", overflow: "hidden" });
+        
+        const rect = image.getBoundingClientRect();
+        const rowRect = row.getBoundingClientRect();
+        
+        const initialTop = rect.top - rowRect.top;
+        const initialLeft = rect.left - rowRect.left;
+        const initialWidth = rect.width;
+        const initialHeight = rect.height;
 
-      gsap.set(row, { position: "relative", overflow: "hidden" });
-      
-      const rect = image.getBoundingClientRect();
-      const rowRect = row.getBoundingClientRect();
-      
-      const initialTop = rect.top - rowRect.top;
-      const initialLeft = rect.left - rowRect.left;
-      const initialWidth = rect.width;
-      const initialHeight = rect.height;
+        gsap.set(image, {
+          position: "absolute",
+          top: initialTop,
+          left: initialLeft,
+          width: initialWidth,
+          height: initialHeight,
+          aspectRatio: "auto"
+        });
 
-      gsap.set(image, {
-        position: "absolute",
-        top: initialTop,
-        left: initialLeft,
-        width: initialWidth,
-        height: initialHeight,
-        aspectRatio: "auto"
-      });
+        gsap.set(image, { scale: 0, opacity: 0, transformOrigin: imageOrigin });
+        gsap.set(content, { opacity: 0, xPercent: -100 });
 
-      gsap.set(image, { 
-        scale: 0, 
-        opacity: 0, 
-        transformOrigin: imageOrigin 
-      });
-      
-      gsap.set(content, { 
-        opacity: 0, 
-        xPercent: -100 
-      });
+        const introDistance = window.innerHeight * 0.75; 
+        const pinDistance = 3500; 
 
-      // 1. CALCULAMOS LAS DISTANCIAS REALES DE SCROLL
-      // Distancia desde que asoma la sección (80%) hasta que se pega arriba (0%)
-      const introDistance = window.innerHeight * 0.75; 
-      // Los píxeles que durará congelada arriba haciendo la gran expansión
-      const pinDistance = 3500; 
-
-      const pinTrigger = ScrollTrigger.create({
-        trigger: row,
-        start: "top top",
-        pin: true,
-        pinSpacing: true,
-        end: `+=${pinDistance}`,
-        invalidateOnRefresh: true
-      });
-      if (pinTrigger) servicesTriggers.push(pinTrigger);
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
+        const pinTrigger = ScrollTrigger.create({
           trigger: row,
-          start: "top 75%",
-          end: `+=${introDistance + pinDistance}`, // El recorrido total combinando ambos
-          scrub: 1,                 
+          start: "top top",
+          pin: true,
+          pinSpacing: true,
+          end: `+=${pinDistance}`,
           invalidateOnRefresh: true
-        }
+        });
+        if (pinTrigger) servicesTriggers.push(pinTrigger);
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: row,
+            start: "top 75%",
+            end: `+=${introDistance + pinDistance}`,
+            scrub: 1,                 
+            invalidateOnRefresh: true
+          }
+        });
+
+        tl.to(image, { opacity: 1, scale: 1, duration: introDistance * 0.5, ease: "none" })
+          .to(content, { opacity: 1, xPercent: 0, duration: introDistance * 0.5, ease: "power2.out"}, `-=${introDistance * 0.1}`)
+          .addLabel('granExpansion', introDistance)
+          .to(image, { top: 0, left: 0, width: "100%", height: "100%", duration: pinDistance, ease: "power2.inOut" }, 'granExpansion')
+          .to(row, { paddingTop: 0, paddingBottom: 0, duration: pinDistance, ease: "power2.inOut" }, 'granExpansion')
+          .to({}, { duration: pinDistance * 0.1 });
+
+        if (tl.scrollTrigger) servicesTriggers.push(tl.scrollTrigger);
       });
 
-      // TRUCO PRO: Al usar 'scrub', si usamos las distancias en píxeles como "duration",
-      // la animación se sincronizará perfectamente con la velocidad del scroll del usuario.
+      // ==========================================
+      // 2. MÓVIL Y TABLET (729px hacia abajo)
+      // ==========================================
+      mm.add("(max-width: 729px)", () => {
+        gsap.set(row, { position: "relative", overflow: "hidden" });
 
-      // --- FASE 1: Animación de entrada (Se ejecuta mientras la sección sube de 80% a 0%) ---
-      tl.to(image, { 
-        opacity: 1, 
-        scale: 1, 
-        duration: introDistance * 0.5, // Ocupa la mitad del trayecto de entrada
-        ease: "none" 
-      })
-      .to(content, { 
-        opacity: 1, 
-        xPercent: 0, 
-        duration: introDistance * 0.5, // Ocupa la otra mitad
-        ease: "power2.out"
-      }, `-=${introDistance * 0.1}`) // Un pequeño solapamiento para fluidez
+        // Inicialización intercalada de los contenidos de texto
+        itemContents.forEach((item, index) => {
+          if (index % 2 === 0) {
+            // Primero: Fade-right (Viene desde la izquierda)
+            gsap.set(item, { opacity: 0, x: -100 });
+          } else {
+            // Segundo: Fade-left (Viene desde la derecha)
+            gsap.set(item, { opacity: 0, x: 100 });
+          }
+        });
 
-      // --- FASE 2: Gran Expansión (Empieza justo en el píxel donde la sección se clava en "top top") ---
-      // Colocamos una etiqueta exactamente en la posición de 'introDistance'
-      .addLabel('granExpansion', introDistance)
-      
-      .to(image, {
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        duration: pinDistance, // Se expande a lo largo de los 2500px que dura el Pin
-        ease: "power2.inOut"
-      }, 'granExpansion')
-      
-      .to(row, {
-        paddingTop: 0,
-        paddingBottom: 0,
-        duration: pinDistance,
-        ease: "power2.inOut"
-      }, 'granExpansion')
+        // Estado inicial de la imagen en móvil (Totalmente invisible hasta que llegue al top)
+        gsap.set(image, {
+          position: "absolute",
+          top: "45%", 
+          left: "25%", 
+          width: "75%",
+          height: "50%",
+          scale: 0,
+          transformOrigin: "top right"
+        });
 
-      .to({}, { duration: pinDistance * 0.1 }); // Un pequeño respiro de scroll al final
+        const introDistance = window.innerHeight * 0.8;
+        const pinDistance = 2500; 
 
-      if (tl.scrollTrigger) servicesTriggers.push(tl.scrollTrigger);
+        // Bloqueo de Pin al tocar el "top top"
+        const pinTriggerMobile = ScrollTrigger.create({
+          trigger: row,
+          start: "top top",
+          pin: true,
+          pinSpacing: true,
+          end: `+=${pinDistance}`,
+          invalidateOnRefresh: true
+        });
+        if (pinTriggerMobile) servicesTriggers.push(pinTriggerMobile);
+
+        const tlMobile = gsap.timeline({
+          scrollTrigger: {
+            trigger: row,
+            start: "top 80%",
+            end: `+=${introDistance + pinDistance}`,
+            scrub: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        // 1. Animamos los textos intercalados de forma consecutiva durante la subida
+        itemContents.forEach((item) => {
+          tlMobile.to(item, {
+            opacity: 1,
+            x: 0,
+            duration: introDistance * 0.5,
+            ease: "power2.out"
+          });
+        });
+
+        // 2. Agregamos la etiqueta de fijado ("top top")
+        tlMobile.addLabel('expansionMovil', introDistance);
+
+        // 3. Justo en 'expansionMovil' (al pinear), la imagen hace el fade in rápido y crece al mismo tiempo con el scroll
+        tlMobile.to(image, {
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            scale: 1,
+            duration: pinDistance,
+            ease: "power2.inOut"
+          }, 'expansionMovil')
+          .to(row, {
+            paddingTop: 0,
+            paddingBottom: 0,
+            duration: pinDistance,
+            ease: "power2.inOut"
+          }, 'expansionMovil')
+          .to({}, { duration: pinDistance * 0.1 });
+
+        if (tlMobile.scrollTrigger) servicesTriggers.push(tlMobile.scrollTrigger);
+      });
+
     });
 
     ScrollTrigger.refresh();

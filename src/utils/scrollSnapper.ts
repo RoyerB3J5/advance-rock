@@ -9,20 +9,30 @@ export function initGlobalScrollSnap() {
 
   let isAnimating = false;
   let currentIndex = 0;
-  // Nueva variable para saber si el usuario está actualmente posicionado sobre una sección con snap
-  let isInsideSnapped = false; 
+  let isInsideSnapped = false;
 
-  document.documentElement.style.scrollBehavior = "auto";
+  // FUNCIÓN AUXILIAR: Verifica si la pantalla actual debe ignorar el snap (<= 729px)
+  const isMobile = () => window.innerWidth <= 729;
 
-  // FUNCIÓN AUXILIAR: Obtiene el contenedor real (incluyendo el pin-spacer de GSAP si existe)
+  // Solo alteramos el comportamiento del scroll por defecto en pantallas grandes
+  if (!isMobile()) {
+    document.documentElement.style.scrollBehavior = "auto";
+  }
+
   const getRealContainer = (sec: HTMLElement) => {
-    return sec.parentElement?.classList.contains("pin-spacer") 
-      ? sec.parentElement 
+    return sec.parentElement?.classList.contains("pin-spacer")
+      ? sec.parentElement
       : sec;
   };
 
-  // 1. UPDATE INDEX (Detecta dinámicamente si estamos en zona snap o zona libre)
+  // 1. UPDATE INDEX
   const updateIndex = () => {
+    // Si es móvil, no calculamos índices ni bloqueamos nada
+    if (isMobile()) {
+      isInsideSnapped = false;
+      return;
+    }
+
     const scrollY = window.scrollY;
     const viewportCenter = scrollY + window.innerHeight / 2;
     let found = false;
@@ -33,7 +43,6 @@ export function initGlobalScrollSnap() {
       const top = scrollY + rect.top;
       const bottom = scrollY + rect.bottom;
 
-      // Si el centro de la pantalla está dentro de esta sección con snap
       if (viewportCenter >= top && viewportCenter <= bottom) {
         currentIndex = i;
         found = true;
@@ -49,9 +58,9 @@ export function initGlobalScrollSnap() {
     if (!isAnimating) updateIndex();
   });
 
-  // 2. IR A LA SECCIÓN (Con salto firme y cálculo exacto)
+  // 2. IR A LA SECCIÓN
   const goToSection = (index: number, fromBottom: boolean = false) => {
-    if (index < 0 || index >= sections.length) return;
+    if (index < 0 || index >= sections.length || isMobile()) return;
 
     isAnimating = true;
     currentIndex = index;
@@ -59,7 +68,7 @@ export function initGlobalScrollSnap() {
     const targetSection = sections[index];
     const container = getRealContainer(targetSection);
     const rect = container.getBoundingClientRect();
-    
+
     let targetY = window.scrollY + rect.top;
 
     if (fromBottom) {
@@ -73,7 +82,7 @@ export function initGlobalScrollSnap() {
       onComplete: () => {
         setTimeout(() => {
           isAnimating = false;
-          updateIndex(); // Forzar actualización al terminar la animación
+          updateIndex();
         }, 50);
       },
     });
@@ -83,59 +92,49 @@ export function initGlobalScrollSnap() {
   window.addEventListener(
     "wheel",
     (e) => {
+      // SI ES MÓVIL/TABLET DE 729PX O MENOS, permitimos el scroll nativo libremente
+      if (isMobile()) return;
+
       if (isAnimating) {
         e.preventDefault();
         return;
       }
 
-      // SI NO ESTAMOS EN UNA SECCIÓN CON SNAP, dejamos que el scroll sea 100% nativo y normal
       if (!isInsideSnapped) return;
 
       const currentSection = sections[currentIndex];
       const container = getRealContainer(currentSection);
       const rect = container.getBoundingClientRect();
-      
+
       const isFirst = currentIndex === 0;
       const isLast = currentIndex === sections.length - 1;
 
       const direction = e.deltaY > 0 ? "DOWN" : "UP";
-      const delta = e.deltaY; 
+      const delta = e.deltaY;
 
       if (direction === "DOWN" && !isLast) {
-        // ¿Llegamos al final de la sección actual?
         if (rect.bottom - delta <= window.innerHeight + 5) {
           const nextSection = sections[currentIndex + 1];
           const nextContainer = getRealContainer(nextSection);
           const nextRect = nextContainer.getBoundingClientRect();
-          
-          // Calculamos la distancia física entre el final de esta sección y el principio de la otra
           const distanceToNext = nextRect.top - rect.bottom;
 
-          // Si están juntas (menos de 50px de diferencia), hacemos el salto magnético
           if (distanceToNext < 50) {
-            e.preventDefault(); 
+            e.preventDefault();
             goToSection(currentIndex + 1, false);
-          } 
-          // Si hay más distancia, significa que hay componentes normales en medio.
-          // NO hacemos preventDefault y dejamos que el navegador haga scroll nativo hacia abajo.
+          }
         }
-      } 
-      else if (direction === "UP" && !isFirst) {
-        // ¿Llegamos al inicio de la sección actual?
+      } else if (direction === "UP" && !isFirst) {
         if (rect.top - delta >= -5) {
           const prevSection = sections[currentIndex - 1];
           const prevContainer = getRealContainer(prevSection);
           const prevRect = prevContainer.getBoundingClientRect();
-          
-          // Calculamos la distancia hacia arriba
           const distanceToPrev = rect.top - prevRect.bottom;
 
-          // Si están juntas, hacemos el salto magnético hacia arriba
           if (distanceToPrev < 50) {
             e.preventDefault();
             goToSection(currentIndex - 1, true);
           }
-          // Si hay componentes en medio, dejamos que suba de manera nativa y normal
         }
       }
     },
@@ -155,22 +154,24 @@ export function initGlobalScrollSnap() {
   window.addEventListener(
     "touchmove",
     (e) => {
+      // SI ES MÓVIL/TABLET DE 729PX O MENOS, cancelamos la lógica táctil personalizada
+      if (isMobile()) return;
+
       if (isAnimating) {
         e.preventDefault();
         return;
       }
 
-      // Si estamos en zona común/libre, permitimos el comportamiento táctil nativo
       if (!isInsideSnapped) return;
 
       const touchEndY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchEndY; 
+      const deltaY = touchStartY - touchEndY;
 
       const currentSection = sections[currentIndex];
       const container = getRealContainer(currentSection);
       const rect = container.getBoundingClientRect();
 
-      if (Math.abs(deltaY) < 30) return; // Umbral mínimo para detectar gesto
+      if (Math.abs(deltaY) < 30) return;
 
       const direction = deltaY > 0 ? "DOWN" : "UP";
       const isFirst = currentIndex === 0;
