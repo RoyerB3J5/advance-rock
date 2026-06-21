@@ -27,8 +27,9 @@ const isProjectPage = normalized === "/projects";
   style="background-color: transparent; transition: background-color 0.3s ease-out;"
 >
   <div class="container-full flex flex-col justify-center items-center">
+    {/* Cambio 1: Se agregó 'hidden md:flex' para ocultarlo de md para abajo */}
     <div
-      class="py-2.5 w-full justify-end items-center gap-4 border-b border-white/20 header-container-1"
+      class="hidden md:flex py-2.5 w-full justify-end items-center gap-4 border-b border-white/20 header-container-1"
     >
       {
         isProjectPage ? (
@@ -154,7 +155,7 @@ const isProjectPage = normalized === "/projects";
           text={content?.buttons[0].label}
           href={content?.buttons[0].href}
           textClass="text-[17px]"
-          extraBtnClass="hidden sm:block"
+          extraBtnClass="hidden xl:block"
         />
         <ChangeLanguage isProjectPage={isProjectPage} />
         <button
@@ -238,7 +239,7 @@ const isProjectPage = normalized === "/projects";
               </a>
               {isServices && (
                 <div
-                  class="flex-col justify-center items-center w-full bg-secondary divide-y divide-accent hidden absolute z-20 top-0 translate-y-12.5"
+                  class={`flex-col justify-center items-center w-full bg-secondary divide-y divide-accent hidden absolute z-20 top-0 translate-y-12.5 ${isActive ? "-translate-x-4" : ""}`}
                   id="sub-menu-services"
                 >
                   {content.services.map((sub) => (
@@ -409,7 +410,10 @@ const isProjectPage = normalized === "/projects";
         firstContainerHedaer.style.display = "none"; 
       } else {
         header.style.backgroundColor = "transparent";
-        firstContainerHedaer.style.display = "flex";
+        // Cambio adicional preventivo: solo forzar flex si no estamos en móvil, respetando Cambio 1
+        if (window.innerWidth >= 768) {
+          firstContainerHedaer.style.display = "flex";
+        }
       }
     };
 
@@ -422,10 +426,8 @@ const isProjectPage = normalized === "/projects";
       start: "top top",
       end: "max",
       onUpdate: (self) => {
-        const viewportHeight = window.innerHeight;
-
-        // Si el usuario hace scroll hacia abajo (1) y ya pasó la primera sección (viewportHeight)
-        if (self.direction === 1 && window.scrollY > viewportHeight) {
+        // Cambio 2: Se eliminó la condicional "window.scrollY > viewportHeight" para que actúe apenas haga scroll down (> 0)
+        if (self.direction === 1 && window.scrollY > 0) {
           gsap.to(header, {
             yPercent: -120,
             duration: 0.3,

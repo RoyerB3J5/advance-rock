@@ -16,14 +16,13 @@ const sizes = [
 ---
 
 <section class="bg-white w-full flex justify-center items-center relative">
-  <div class="container-full flex flex-col justify-center items-center gap-8 pb-8 w-full px-4 header-margin">
-    
-    <div class="flex justify-center items-center gap-6">
+  <div class="container-full flex flex-col justify-center items-center gap-8 pb-8  header-margin">
+    <div class="md:flex justify-center items-center gap-6 hidden ">
       {
         sizes.map((item)=>( 
           <button 
             data-size={item.id}
-            class={`size-btn ${item.activate ? 'border-primary' : 'border-white'} border-b w-6 h-6 flex justify-center items-center cursor-pointer`}
+            class={`size-btn ${item.id === 's' ? 'border-primary md:border-primary max-md:border-white' : item.id === 'l' ? 'border-white max-md:border-primary md:border-white' : 'border-white'} border-b w-6 h-6 flex justify-center items-center cursor-pointer`}
           >
             <p class="paragraph text-primary uppercase pointer-events-none">{item.id}</p>
           </button>
@@ -39,7 +38,7 @@ const sizes = [
 
       <div 
         id="gallery-container" 
-        class="columns-6 gap-2.5 w-full transition-all duration-300 ease-in-out opacity-100 scale-100"
+        class="columns-1 md:columns-6 gap-2.5 w-full transition-all duration-300 ease-in-out opacity-100 scale-100 pt-8 md:pt-0"
       >
         {Array.from({ length: 32 }, (_, i) => (
           <div class="break-inside-avoid mb-2.5 bg-gray-100 overflow-hidden cursor-pointer group">
@@ -98,12 +97,10 @@ const sizes = [
 </div>
 
 <script is:inline>
-  // Variables de la Galería de tamaños (S, M, L)
   const buttons = document.querySelectorAll('.size-btn');
   const container = document.getElementById('gallery-container');
   const loader = document.getElementById('gallery-loader');
 
-  // Elementos del Lightbox / Popup
   const galleryImages = document.querySelectorAll('.gallery-img');
   const modal = document.getElementById('lightbox-modal');
   const lightboxImg = document.getElementById('lightbox-img');
@@ -111,15 +108,26 @@ const sizes = [
   const prevBtn = document.getElementById('prev-lightbox');
   const nextBtn = document.getElementById('next-lightbox');
 
-  // Estado global del índice de la imagen actual (0 a 31)
   let currentIndex = 0;
   const totalImages = 32;
 
+  // AJUSTE 2: Agregamos el prefijo 'md:' a los estilos inyectados por JS.
+  // De esta manera, el cambio de tamaño afectará solo de 768px hacia arriba.
   const columnClasses = {
-    s: 'columns-6',
-    m: 'columns-3',
-    l: 'columns-1'
+    s: 'md:columns-6',
+    m: 'md:columns-3',
+    l: 'md:columns-1'
   };
+
+  let currentActiveSize = 's'; 
+
+  // AJUSTE 3: Actualizamos la detección inicial de móvil para cubrir hasta 'md' (menor a 768px)
+  const isMobileOrTablet = window.matchMedia('(max-width: 767px)').matches;
+  if (isMobileOrTablet && container) {
+    container.classList.remove('md:columns-6');
+    container.classList.add('columns-1');
+    currentActiveSize = 'l'; 
+  }
 
   // --- LÓGICA DE TAMAÑOS (S, M, L) ---
   buttons.forEach(btn => {
@@ -127,8 +135,9 @@ const sizes = [
       const size = btn.getAttribute('data-size');
       if (!container || !loader || !size) return;
 
+      if (size === currentActiveSize) return;
+
       const targetClass = columnClasses[size];
-      if (container.classList.contains(targetClass)) return;
 
       container.classList.remove('opacity-100', 'scale-100');
       container.classList.add('opacity-0', 'scale-[0.98]');
@@ -136,8 +145,15 @@ const sizes = [
       loader.classList.add('opacity-100');
 
       setTimeout(() => {
-        container.classList.remove('columns-1', 'columns-3', 'columns-6');
-        container.classList.add(targetClass);
+        // AJUSTE 4: Limpiamos tanto las clases base de móvil como todas las variaciones de 'md:'
+        container.classList.remove(
+          'columns-1', 'columns-3', 'columns-6', 
+          'md:columns-6', 'md:columns-3', 'md:columns-1'
+        );
+        
+        // Forzamos que en pantallas pequeñas mantenga siempre columns-1
+        container.classList.add('columns-1', targetClass);
+        currentActiveSize = size; 
 
         setTimeout(() => {
           loader.classList.remove('opacity-100');
@@ -148,6 +164,7 @@ const sizes = [
       }, 250);
 
       buttons.forEach(b => {
+        b.classList.remove('max-md:border-white', 'max-md:border-primary', 'md:border-primary', 'md:border-white');
         if (b === btn) {
           b.classList.remove('border-white');
           b.classList.add('border-primary');
@@ -160,11 +177,8 @@ const sizes = [
   });
 
   // --- LÓGICA DEL POPUP / LIGHTBOX ---
-
-  // Función para actualizar la imagen dentro del modal
   const updateLightboxImage = (index) => {
     if (!lightboxImg) return;
-    // Efecto sutil de transición al cambiar de imagen interna
     lightboxImg.style.opacity = '0';
     setTimeout(() => {
       lightboxImg.src = `/images/project-${index + 1}.webp`;
@@ -173,56 +187,45 @@ const sizes = [
     }, 150);
   };
 
-  // Abrir el modal al hacer clic en cualquier imagen
   galleryImages.forEach(img => {
     img.addEventListener('click', (e) => {
       const target = e.target;
       const indexAttr = target.getAttribute('data-index');
-      
       if (!modal || !indexAttr) return;
       
       currentIndex = parseInt(indexAttr, 10);
       updateLightboxImage(currentIndex);
-      
-      // Mostrar el modal quitando las clases que lo ocultan
       modal.classList.remove('opacity-0', 'pointer-events-none');
     });
   });
 
-  // Cerrar el modal
   const closeModal = () => {
     if (!modal) return;
     modal.classList.add('opacity-0', 'pointer-events-none');
   };
 
   closeBtn?.addEventListener('click', closeModal);
-  
-  // Cerrar si hacen clic en el fondo negro fuera de la imagen
   modal?.addEventListener('click', (e) => {
     if (e.target === modal || (e.target).classList.contains('relative')) {
       closeModal();
     }
   });
 
-  // Avanzar Imagen (Next)
   const nextImage = () => {
-    currentIndex = (currentIndex + 1) % totalImages; // Si llega al 31, vuelve a 0
+    currentIndex = (currentIndex + 1) % totalImages;
     updateLightboxImage(currentIndex);
   };
 
-  // Retroceder Imagen (Prev)
   const prevImage = () => {
-    currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Si baja de 0, va al 31
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
     updateLightboxImage(currentIndex);
   };
 
   nextBtn?.addEventListener('click', nextImage);
   prevBtn?.addEventListener('click', prevImage);
 
-  // Soporte para navegar con el teclado (Flechas izquierda/derecha y Escape)
   document.addEventListener('keydown', (e) => {
     if (!modal || modal.classList.contains('opacity-0')) return;
-    
     if (e.key === 'Escape') closeModal();
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
@@ -231,7 +234,6 @@ const sizes = [
 
 <style>
   .header-margin {
-    /* Evita que el header fixed tape el contenido */
-    padding-top: var(--header-height); /* 80px es el valor por defecto si aún no carga el JS */
+    padding-top: var(--header-height);
   }
 </style>

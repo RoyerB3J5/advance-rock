@@ -25,7 +25,7 @@ const t = translations[lang];
 ---
 <Layout lang={lang} t={t} showLoader={true}>
   <Hero content={t.medo.hero}/>
-  <section class="bg-white flex flex-col justify-center items-center py-20 gap-8.5 w-full">
+  <section class="bg-white flex flex-col justify-center items-center py-0 xl:py-20 gap-8.5 w-full">
     <InfoContent content={t.medo.info}/>
     <p class="decoration whitespace-nowrap " data-scroll-text>{t.medo.textMove}</p>
     <ContentExamples content={t.medo.examples}/>
@@ -34,7 +34,7 @@ const t = translations[lang];
     <InfoContent content={t.medo.info2} styleType='bg-and-order' list={t.medo.info2.second}/>
   </section>
   <InfoContent2 content={t.medo.info3}/>
-  <section data-scroll-snap class="bg-white flex flex-col justify-center items-center py-12 3xl:py-20 gap-20 w-full">
+  <section data-scroll-snap class="bg-white flex flex-col justify-center items-center pt-6 md:py-12 3xl:py-20 gap-20 w-full">
     <div class="container-full flex justify-center items-center">
       <GridExamples content={t.medo.examples2.items} animationUp={true}/>
     </div>

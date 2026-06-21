@@ -8,14 +8,14 @@ interface Props {
 const { content } = Astro.props as Props;
 ---
 <section data-scroll-snap id="confidence-section" class="w-full h-screen flex flex-col justify-center items-center gap-6 bg-primary-back relative z-10 overflow-hidden js-confidence-section py-12 3xl:py-20">  
-  <div class="grid grid-cols-1 lg:grid-cols-[minmax(1.5rem,1fr)_minmax(0,640px)_minmax(0,640px)_minmax(1.5rem,1fr)] w-full h-full">
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(1.5rem,1fr)_minmax(0,640px)_minmax(0,640px)_minmax(1.5rem,1fr)] w-full h-full">
     {/* Contenido Izquierdo */}
-    <div class="col-start-1 lg:col-start-2 lg:col-end-3 px-4 lg:px-0 flex flex-col justify-center h-full relative z-10 js-confidence-content">
-      <div class="w-full max-w-[640px] flex flex-col gap-6 items-center md:items-start ">
-        <h2 class='title text-secondary  font-bold text-center md:text-start js-item-content' set:html={content.title1}> </h2>
-        <div class="flex flex-col justify-center items-center md:items-start gap-6 js-content z-20 js-item-content "> 
-          <p class="subtitle text-white text-center md:text-start w-full md:w-[80%]">{content.description}</p>
-          <p class="paragraph text-white text-center md:text-start"  set:html={content.description2}></p>
+    <div class="col-start-1 xl:col-start-2 xl:col-end-3 px-4 lg:px-0 flex flex-col justify-center items-center xl:items-start h-full relative z-10 js-confidence-content">
+      <div class="w-full max-w-[640px] flex flex-col gap-6 items-center xl:items-start ">
+        <h2 class='title text-secondary  font-bold text-center xl:text-start js-item-content' set:html={content.title1}> </h2>
+        <div class="flex flex-col justify-center items-center xl:items-start gap-6 js-content z-20 js-item-content "> 
+          <p class="subtitle text-white text-center xl:text-start w-full xl:w-[80%]">{content.description}</p>
+          <p class="paragraph text-white text-center xl:text-start"  set:html={content.description2}></p>
           <Button
               text={content.button.label}
               href={content.button.href}
@@ -35,7 +35,7 @@ const { content } = Astro.props as Props;
 
 <script>
   import { gsap, ScrollTrigger } from '../utils/animations';
-
+  import { MEDIA_QUERIES } from '../utils/breakpoints'; 
   let servicesTriggers: any[] = [];
 
   const destroyServicesAnimation = () => {
@@ -73,7 +73,7 @@ const { content } = Astro.props as Props;
       // ==========================================
       // 1. ESCRITORIO (730px en adelante)
       // ==========================================
-      mm.add("(min-width: 730px)", () => {
+      mm.add(MEDIA_QUERIES.isDesktopPin, () => {
         const imageOrigin = "top right";
         gsap.set(row, { position: "relative", overflow: "hidden" });
         
@@ -133,7 +133,7 @@ const { content } = Astro.props as Props;
       // ==========================================
       // 2. MÓVIL Y TABLET (729px hacia abajo)
       // ==========================================
-      mm.add("(max-width: 729px)", () => {
+      mm.add(MEDIA_QUERIES.isTabletMobileFlow, () => {
         gsap.set(row, { position: "relative", overflow: "hidden" });
 
         // Inicialización intercalada de los contenidos de texto

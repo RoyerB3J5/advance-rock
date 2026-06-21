@@ -6,14 +6,14 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section id="fleet-section-2" class="w-full flex flex-col justify-center items-center pb-16 md:pb-12 3xl:pb-20 pt-4 md:pt-8.5 h-auto md:h-screen bg-white overflow-hidden relative z-20">
-  <div class="container-full flex flex-col md:flex-row justify-center md:justify-between 3xl:justify-center items-stretch gap-6 h-full">
-    <div class="w-full md:w-[25%] h-full flex flex-col justify-center items-start gap-6 self-center content-left">
+<section id="fleet-section-2" class="w-full flex flex-col justify-center items-center pb-16 xl:pb-12 3xl:pb-20 pt-4 xl:pt-8.5 h-auto xl:h-screen bg-white overflow-hidden relative z-20">
+  <div class="container-full flex flex-col xl:flex-row justify-center xl:justify-between 3xl:justify-center items-stretch gap-6 h-full">
+    <div class="w-full xl:w-[25%] h-full flex flex-col justify-center items-start gap-6 self-center content-left">
       <h2 class="text-primary title-sm">{content.second.title}</h2>
       <p class="text-paragraph subtitle">{content.second.subtitle}</p>
     </div>
-    <div class="w-full h-auto md:h-full md:w-auto 3xl:w-[50%] 3xl:h-auto bg-accent js-second-video" style="aspect-ratio: 628/740;"></div>
-    <div class="w-full md:w-[25%] grow flex flex-col justify-center md:justify-between items-start js-right-content gap-6">
+    <div class="w-full h-auto xl:h-full xl:w-auto 3xl:w-[50%] 3xl:h-auto bg-accent js-second-video" style="aspect-ratio: 628/740;"></div>
+    <div class="w-full xl:w-[25%] grow flex flex-col justify-center xl:justify-between items-start js-right-content gap-6">
       <div class="flex flex-col justify-center items-start gap-6">
         <p class="text-paragraph paragraph">{content.second.description}</p>
         <a href={content.second.button.href} class="cursor-pointer group flex justify-start items-center gap-2" >
@@ -28,6 +28,7 @@ const { content } = Astro.props as Props;
 
 <script>
   import { gsap, ScrollTrigger } from '../utils/animations';
+  import { MEDIA_QUERIES } from '../utils/breakpoints';
 
   document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
@@ -49,7 +50,7 @@ const { content } = Astro.props as Props;
     // ==========================================
     // 1. ESCRITORIO (730px en adelante) - Mantiene tu lógica original
     // ==========================================
-    mm.add("(min-width: 730px)", () => {
+    mm.add(MEDIA_QUERIES.isDesktopPin, () => {
       gsap.set(secondVideo, { opacity: 0, scale: 0, transformOrigin: "top left" });
       gsap.set(contentLeft, { opacity: 0, xPercent: -100 });
       gsap.set(rightContent, { opacity: 0, xPercent: 100 });
@@ -58,7 +59,7 @@ const { content } = Astro.props as Props;
         scrollTrigger: {
           trigger: section,
           start: "top 80%",         
-          end: "+=700",     
+          end: "+=500",     
           scrub: 1,                 
           invalidateOnRefresh: true 
         }
@@ -69,10 +70,7 @@ const { content } = Astro.props as Props;
         .to(rightContent, { opacity: 1, xPercent: 0, duration: 0.8, ease: "power2.inOut" }, "<");
     });
 
-    // ==========================================
-    // 2. MÓVIL Y TABLET (729px hacia abajo) - NUEVA LOGICA SECUENCIAL
-    // ==========================================
-    mm.add("(max-width: 729px)", () => {
+    mm.add(MEDIA_QUERIES.isTabletMobileFlow, () => {
       // Ajustamos sutilmente los valores iniciales para que la entrada fluya mejor en vertical
       gsap.set(contentLeft, { opacity: 0, xPercent: -100 });
       gsap.set(secondVideo, { opacity: 0, scale: 0, transformOrigin: "top left" });
@@ -82,7 +80,7 @@ const { content } = Astro.props as Props;
         scrollTrigger: {
           trigger: section,
           start: "top 85%", // Comienza un poco antes al hacer scroll en el móvil
-          end: "+=900",     // Ofrece un recorrido cómodo para que se completen las 3 animaciones fijas
+          end: () => window.innerWidth >= 730 ? "+=1500" : "+=900",     // Ofrece un recorrido cómodo para que se completen las 3 animaciones fijas
           scrub: 1
         }
       });

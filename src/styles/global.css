@@ -60,6 +60,26 @@ html {
     font-size: 32px;
   }
 }
+
+.title-2 {
+  font-family: var(--font-family);
+  font-size: 64px;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 110%;
+}
+@media (max-width: 1279px) {
+  .title-2 {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 769px) {
+  .title-2 {
+    font-size: 32px;
+  }
+}
+
 .title-sm {
   font-family: var(--font-family);
   font-size: 40px;

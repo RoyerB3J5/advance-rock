@@ -1,15 +1,16 @@
-<section class="w-full bg-white flex justify-center items-center h-auto" style="aspect-ratio: 1440/750;">
-  <div class="map-container w-full flex justify-start items-start relative h-full overflow-hidden" >
+<section class="w-auto xl:w-full bg-white flex justify-center items-center h-[70vh] xl:h-auto max-h-screen" style="aspect-ratio: 1440/750;">
+  {/* Agregamos una ID al contenedor para manipularlo fácilmente en JS */}
+  <div id="map-container" class="map-container w-full flex justify-start items-start relative h-full overflow-hidden" >
     
     <img src="/images/map.webp" alt="Mapa De Advance" class="map-image absolute w-full h-full inset-0 object-cover object-top z-0 transition-transform duration-700 ease-in-out scale-110 origin-top" width="2048" height="1080" decoding="async" loading="lazy" />
     
-    <div class="map-blur absolute inset-0  backdrop-blur-[2px] opacity-0 transition-opacity duration-500 z-10 pointer-events-none"></div>
+    <div class="map-blur absolute inset-0 backdrop-blur-[2px] opacity-0 transition-opacity duration-500 z-10 pointer-events-none"></div>
 
-    <div data-city="greenville" class="map-pin absolute z-20 w-0 h-0 group" style="left: 38%; bottom: 47%;">
+    <div data-city="greenville" class="map-pin absolute z-20 w-0 h-0 group left-[38%] bottom-[45%] xl:bottom-[40%]" >
       
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full cursor-pointer z-50"></div>
 
-      <div data-card="greenville" class="absolute bottom-[49px] left-1/2 -translate-x-1/2 flex flex-col justify-center items-start gap-7 p-4 bg-primary-back rounded-xl border border-black-20 w-max max-w-[300px] z-30 pointer-events-none origin-center scale-0 opacity-0 transition-all duration-300 ease-out group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100 group-hover:duration-500 group-hover:ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+      <div data-card="greenville" class="absolute bottom-[49px] -left-10  xl:left-1/2 xl:-translate-x-1/2 flex flex-row xl:flex-col justify-center items-start gap-6 p-4 bg-primary-back rounded-xl border border-black-20 w-max max-w-[300px] z-30 pointer-events-none origin-center scale-0 opacity-0 transition-all duration-300 ease-out xl:group-hover:pointer-events-auto xl:group-hover:scale-100 xl:group-hover:opacity-100 xl:group-hover:duration-500 xl:group-hover:ease-[cubic-bezier(0.34,1.56,0.64,1)] group-[.is-active]:pointer-events-auto group-[.is-active]:scale-100 group-[.is-active]:opacity-100">
         <div class="w-[237px] h-auto relative rounded-lg overflow-hidden" style="aspect-ratio: 237/143;">
           <img src="/images/greenville.webp" alt="Greenville" class="absolute w-full h-full inset-0 object-center object-cover" width="600" height="450">
         </div>
@@ -20,15 +21,15 @@
         </div>
       </div>
 
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-accent h-0 group-hover:h-[41px] transition-all duration-500 ease-in-out origin-bottom z-10 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-accent h-0 xl:group-hover:h-[41px] group-[.is-active]:h-[41px] transition-all duration-500 ease-in-out origin-bottom z-10 pointer-events-none"></div>
 
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none transition-transform duration-500 ease-in-out group-hover:-translate-y-[41px]">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none transition-transform duration-500 ease-in-out xl:group-hover:-translate-y-[41px] group-[.is-active]:-translate-y-[41px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <circle cx="8" cy="8" r="7" fill="white" stroke="#ED1846" stroke-width="2"/>
         </svg>
       </div>
 
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out pointer-events-none z-0">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 scale-0 xl:group-hover:scale-100 group-[.is-active]:scale-100 transition-transform duration-500 ease-in-out pointer-events-none z-0">
         <svg xmlns="http://www.w3.org/2000/svg" width="102" height="19" viewBox="0 0 102 19" fill="none">
           <path d="M51 1C65.041 1 77.7266 2.06081 86.8789 3.76562C91.4633 4.61957 95.1111 5.62656 97.5889 6.71777C98.8313 7.26494 99.7244 7.80941 100.291 8.3252C100.86 8.84296 101 9.23521 101 9.5C101 9.76479 100.86 10.157 100.291 10.6748C99.7244 11.1906 98.8313 11.7351 97.5889 12.2822C95.1111 13.3734 91.4633 14.3804 86.8789 15.2344C77.7266 16.9392 65.041 18 51 18C36.959 18 24.2734 16.9392 15.1211 15.2344C10.5367 14.3804 6.88892 13.3734 4.41113 12.2822C3.1687 11.7351 2.27559 11.1906 1.70898 10.6748C1.14031 10.157 1 9.76479 1 9.5C1 9.23521 1.14031 8.84296 1.70898 8.3252C2.27559 7.80941 3.1687 7.26494 4.41113 6.71777C6.88892 5.62656 10.5367 4.61957 15.1211 3.76562C24.2734 2.06081 36.959 1 51 1Z" fill="black" fill-opacity="0.05" stroke="#ED1846" stroke-width="2"/>
         </svg>
@@ -36,10 +37,10 @@
 
     </div>
 
-    <div data-city="charlotte" class="map-pin absolute z-20 w-0 h-0 group" style="right: 41%; top: 41%;"> 
+    <div data-city="charlotte" class="map-pin absolute z-20 w-0 h-0 group right-[41%] top-[42%] xl:top-[47%]" > 
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full cursor-pointer z-50"></div>
 
-      <div data-card="charlotte" class="absolute bottom-[49px] left-1/2 -translate-x-1/2 flex flex-col justify-center items-start gap-7 p-4 bg-primary-back rounded-xl border border-black-20 w-max max-w-[300px] z-30 pointer-events-none origin-center scale-0 opacity-0 transition-all duration-300 ease-out group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100 group-hover:duration-500 group-hover:ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+      <div data-card="charlotte" class="absolute bottom-[49px] -left-60 xl:left-1/2 xl:-translate-x-1/2 flex flex-row xl:flex-col justify-center items-start gap-6 p-4 bg-primary-back rounded-xl border border-black-20 w-max max-w-[300px] z-30 pointer-events-none origin-center scale-0 opacity-0 transition-all duration-300 ease-out xl:group-hover:pointer-events-auto xl:group-hover:scale-100 xl:group-hover:opacity-100 xl:group-hover:duration-500 xl:group-hover:ease-[cubic-bezier(0.34,1.56,0.64,1)] group-[.is-active]:pointer-events-auto group-[.is-active]:scale-100 group-[.is-active]:opacity-100">
         <div class="overflow-hidden w-[237px] h-auto relative rounded-lg" style="aspect-ratio: 237/143;">
           <img src="/images/charlotte.webp" alt="Charlotte" class="absolute w-full h-full inset-0 object-center object-cover" width="600" height="450">
         </div>
@@ -50,15 +51,15 @@
         </div>
       </div>
 
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-accent h-0 group-hover:h-[41px] transition-all duration-500 ease-in-out origin-bottom z-10 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-accent h-0 xl:group-hover:h-[41px] group-[.is-active]:h-[41px] transition-all duration-500 ease-in-out origin-bottom z-10 pointer-events-none"></div>
 
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none transition-transform duration-500 ease-in-out group-hover:-translate-y-[41px]">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none transition-transform duration-500 ease-in-out xl:group-hover:-translate-y-[41px] group-[.is-active]:-translate-y-[41px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <circle cx="8" cy="8" r="7" fill="white" stroke="#ED1846" stroke-width="2"/>
         </svg>
       </div>
 
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out pointer-events-none z-0">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 scale-0 xl:group-hover:scale-100 group-[.is-active]:scale-100 transition-transform duration-500 ease-in-out pointer-events-none z-0">
         <svg xmlns="http://www.w3.org/2000/svg" width="102" height="19" viewBox="0 0 102 19" fill="none">
           <path d="M51 1C65.041 1 77.7266 2.06081 86.8789 3.76562C91.4633 4.61957 95.1111 5.62656 97.5889 6.71777C98.8313 7.26494 99.7244 7.80941 100.291 8.3252C100.86 8.84296 101 9.23521 101 9.5C101 9.76479 100.86 10.157 100.291 10.6748C99.7244 11.1906 98.8313 11.7351 97.5889 12.2822C95.1111 13.3734 91.4633 14.3804 86.8789 15.2344C77.7266 16.9392 65.041 18 51 18C36.959 18 24.2734 16.9392 15.1211 15.2344C10.5367 14.3804 6.88892 13.3734 4.41113 12.2822C3.1687 11.7351 2.27559 11.1906 1.70898 10.6748C1.14031 10.157 1 9.76479 1 9.5C1 9.23521 1.14031 8.84296 1.70898 8.3252C2.27559 7.80941 3.1687 7.26494 4.41113 6.71777C6.88892 5.62656 10.5367 4.61957 15.1211 3.76562C24.2734 2.06081 36.959 1 51 1Z" fill="black" fill-opacity="0.05" stroke="#ED1846" stroke-width="2"/>
         </svg>
@@ -69,10 +70,81 @@
 </section>
 
 <style>
-  .map-container:has(.map-pin:hover) .map-image {
+  /* Escritorio: Animaciones del mapa solo con Hover en pantallas grandes (xl / 1280px) */
+  @media (min-width: 1280px) {
+    .map-container:has(.map-pin:hover) .map-image {
+      transform: scale(1.05);
+    }
+    .map-container:has(.map-pin:hover) .map-blur {
+      opacity: 1;
+    }
+  }
+
+  /* Control de blur dinámico vía clases (Para Mobile y Tablets) */
+  .map-container.has-active-pin .map-image {
     transform: scale(1.05);
   }
-  .map-container:has(.map-pin:hover) .map-blur {
+  .map-container.has-active-pin .map-blur {
     opacity: 1;
   }
 </style>
+
+<script>
+  const initMapInteractions = () => {
+    const mapContainer = document.getElementById('map-container');
+    const pins = document.querySelectorAll('.map-pin');
+    
+    if (!mapContainer) return;
+
+    pins.forEach(pin => {
+      const trigger = pin.querySelector('.cursor-pointer');
+      
+      trigger?.addEventListener('click', (e) => {
+        // Unificamos el breakpoint de mobile/tablet a menor que 'xl' (1279px para abajo)
+        const isMobileOrTablet = window.matchMedia('(max-width: 1279px)').matches;
+        
+        if (isMobileOrTablet) {
+          e.stopPropagation();
+          
+          const isActive = pin.classList.contains('is-active');
+          
+          if (isActive) {
+            // Si hacemos click en el pin activo, limpiamos todo y quitamos el blur
+            mapContainer.classList.remove('has-active-pin');
+            pins.forEach(p => {
+              p.classList.remove('is-active');
+              p.classList.remove('hidden');
+            });
+          } else {
+            // Si activamos un pin nuevo, encendemos el blur en el contenedor
+            mapContainer.classList.add('has-active-pin');
+            pins.forEach(p => {
+              if (p === pin) {
+                p.classList.add('is-active');
+                p.classList.remove('hidden');
+              } else {
+                p.classList.remove('is-active');
+                p.classList.add('hidden');
+              }
+            });
+          }
+        }
+      });
+    });
+
+    // UX: Al hacer click fuera de los pines (en cualquier parte del documento)
+    document.addEventListener('click', () => {
+      const isMobileOrTablet = window.matchMedia('(max-width: 1279px)').matches;
+      if (isMobileOrTablet) {
+        mapContainer.classList.remove('has-active-pin');
+        pins.forEach(p => {
+          p.classList.remove('is-active');
+          p.classList.remove('hidden');
+        });
+      }
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', initMapInteractions);
+  document.addEventListener('astro:page-load', initMapInteractions);
+</script>

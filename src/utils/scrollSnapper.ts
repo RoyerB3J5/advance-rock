@@ -12,7 +12,7 @@ export function initGlobalScrollSnap() {
   let isInsideSnapped = false;
 
   // FUNCIÓN AUXILIAR: Verifica si la pantalla actual debe ignorar el snap (<= 729px)
-  const isMobile = () => window.innerWidth <= 729;
+  const isMobile = () => window.innerWidth <= 1280;
 
   // Solo alteramos el comportamiento del scroll por defecto en pantallas grandes
   if (!isMobile()) {

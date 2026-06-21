@@ -59,7 +59,7 @@ export default {
     buttons: [
       {
         label: "Cotización Gratis",
-        href: "#",
+        href: "/es/contact",
       },
     ],
   },
@@ -69,7 +69,7 @@ export default {
         "Concreto Confiable. <br/> Resultados <br class='block md:hidden'/> Comprobados.",
       button: {
         label: "Cotización Gratis",
-        href: "#",
+        href: "/es/contact",
       },
     },
     information: {
@@ -131,7 +131,7 @@ export default {
         "Soluciones integrales en concreto diseñadas para ofrecer <br/> resistencia, durabilidad y precisión en cada proyecto.",
       button: {
         label: "Explora nuestros servicios",
-        href: "#",
+        href: "/es/services",
       },
       items: [
         {
@@ -208,7 +208,7 @@ export default {
           "Desde cimentaciones residenciales hasta desarrollos comerciales, cada proyecto refleja nuestro compromiso con la calidad, la resistencia y la confiabilidad.",
         button: {
           label: "Ver Nuestros Proyectos",
-          href: "#",
+          href: "/es/projects",
         },
       },
       text: "<span class='hidden md:inline'>Drive Your Own </span> Success",
@@ -221,12 +221,13 @@ export default {
         "Hagamos realidad tu proyecto con soluciones de concreto diseñadas <br/> para  ofrecer resistencia, eficiencia y un desempeño excepcional.",
       button: {
         label: "Cotización gratuita",
-        href: "#",
+        href: "/es/contact",
       },
       img: "hero-confidence",
     },
     callAction: {
-      title: "donde comienzan los <br class='hidden md:block'/> proyectos sólidos",
+      title:
+        "donde comienzan los <br class='hidden lg:block'/> proyectos sólidos",
     },
   },
   about: {
@@ -234,7 +235,7 @@ export default {
       title: "Calidad y excelencia en <br/> cada construcción",
       button: {
         label: "Cotización gratuita",
-        href: "#",
+        href: "/es/contact",
       },
       back: "about",
     },
@@ -247,13 +248,46 @@ export default {
       description2:
         "Nuestro compromiso con la excelencia, la diversidad de servicios y la satisfacción del cliente nos distingue en el mercado. Confíe en nosotros para hacer realidad sus proyectos.",
     },
+    brands: {
+      title: "OUR BRANDS",
+      items: [
+        {
+          title: "CALIDAD",
+          description:
+            "Compromiso con la excelencia en todos los aspectos de nuestros servicios, desde la distribución de concreto hasta la reconstrucción de viviendas y el alquiler de herramientas. Nos esforzamos por superar las expectativas de nuestros clientes en términos de calidad y durabilidad",
+            icon:'check-2',
+            image:'calidad'
+        },
+        {
+          title: "SERVICIO AL CLIENTE",
+          description:
+            "Ponemos las necesidades e inquietudes de nuestros clientes en el centro de todo lo que hacemos. Nos esforzamos por brindar un servicio personalizado y una atención excepcional, garantizando una experiencia positiva en cada interacción",
+            icon:'customer',
+            image:'servicio-cliente'
+        },
+        {
+          title: "INTEGRIDAD",
+          description:
+            "Actuamos con honestidad, transparencia y ética en todas nuestras operaciones. Estamos comprometidos a mantener la confianza de nuestros clientes, empleados y socios comerciales en todo momento",
+            icon:'shield',
+            image:'integridad'
+        },
+        {
+          title: "INNOVACIÓN",
+          description:
+            "Adoptamos la innovación y la creatividad en nuestra constante búsqueda de mejorar nuestros servicios y procesos. Estamos abiertos a nuevas ideas y enfoques que nos permitan mantenernos a la vanguardia de la industria",
+            icon:'boxs',
+            image:'innovacion'
+        },
+      ],
+    },
   },
   servicesPage: {
     hero: {
       title: "Nuestros Servicios <br/> de Concreto",
       button: {
         label: "Cotización gratuita",
-        href: "#",
+        href: "/es/contact",
       },
       back: "services-hero",
     },
@@ -261,7 +295,7 @@ export default {
       {
         title: "CONSTRUCCIÓN DE PISCINAS",
         subtitle:
-          "Diseñamos y construimos piscinas a medida, adaptadas <br/> a cada espacio y estilo de vida.",
+          "Diseñamos y construimos piscinas a medida, adaptadas <br class='block lg:hidden xl:block'/> a cada espacio y estilo de vida.",
         description:
           "Diseñamos y construimos piscinas a medida, adaptadas a cada espacio y estilo de vida. Nos encargamos de todo el proceso: desde la preparación del terreno hasta la entrega final.",
         image: "services-1",
@@ -273,7 +307,7 @@ export default {
       {
         title: "REMODELACIÓN DE concreto",
         subtitle:
-          "Transformamos espacios exteriores con soluciones de hormigón <br/> de alta calidad: patios, entradas de vehículos, senderos, <br/> ampliaciones.",
+          "Transformamos espacios exteriores con soluciones de  <br class='hidden md:block lg:hidden xl:block'/> hormigón  de alta calidad: patios, entradas de vehículos, senderos, ampliaciones.",
         description:
           "Creamos áreas funcionales y duraderas con un alto impacto visual.",
         image: "services-2",
@@ -285,7 +319,7 @@ export default {
       {
         title: "SUMINISTRO DE HORMIGÓN",
         subtitle:
-          "Ofrecemos hormigón premezclado para proyectos <br/> residenciales y comerciales, con logística eficiente y <br/> entrega a tiempo.",
+          "Ofrecemos hormigón premezclado para proyectos <br class='hidden md:block lg:hidden xl:block'/> residenciales y comerciales, con logística eficiente y <br class='hidden md:block lg:hidden xl:block'/> entrega a tiempo.",
         description:
           "Ideal para: contratistas, constructores, proyectos independientes.",
         image: "services-3",
@@ -297,9 +331,9 @@ export default {
       {
         title: "Proyectos Integrales",
         subtitle:
-          "Gestionar múltiples proveedores puede generar <br/> retrasos, sobrecostos y problemas de coordinación.",
+          "Gestionar múltiples proveedores puede generar <br class='hidden md:block lg:hidden xl:block'/> retrasos, sobrecostos y problemas de coordinación.",
         description:
-          "Nuestro enfoque integral centraliza cada etapa del <br/> proyecto bajo una sola gestión.",
+          "Nuestro enfoque integral centraliza cada etapa del <br class='hidden md:block lg:hidden xl:block'/> proyecto bajo una sola gestión.",
         image: "services-4",
         button: {
           label: "Más Información",
@@ -309,9 +343,9 @@ export default {
       {
         title: "MEDO & Sucursales Virtuales",
         subtitle:
-          "Forma parte de nuestro ecosistema empresarial y <br/> genera ingresos en la industria de la construcción sin <br/> empezar desde cero.",
+          "Forma parte de nuestro ecosistema empresarial y <br class='hidden md:block lg:hidden xl:block'/> genera ingresos en la industria de la construcción sin <br class='hidden md:block lg:hidden xl:block'/> empezar desde cero.",
         description:
-          ". Opera tu propio camión (MEDO) <br/> . Abre tu propia sucursal <br/> .Accede a nuestra red y sistema operativo",
+          ". Opera tu propio camión (MEDO) <br/> . Abre tu propia sucursal <br/> . Accede a nuestra red y sistema operativo",
         image: "services-5",
         button: {
           label: "Más Información",
@@ -321,9 +355,9 @@ export default {
       {
         title: "Alquiler de equipos y patios",
         subtitle:
-          "Contar con los equipos y espacios adecuados puede marcar <br/> la diferencia en la productividad de cualquier proyecto.",
+          "Contar con los equipos y espacios adecuados puede marcar <br class='hidden md:block lg:hidden xl:block'/> la diferencia en la productividad de cualquier proyecto.",
         description:
-          "Ofrecemos soluciones flexibles para apoyar operaciones <br/> de construcción, almacenamiento y logística.",
+          "Ofrecemos soluciones flexibles para apoyar operaciones <br class='hidden md:block lg:hidden xl:block'/> de construcción, almacenamiento y logística.",
         image: "services-6",
         button: {
           label: "Más Información",
@@ -338,7 +372,7 @@ export default {
         title: "Diseñamos Tu <br/> Piscina Ideal",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         back: "services-1-hero",
       },
@@ -359,7 +393,7 @@ export default {
             image: "services-1-exp-1",
             title: "Construcción Integral",
             description:
-              "Nos encargamos de todo el proceso para que disfrutes una <br/> experiencia sin complicaciones.",
+              "Nos encargamos de todo el proceso para que disfrutes una <br class='hidden md:block'/> experiencia sin complicaciones.",
             list: [
               "Gestión completa del proyecto",
               "Coordinación de cada etapa",
@@ -370,7 +404,7 @@ export default {
             image: "services-1-exp-2",
             title: "Piscinas Personalizadas",
             description:
-              "Diseñamos y construimos piscinas adaptadas a las características <br/ de cada terreno, combinando funcionalidad, estética y confort.",
+              "Diseñamos y construimos piscinas adaptadas a las características <br class='hidden md:block'/> de cada terreno, combinando funcionalidad, estética y confort.",
             list: [
               "Diseños adaptados a cada espacio",
               "Integración armoniosa con el entorno",
@@ -381,13 +415,13 @@ export default {
       },
       confidence: {
         title1:
-          "Convierte Tu Patio <span class='text-white'>En Un <br/> Espacio Único</span>",
+          "Convierte Tu <br class='block md:hidden'/> Patio <br class='block md:hidden'/> <span class='text-white'>En Un <br class='hidden md:block'/> Espacio <br class='block md:hidden'/> Único</span>",
         description: "Piscinas diseñadas para tu estilo de vida.",
         description2:
-          "Creamos piscinas funcionales, elegantes y duraderas <br/> que  transforman cualquier espacio exterior.",
+          "Creamos piscinas funcionales, elegantes y duraderas <br class='hidden md:block'/> que  transforman cualquier espacio exterior.",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         img: "serv-1-confidence",
       },
@@ -427,7 +461,7 @@ export default {
         title: "Transformamos <br/> Espacios Concretos",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         back: "services-2-hero",
       },
@@ -440,9 +474,9 @@ export default {
         image: "services-2-info",
       },
       examples: {
-        title: "Soluciones Diseñadas <br/> Para Durar",
+        title: "Soluciones Diseñadas <br class='hidden md:block'/> Para Durar",
         description:
-          "Creamos espacios resistentes que combinan <br/> funcionalidad y diseño.",
+          "Creamos espacios resistentes que combinan <br class='hidden md:block'/> funcionalidad y diseño.",
         items: [
           {
             image: "services-2-exp-1",
@@ -476,7 +510,7 @@ export default {
           "Transformamos áreas exteriores en espacios <br/> modernos, funcionales y resistentes.",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         img: "serv-2-confidence",
       },
@@ -516,7 +550,7 @@ export default {
         title: "Concreto Listo <br/> Para Construir",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         back: "services-3-hero",
       },
@@ -565,7 +599,7 @@ export default {
           "Recibe concreto premezclado con entregas confiables para <br/> mantener tu proyecto en marcha.",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         img: "serv-3-confidence",
       },
@@ -605,7 +639,7 @@ export default {
         title: "Todo Tu Proyecto,  <br/> Un Solo Equipo",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         back: "services-4-hero",
       },
@@ -618,9 +652,10 @@ export default {
         image: "services-4-info",
       },
       examples: {
-        title: "Todo Lo Que Necesitas En <br/> Un Solo Equipo",
+        title:
+          "Todo Lo Que Necesitas En <br class='hidden md:block'/> Un Solo Equipo",
         description:
-          "Descubre soluciones diseñadas para maximizar la <br/> belleza, comodidad y valor de tu propiedad.",
+          "Descubre soluciones diseñadas para maximizar la <br class='hidden md:block'/> belleza, comodidad y valor de tu propiedad.",
         items: [
           {
             image: "services-4-exp-1",
@@ -648,13 +683,13 @@ export default {
       },
       confidence: {
         title1:
-          "Todo Tu <br/> Proyecto <br/> <span class='text-white'>En Un Solo <br/> Lugar</span>",
+          "Todo Tu <br/> Proyecto <br/> <span class='text-white'>En Un Solo <br class='hidden md:block'/> Lugar</span>",
         description: "Una solución completa, sin complicaciones.",
         description2:
           "Nos encargamos de cada etapa para que puedas <br/> enfocarte en los resultados.",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         img: "serv-4-confidence",
       },
@@ -694,7 +729,7 @@ export default {
         title: "Los Recursos Que <br/> Impulsan Tu Proyecto",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         back: "services-6-hero",
       },
@@ -707,7 +742,8 @@ export default {
         image: "services-6-info",
       },
       examples: {
-        title: "Equipamiento Y Espacios <br/> Para Cada Necesidad",
+        title:
+          "Equipamiento Y Espacios <br class='hidden md:block'/> Para Cada Necesidad",
         description:
           "Soluciones diseñadas para maximizar eficiencia y rendimiento.",
         items: [
@@ -737,13 +773,13 @@ export default {
       },
       confidence: {
         title1:
-          "Los Recursos Que <br/> <span class='text-white'>Tu Proyecto <br/> Necesita</span>",
+          "Los Recursos <br class='hidden md:block'/> Que <br/> <span class='text-white'>Tu Proyecto <br/> Necesita</span>",
         description: "Equipos y espacios listos para trabajar.",
         description2:
           "Impulsa tus operaciones con soluciones flexibles, <br/> confiables y  adaptadas a tus necesidades.",
         button: {
           label: "Cotización gratuita",
-          href: "#",
+          href: "/es/contact",
         },
         img: "serv-6-confidence",
       },
@@ -781,10 +817,10 @@ export default {
   },
   medo: {
     hero: {
-      title: "Construye Tu Futuro <br/> Con Nosotros",
+      title: "Construye Tu Futuro <br class='hidden md:block'/> Con Nosotros",
       button: {
         label: "Cotización gratuita",
-        href: "#",
+        href: "/es/contact",
       },
       back: "services-5-hero",
     },
@@ -869,7 +905,7 @@ export default {
           list: [],
         },
         {
-          image: "services-5-exp-3",
+          image: "services-5-exp-6",
           title: "Menor Inversión Inicial",
           description: "Inicie operaciones sin infraestructura pesada.",
           list: [],
@@ -892,7 +928,7 @@ export default {
         "Accede a un modelo probado y desarrolla tu negocio <br/> con el  respaldo de nuestra experiencia.",
       button: {
         label: "Cotización gratuita",
-        href: "#",
+        href: "/es/contact",
       },
       img: "serv-5-confidence",
     },
@@ -929,10 +965,10 @@ export default {
   },
   branchs: {
     hero: {
-      title: "operadores de <br/> sucursales virtuales",
+      title: "NUESTRAS <br/> SUCURSALES",
       button: {
         label: "Cotización gratuita",
-        href: "#",
+        href: "/es/contact",
       },
       back: "branchs-hero",
     },
@@ -1040,7 +1076,7 @@ export default {
       title: "CONTÁCTANOS",
       button: {
         label: "Cotización gratuita",
-        href: "#",
+        href: "/es/contact",
       },
     },
   },

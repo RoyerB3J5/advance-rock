@@ -55,11 +55,11 @@ const colorContent = [
 ]
 const lang = Astro.params.lang as Language;
 ---
-<section data-scroll-snap class="relative w-full h-auto md:h-screen overflow-hidden">
+<section data-scroll-snap class="relative w-full h-auto xl:h-screen overflow-hidden">
   <img src='/images/services.webp' class="w-full h-full absolute object-cover object-[50%_80%] inset-0" width="2100" height="1313" decoding="async" loading="lazy"/>
   <div class="absolute w-full h-full bg-black/30"></div>
-  <div class="w-full h-full grid grid-cols-2 md:grid-cols-4 grid-rows-2 justify-center items-center relative">
-    <div class="col-span-2 h-full px-4 py-9 md:p-20 flex flex-col justify-center items-start gap-6 text-white">
+  <div class="w-full h-full grid grid-cols-2 xl:grid-cols-4 grid-rows-2 justify-center items-center relative">
+    <div class="col-span-2 h-full px-4 py-9 xl:p-20 flex flex-col justify-center items-start gap-6 text-white">
       <h2 class="title">
         {content.title}
       </h2>
@@ -74,12 +74,12 @@ const lang = Astro.params.lang as Language;
     {
       content.items.map((item,index)=>( 
         /* Se añade la clase 'js-service-card' para JavaScript y las variantes '[&.is-active]:' para el contenedor padre */
-        <div class={`js-service-card w-full h-full flex flex-col hover:justify-between hover:items-start [&.is-active]:justify-between [&.is-active]:items-start items-start md:items-end justify-end py-4 md:py-20 px-4 md:px-10 border border-white/25 group min-h-[210px] md:min-h-0 ${colorContent[index].background} transition-all duration-300 ease-in-out cursor-pointer`}>
+        <div class={`js-service-card w-full h-full flex flex-col hover:justify-between hover:items-start [&.is-active]:justify-between [&.is-active]:items-start items-start xl:items-end justify-end py-4 xl:py-20 px-4 xl:px-10 border border-white/25 group min-h-[210px] xl:min-h-0 ${colorContent[index].background} transition-all duration-300 ease-in-out cursor-pointer`}>
           
           {/* Se añade la variante 'group-[.is-active]:flex' y 'group-[.is-active]:opacity-100' */}
-          <div class="group-hover:flex group-[.is-active]:flex flex-col justify-center items-start gap-2 md:gap-6 hidden transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100">
+          <div class="group-hover:flex group-[.is-active]:flex flex-col justify-center items-start gap-2 xl:gap-6 hidden transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100">
             <div class={`w-3 h-3 ${colorContent[index].box }`}></div>
-            <h3 class={`text-[24px] md:text-[40px] font-paragraph font-bold leading-[110%] ${colorContent[index].textTitle}`}>{item.title}</h3>
+            <h3 class={`text-[24px] md:text-[32px] xl:text-[40px] font-paragraph font-bold leading-[110%] ${colorContent[index].textTitle}`}>{item.title}</h3>
             <p class={`${colorContent[index].textDescription} paragraph`}>{item.description}</p>
           </div>
           
@@ -104,8 +104,8 @@ const lang = Astro.params.lang as Language;
 
     cards.forEach(card => {
       card.addEventListener('click', (e) => {
-        // Si la pantalla es de escritorio (mayor a 729px), dejamos que funcione el hover nativo
-        if (window.innerWidth > 729) return;
+        // Si la pantalla es de escritorio (mayor a 1280px), dejamos que funcione el hover nativo
+        if (window.innerWidth > 1280) return;
 
         const isActive = card.classList.contains('is-active');
         const clickedLink = (e.target as HTMLElement).closest('a');

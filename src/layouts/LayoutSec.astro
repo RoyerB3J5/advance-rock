@@ -1,0 +1,95 @@
+---
+// Imports optimizados - solo lo esencial al inicio
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="overflow-x-hidden">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Local para Orlando -->
+    <meta name="geo.region" content="US-FL" />
+    <meta name="geo.placename" content="Orlando" />
+    <meta name="geo.position" content="28.5383;-81.3792" />
+    <meta name="ICBM" content="28.5383, -81.3792" />
+
+    <!-- Preconnect para DNS lookup temprano -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preconnect para widget de chat - optimización de terceros -->
+    <link rel="preconnect" href="https://widgets.leadconnectorhq.com" />
+    <link rel="dns-prefetch" href="https://widgets.leadconnectorhq.com" />
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="generator" content={Astro.generator} />
+    <title>Advance Rock Concrete</title>
+    <meta name="description" content="Advance Rock Concrete provides the best concrete solutions for your construction needs." />
+    <!-- SEO additions -->
+    <meta
+      name="keywords"
+      content="Concrete Services, Lead Generation, Growth System, Marketing Automation, Concrete Company Growth, Concrete Service Marketing, Concrete Service Leads, Concrete Service Automation, Concrete Service Performance, Advance Rock Growth System"
+    />
+    <meta name="author" content="Advance Rock" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://advancerock.com/" />
+
+    <!-- Alternate language versions -->
+    <link rel="alternate" hreflang="en" href="https://advancerock.com/en/" />
+    <link rel="alternate" hreflang="es" href="https://advancerock.com/es/" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://advancerock.com/en/"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Advance Rock Concrete - The Growth System for Concrete Services"
+    />
+    <meta
+      property="og:description"
+      content="Advance Rock Concrete provides the best concrete solutions for your construction needs."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://advancerock.com/" />
+    <meta property="og:image" content="/images/fondo.png" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@AdvanceRock" />
+    <meta
+      name="twitter:title"
+      content="Advance Rock Concrete - The Growth System for Concrete Services"
+    />
+    <meta
+      name="twitter:description"
+      content="Advance Rock Concrete provides the best concrete solutions for your construction needs."
+    />
+    <meta name="twitter:image" content="/images/fondo.png" />
+
+    <!-- JSON-LD Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Advance Rock Concrete",
+        "url": "https://advancerock.com/",
+        "logo": "https://advancerock.com/favicon.svg"
+      }
+    </script>
+  </head>
+  <body
+    class="font-family antialiased overflow-x-hidden bg-primary-back flex flex-col justify-center items-center w-screen"
+  >
+    <main class="flex flex-col w-full items-center h-full">
+      <slot />
+    </main>
+  </body>
+</html>

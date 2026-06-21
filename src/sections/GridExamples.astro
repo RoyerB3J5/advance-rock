@@ -12,7 +12,7 @@ const { content,animationUp } = Astro.props as Props;
 const AmountItems = content.length
 ---
 
-<div class={`w-full grid ${AmountItems > 2 ? 'grid-cols-3' : 'grid-cols-2'}  justify-center items-start gap-6 `}>
+<div class={`w-full grid ${AmountItems > 2 ? 'grid-cols-1 md:grid-cols-3 pb-16 xl:pb-0' : 'grid-cols-1 md:grid-cols-2'}  justify-center items-start gap-6 `}>
       {
         content.map((item,index)=>( 
           <div 

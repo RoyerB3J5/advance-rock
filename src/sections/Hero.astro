@@ -11,7 +11,7 @@ const { content } = Astro.props as Props;
 <section class="relative flex w-full h-screen justify-center items-center overflow-hidden hero-main-section">
   <img src={`/images/${content.back}.webp`} alt="Hero Image" width="2500" height="1563" class="object-cover z-0 pointer-events-none w-full h-full absolute inset-0 object-top hero-main-image" decoding="async" loading="eager"/>
   <div class="container-full flex flex-col justify-end items-start py-10 md:py-12 z-10 h-full gap-6 md:gap-4">
-    <h1 class="text-[36px] md:text-[80px] font-extrabold leading-[110%] md:leading-[100%] text-white uppercase" set:html={content.title}></h1>
+    <h1 class="text-[36px] md:text-[64px] lg:text-[80px] font-extrabold leading-[110%] md:leading-[100%] text-white uppercase" set:html={content.title}></h1>
     <Button
       text={content.button.label}
       href={content.button.href}

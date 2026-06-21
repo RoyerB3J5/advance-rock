@@ -6,7 +6,7 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section class="js-services-section w-full flex flex-col bg-white">
+<section class="js-services-section w-full flex flex-col bg-white px-4 lg:px-0 overflow-auto py-16 lg:py-0">
   {
     content.map((item, index) => {
       const isPar = index % 2 === 0;
@@ -15,14 +15,14 @@ const { content } = Astro.props as Props;
         <div class="js-service-row flex flex-col lg:flex-row w-full lg:items-stretch overflow-hidden relative bg-white">
           
           {/* Mitad de Texto */}
-          <div class={`w-full lg:w-1/2 flex items-center py-12 lg:py-20 ${isPar ? 'order-1' : 'order-2'}`}>
-            <div class={`w-full max-w-[640px] px-6 lg:px-12 flex flex-col gap-6 ${isPar ? 'ml-auto items-start' : 'mr-auto items-end'} js-content-services`}>
+          <div class={`w-full lg:w-1/2 flex items-center py-12 lg:py-20 ${isPar ? 'order-2 lg:order-1' : 'order-2 '}`}>
+            <div class={`w-full max-w-[640px] px-0  flex flex-col gap-6 px-0 md:px-4 xl:pl-0 ${isPar ? 'lg:ml-auto items-start ' : 'lg:mr-auto items-end'} js-content-services`}>
               <div class="w-3 h-3 bg-accent"></div>
-              <h2 class={`text-primary title text-4xl font-bold ${isPar ? 'text-left' : 'text-right'}`}>
+              <h2 class={`text-primary title-2  ${isPar ? 'text-left' : 'text-right'}`}>
                 {item.title}
               </h2>
-              <p set:html={item.subtitle} class="text-paragraph subtitle text-xl"></p>
-              <p set:html={item.description} class="text-paragraph paragraph"></p>
+              <p set:html={item.subtitle} class={`text-paragraph subtitle ${isPar ? 'text-left' : 'text-right'}`}></p>
+              <p set:html={item.description} class={`text-paragraph paragraph ${isPar ? 'text-left' : 'text-right'}`}></p>
               <a 
                 href={item.button.href} 
                 class="text-primary paragraph-bold underline hover:text-accent transition-colors duration-300 ease-in-out"
@@ -34,7 +34,7 @@ const { content } = Astro.props as Props;
 
           {/* Mitad de Imagen */}
           <div 
-            class={`w-full lg:w-1/2 h-auto min-h-[300px] lg:min-h-full ${isPar ? 'order-2' : 'order-1'} relative js-service-image`} 
+            class={`w-full lg:w-1/2 h-auto min-h-[300px] lg:min-h-full ${isPar ? 'order-1 lg:order-2' : 'order-1'} relative js-service-image`} 
             style="aspect-ratio: 1/1;"
           >
             <img 

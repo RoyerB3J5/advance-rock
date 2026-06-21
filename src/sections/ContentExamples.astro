@@ -42,12 +42,12 @@ const { content } = Astro.props as Props;
 
       if (!contentText || gridItems.length === 0) return;
 
-      const textXOffset = -50; // Reducido un poco para que no viaje una distancia exagerada
+      const textXOffset = -100; // Reducido un poco para que no viaje una distancia exagerada
 
       // === ESTADOS INICIALES ===
       gsap.set(contentText, { 
         opacity: 0, 
-        x: textXOffset 
+        xPercent: textXOffset 
       });
 
       gsap.set(gridItems, { 
@@ -71,7 +71,7 @@ const { content } = Astro.props as Props;
       // Entrada del bloque de texto
       tl.to(contentText, { 
         opacity: 1, 
-        x: 0, 
+        xPercent: 0, 
         duration: 0.8, 
         ease: "none" // "none" mantiene velocidad constante 1:1 con tu scroll
       });
