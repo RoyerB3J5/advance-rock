@@ -65,7 +65,9 @@ export default {
   },
   main: {
     hero: {
-      title: "Reliable Concrete. <br/> Proven Results.",
+      title:
+        "Concreto Confiable. <br/> Resultados <br class='block md:hidden'/> Comprobados. ",
+      subtitle:'ESTAMOS TOTALMENTE LICENCIADOS Y ASEGURADOS',
       button: {
         label: "Get Your Free Quote",
         href: "/en/contact",
@@ -245,6 +247,7 @@ export default {
         "From the distribution of quality concrete to the reconstruction of homes, through financial investments and rental of specialized tools, we offer complete solutions for construction projects.",
       description2:
         "Our commitment to excellence, diversity of services and customer satisfaction sets us apart in the market. Trust us to make your projects a reality.",
+      medias:'Sigue nuestras historias'
     },
     brands: {
       title: "OUR BRANDS",
@@ -961,7 +964,7 @@ export default {
   },
   branchs: {
     hero: {
-      title: "NUESTRAS <br/> SUCURSALES",
+      title: "operadores de <br/> sucursales  virtuales",
       button: {
         label: "Cotización gratuita",
         href: "/en/contact",
@@ -996,7 +999,7 @@ export default {
         {
           question: "¿Por qué elegirnos para su proyecto?",
           answer:
-            "Combinamos experiencia, equipos modernos, planificación eficiente y un firme compromiso con la calidad para ofrecer soluciones duraderas, precisas y adaptadas a las necesidades de cada cliente.",
+            "Trabajamos de la mano con las principales empresas de concreto de las Carolinas, contando con más de 360 puntos de abastecimiento, y ponemos a tu disposición nuestro conocimiento profesional para asesorar tu proyecto con las últimas tecnologías y soluciones innovadoras del sector.",
         },
       ],
     },

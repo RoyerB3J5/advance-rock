@@ -7,58 +7,171 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 
-
 const colorContent = [
-  {
-    back:'bg-primary',
-    textTitle:'text-secondary',
-  },
-  {
-    back:'bg-secondary',
-    textTitle:'text-primary',
-  },
-  {
-    back:'bg-[#1E1E1E]',
-    textTitle:'text-secondary',
-  },
-  {
-    back:'bg-[#ED1846]',
-    textTitle:'text-[#561111]',
-  },
+  { back:'bg-primary', textTitle:'text-secondary' },
+  { back:'bg-secondary', textTitle:'text-primary' },
+  { back:'bg-[#1E1E1E]', textTitle:'text-secondary' },
+  { back:'bg-[#ED1846]', textTitle:'text-[#561111]' },
 ]
-const lang = Astro.params.lang as Language;
+
+const brandLinks = [
+  { image: 'brand-1', href:'concrete-supply' },
+  { image: 'brand-2', href:'rental-equipment' },
+  { image: 'brand-3', href:'pool-construction' },
+  { image: 'brand-4', href:'medo' }
+]
+const currentPath = Astro.url.pathname;
+const match = currentPath.match(/^\/(en|es)/);
+const lang = match ? match[1] : "en";
 ---
-<section class="w-full flex flex-col justify-center items-center bg-white pt-12 lg:py-20 gap-20">
+<section class="w-full flex flex-col justify-center items-center bg-white pt-12 lg:pt-20 gap-10 xl:gap-16 relative">
   <div class="w-full flex flex-col justify-center items-center gap-8">
-    <h2 class='title-sm text-primary'>{content.title}</h2>
+    <h2 class='title-sm text-primary animation-fade-down'>{content.title}</h2>
   </div>
-  <div class="flex flex-col justify-center items-center gap-6 w-full">
+  <div class="container-full grid grid-cols-2 md:grid-cols-4 gap-4 items-center ">
     {
-      content.items.map((item, index) =>( 
-        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-6 w-full">
-          <div class={`w-full h-auto flex flex-col justify-start items-start py-10 px-4 lg:p-10 xl:p-20 gap-10 lg:gap-0 ${colorContent[index].back} aspect-auto lg:aspect-[708/700]`} >
-
-          <div class="flex flex-col justify-center items-start gap-6">
-            <h3 class={`title-2 ${colorContent[index].textTitle}`}>{item.title}</h3>
-            <p class="text-white paragraph">{item.description}</p>
-          </div>
-
+      brandLinks.map((brand) => (
+        <a href={`/${lang}/${brand.href}`} class="w-full py-4 md:p-10 border border-[#D9D9D9] flex justify-center items-center cursor-pointer transition-transform duration-300 hover:scale-105 hover:border-accent md:max-w-[193px]" >
           <img 
-            src={`/images/${item.icon}.svg`} 
-            alt={item.title} 
-            class="w-16 h-16 object-cover mt-auto self-end" 
+            src={`/images/${brand.image}.webp`} 
+            alt={brand.image} 
+            class="md:w-[113px] md:h-[34px] object-contain" 
             decoding="async" 
             loading="lazy" 
-            width="64" 
-            height="64" 
+            width="113" 
+            height="34" 
           />
-
-        </div>
-          <div class="w-full h-auto flex relative aspect-[375/392] lg:aspect-[708/700]" >
-            <img src={`/images/${item.image}.webp`} alt={item.title} class="w-full h-full object-cover absolute inset-0 object-cover" decoding="async" loading="lazy" width="708" height="700"/>
+        </a>
+      ))
+    }
+  </div>
+  
+  {/* NOTA: Cambié 'gap-6' por 'lg:gap-0' para que en Desktop las tarjetas se deslicen pegadas perfectamente sin saltos en blanco */}
+  <div class="flex flex-col justify-center items-center gap-6 lg:gap-0 w-full items-branch relative">
+    {
+      content.items.map((item, index) =>( 
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-6 w-full branch-item-row relative isolation-auto bg-white">
+          <div class={`aspect-auto lg:aspect-[708/700] flex flex-col justify-center items-center  w-full h-auto max-h-screen ${index !== content.items.length - 1 ? 'gap-4' : 'gap-0'} `} >
+            <div class={`w-full h-full flex flex-col justify-start items-start py-10 px-4 lg:p-10 xl:p-20 gap-10 lg:gap-0 ${colorContent[index].back} `} >
+              <div class="flex flex-col justify-center items-start gap-6 branch-texts">
+                <h3 class={`title-2 ${colorContent[index].textTitle}`}>{item.title}</h3>
+                <p class="text-white paragraph">{item.description}</p>
+              </div>
+              <img 
+                src={`/images/${item.icon}.svg`} 
+                alt={item.title} 
+                class="w-16 h-16 object-cover mt-auto self-end branch-icon" 
+                decoding="async" 
+                loading="lazy" 
+                width="64" 
+                height="64" 
+              />
+            </div>
+            <div class={`w-full h-6 3xl:h-10 ${ index !== content.items.length - 1 ? colorContent[index+1].back : 'bg-accent' } hidden lg:block`}></div>
+          </div>
+          
+          <div class="w-full h-auto flex relative aspect-[375/392] lg:aspect-[708/700] branch-picture" >
+            <img src={`/images/${item.image}.webp`} alt={item.title} class="w-full h-full object-cover absolute inset-0" decoding="async" loading="lazy" width="708" height="700"/>
           </div>
         </div>
       ))
     }
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { MEDIA_QUERIES } from '../utils/breakpoints';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let mm = gsap.matchMedia();
+  let desktopTriggers: any[] = [];
+  let mobileTriggers: any[] = [];
+
+  const destroyBranchAnimation = () => {
+    // Limpieza total de triggers en Desktop
+    desktopTriggers.forEach(trigger => {
+      if (trigger) trigger.kill(true);
+    });
+    desktopTriggers = [];
+
+    // Limpieza total de triggers en Móvil
+    mobileTriggers.forEach(trigger => {
+      if (trigger) trigger.kill(true);
+    });
+    mobileTriggers = [];
+
+    const rows = document.querySelectorAll(".branch-item-row");
+    rows.forEach(row => gsap.set(row, { clearProps: "all" }));
+  };
+
+  const initBranchAnimation = () => {
+    destroyBranchAnimation();
+
+    // --- 1. LÓGICA OPTIMIZADA PARA DESKTOP (INDIVIDUAL PINNING) ---
+    mm.add(MEDIA_QUERIES.isDesktopPin, () => {
+      const container = document.querySelector(".items-branch") as HTMLElement;
+      const rows = document.querySelectorAll(".branch-item-row") as NodeListOf<HTMLElement>;
+
+      if (!container || rows.length === 0) return;
+
+      rows.forEach((row, index) => {
+        // El último ítem NO se pincha para que el scroll de la página continúe de forma orgánica hacia abajo
+        if (index === rows.length - 1) return;
+
+        const st = ScrollTrigger.create({
+          trigger: row,
+          start: "top top",
+          // Permanece fijo en el top hasta que el contenedor principal termine por completo su recorrido
+          endTrigger: container,
+          end: () => window.innerWidth >= 1600 ? "+=900" : "+=720",
+          pin: true,
+          pinSpacing: false, // Evita empujar los elementos de abajo; permite que suban encima de él
+          invalidateOnRefresh: true,
+        });
+
+        desktopTriggers.push(st);
+      });
+    });
+
+    // --- 2. LÓGICA PARA MÓVILES (SE MANTIENE IGUAL) ---
+    mm.add(MEDIA_QUERIES.isTabletMobileFlow, () => {
+      const rows = document.querySelectorAll(".branch-item-row");
+
+      rows.forEach((row) => {
+        const texts = row.querySelector(".branch-texts");
+        const icon = row.querySelector(".branch-icon");
+        const picture = row.querySelector(".branch-picture");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: row,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          }
+        });
+
+        if (texts) tl.from(texts, { opacity: 0, xPercent: -100, duration: 0.8, ease: "power2.out" }, 0);
+        if (icon) tl.from(icon, { opacity: 0, xPercent: 100, duration: 0.8, ease: "power2.out" }, 0.3);
+        if (picture) tl.from(picture, { scale: 0, transformOrigin: "top left", duration: 0.9, ease: "back.out(1.2)" }, 0.5);
+
+        if (tl.scrollTrigger) mobileTriggers.push(tl.scrollTrigger);
+      });
+    });
+
+    ScrollTrigger.sort();
+    ScrollTrigger.refresh();
+  };
+
+  // Sincronización con eventos de Astro
+  document.addEventListener('DOMContentLoaded', initBranchAnimation);
+  document.addEventListener('astro:page-load', initBranchAnimation);
+  document.addEventListener('astro:before-swap', destroyBranchAnimation);
+
+  window.addEventListener("load", () => {
+    ScrollTrigger.sort();
+    ScrollTrigger.refresh();
+  });
+</script>

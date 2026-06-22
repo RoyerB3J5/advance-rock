@@ -22,24 +22,9 @@ const { lang, t, showLoader = true } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script is:inline define:vars={{ showLoader }}>
-      if (showLoader) {
-        const hasVisited = sessionStorage.getItem('app_user_visited');
-        if (hasVisited) {
-          // Si ya lo vio en esta sesión, forzamos el apagado del loader en el HTML
-          document.documentElement.setAttribute('data-force-bypass-loader', 'true');
-        }
-      }
-    </script>
-
     <style is:inline>
       /* Estado inicial del body */
       body { background: #003b46; } 
-
-      /* Si se decide omitir el loader por sesión, restauramos el fondo del body de inmediato */
-      html[data-force-bypass-loader="true"] body {
-        background: #ffffff;
-      }
 
       /* ESTADO INICIAL: Imagen del hero */
       .hero-main-image {
@@ -188,7 +173,7 @@ const { lang, t, showLoader = true } = Astro.props;
     <Footer content={t?.footer} />
     <Chatbot />
     <script>
-      import { ScrollTrigger } from '../utils/animations'; // ajusta ruta según ubicación real
+      import { ScrollTrigger } from '../utils/animations';
 
       window.addEventListener('load', () => {
         ScrollTrigger.refresh();
@@ -199,20 +184,15 @@ const { lang, t, showLoader = true } = Astro.props;
 
       function setupSequence() {
         const body = document.body;
-        // Si el script inline detectó visita previa, sobreescribimos la bandera local
-        const bypassLoader = document.documentElement.getAttribute('data-force-bypass-loader') === 'true';
-        const showLoader = bypassLoader ? false : (body.getAttribute('data-show-loader') === 'true');
-        
+        const showLoader = body.getAttribute('data-show-loader') === 'true';
         const heroImage = document.querySelector('.hero-main-image') as HTMLElement | null;
         
-        // Selector robusto: busca por ID o por clases comunes de loaders
         const loader = document.getElementById('page-loader') || 
                        document.querySelector('.loader') || 
                        document.querySelector('.js-loader') as HTMLElement | null;
 
         let animationPhase = 0;
 
-        // Inicializar GSAP al mismo tiempo
         try {
           ScrollTrigger.refresh();
           initAnimations();
@@ -220,22 +200,21 @@ const { lang, t, showLoader = true } = Astro.props;
           console.warn("GSAP no inicializado aún:", e);
         }
 
-        // FASE 0: Quitar Loader de forma segura e inyectar estado en SessionStorage
+        // FASE 0: Quitar Loader agregando un retraso artificial de 1.5s
         function removeLoaderAndStart() {
           if (loader && showLoader) {
-            loader.style.transition = 'opacity 0.4s ease';
-            loader.style.opacity = '0';
-            
-            // Guardamos que ya se visualizó en esta sesión de pestaña
-            sessionStorage.setItem('app_user_visited', 'true');
-            
+            // Espera 1.5 segundos antes de comenzar a desvanecer el loader
             setTimeout(() => {
-              loader.remove();
-              body.style.background = ''; 
-              checkHeroAndProceed();
-            }, 400); 
+              loader.style.transition = 'opacity 0.4s ease';
+              loader.style.opacity = '0';
+              
+              setTimeout(() => {
+                loader.remove();
+                body.style.background = ''; 
+                checkHeroAndProceed();
+              }, 400); // 400ms que tarda la transición en terminar
+            }, 1500); // Retraso de 1.5s (1500 milisegundos)
           } else {
-            // Si el loader se omitió por backend o por sesión activa, removemos el elemento visual de inmediato si existe
             if (loader) loader.remove();
             body.style.background = '';
             checkHeroAndProceed();
@@ -245,7 +224,7 @@ const { lang, t, showLoader = true } = Astro.props;
         // FASE 1: Validar si existe la imagen del Hero
         function checkHeroAndProceed() {
           if (!heroImage) {
-            revealContent(); // Si no hay imagen, muestra el header y contenido directo
+            revealContent();
             return;
           }
           startHeroScaleUp();
@@ -257,7 +236,6 @@ const { lang, t, showLoader = true } = Astro.props;
           heroImage?.addEventListener('animationend', handleAnimationEnd);
           body.classList.add('hero-scale-up');
 
-          // Mecanismo de seguridad por si falla el evento CSS
           setTimeout(() => {
             if (animationPhase === 1) startHeroFullscreen();
           }, 700);
@@ -269,7 +247,6 @@ const { lang, t, showLoader = true } = Astro.props;
           body.classList.remove('hero-scale-up'); 
           body.classList.add('hero-fullscreen');
 
-          // Mecanismo de seguridad secundario
           setTimeout(() => {
             if (animationPhase === 2) revealContent();
           }, 900);
@@ -280,15 +257,12 @@ const { lang, t, showLoader = true } = Astro.props;
           animationPhase = 3;
           body.classList.add('content-reveal');
           
-          // ¡LA SOLUCIÓN!
-          // Esperamos a que la animación CSS inicial termine (600ms) 
-          // y luego quitamos la animación para liberar el 'transform' y dárselo a GSAP
           setTimeout(() => {
             const header = document.getElementById('site-header');
             if (header) {
               header.style.animation = 'none';
             }
-          }, 650); // 650ms asegura que la animación CSS ya terminó
+          }, 650);
         }
 
         // Manejador de eventos de animación CSS
@@ -301,11 +275,9 @@ const { lang, t, showLoader = true } = Astro.props;
           }
         }
 
-        // Ejecución inmediata (los scripts de Astro se ejecutan cuando el DOM está listo)
         removeLoaderAndStart();
       }
 
-      // Asegurar el disparo sin importar el estado del ciclo de vida de la página
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupSequence);
       } else {
@@ -314,10 +286,9 @@ const { lang, t, showLoader = true } = Astro.props;
     </script>
   </body>
 </html>
+
 <script is:inline >
   document.addEventListener("DOMContentLoaded", () => {
-
-    // Observer para animaciones: services-header, animation-left, hero-content
     const animationElements = document.querySelectorAll(
       ".animation-up-fast, .animation-zoom-in, .animation-up-fast-2, .animation-zoom-in-2, .animation-fade-down, .animation-fade-left, .animation-zoom-out, .animation-fade-right, .animation-fade-left-2, .animation-up-fast-3 , .animation-zoom-in-3, .animation-fade-left-3, .container-image-fade, .image-fade"
     );
@@ -338,7 +309,6 @@ const { lang, t, showLoader = true } = Astro.props;
       animationObserver.observe(element);
     });
 
-    // Observer para carousels: .hero-carousel[data-interval]
     const carousels = Array.from(document.querySelectorAll(".hero-carousel[data-interval]"));
 
     if (carousels.length > 0 && "IntersectionObserver" in window) {

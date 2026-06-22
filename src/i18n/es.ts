@@ -66,7 +66,8 @@ export default {
   main: {
     hero: {
       title:
-        "Concreto Confiable. <br/> Resultados <br class='block md:hidden'/> Comprobados.",
+        "Concreto Confiable. <br/> Resultados <br class='block md:hidden'/> Comprobados. ",
+      subtitle: "ESTAMOS TOTALMENTE LICENCIADOS Y ASEGURADOS",
       button: {
         label: "Cotización Gratis",
         href: "/es/contact",
@@ -247,6 +248,7 @@ export default {
         "Desde la distribución de hormigón de calidad hasta la reconstrucción de viviendas, pasando por inversiones financieras y alquiler de herramientas especializadas, ofrecemos soluciones completas para proyectos de construcción.",
       description2:
         "Nuestro compromiso con la excelencia, la diversidad de servicios y la satisfacción del cliente nos distingue en el mercado. Confíe en nosotros para hacer realidad sus proyectos.",
+      medias: "Sigue nuestras historias",
     },
     brands: {
       title: "OUR BRANDS",
@@ -255,29 +257,29 @@ export default {
           title: "CALIDAD",
           description:
             "Compromiso con la excelencia en todos los aspectos de nuestros servicios, desde la distribución de concreto hasta la reconstrucción de viviendas y el alquiler de herramientas. Nos esforzamos por superar las expectativas de nuestros clientes en términos de calidad y durabilidad",
-            icon:'check-2',
-            image:'calidad'
+          icon: "check-2",
+          image: "calidad",
         },
         {
           title: "SERVICIO AL CLIENTE",
           description:
             "Ponemos las necesidades e inquietudes de nuestros clientes en el centro de todo lo que hacemos. Nos esforzamos por brindar un servicio personalizado y una atención excepcional, garantizando una experiencia positiva en cada interacción",
-            icon:'customer',
-            image:'servicio-cliente'
+          icon: "customer",
+          image: "servicio-cliente",
         },
         {
           title: "INTEGRIDAD",
           description:
             "Actuamos con honestidad, transparencia y ética en todas nuestras operaciones. Estamos comprometidos a mantener la confianza de nuestros clientes, empleados y socios comerciales en todo momento",
-            icon:'shield',
-            image:'integridad'
+          icon: "shield",
+          image: "integridad",
         },
         {
           title: "INNOVACIÓN",
           description:
             "Adoptamos la innovación y la creatividad en nuestra constante búsqueda de mejorar nuestros servicios y procesos. Estamos abiertos a nuevas ideas y enfoques que nos permitan mantenernos a la vanguardia de la industria",
-            icon:'boxs',
-            image:'innovacion'
+          icon: "boxs",
+          image: "innovacion",
         },
       ],
     },
@@ -965,7 +967,7 @@ export default {
   },
   branchs: {
     hero: {
-      title: "NUESTRAS <br/> SUCURSALES",
+      title: "operadores de <br/> sucursales virtuales",
       button: {
         label: "Cotización gratuita",
         href: "/es/contact",
@@ -1000,7 +1002,7 @@ export default {
         {
           question: "¿Por qué elegirnos para su proyecto?",
           answer:
-            "Combinamos experiencia, equipos modernos, planificación eficiente y un firme compromiso con la calidad para ofrecer soluciones duraderas, precisas y adaptadas a las necesidades de cada cliente.",
+            "Trabajamos de la mano con las principales empresas de concreto de las Carolinas, contando con más de 360 puntos de abastecimiento, y ponemos a tu disposición nuestro conocimiento profesional para asesorar tu proyecto con las últimas tecnologías y soluciones innovadoras del sector.",
         },
       ],
     },

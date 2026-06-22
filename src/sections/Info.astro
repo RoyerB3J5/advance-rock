@@ -71,7 +71,7 @@ const { content } = Astro.props as Props;
       <div class="grid grid-cols-1 xl:grid-cols-4 justify-center items-center gap-6 xl:gap-4 w-full xl:w-auto">
         {
           content.third.items.map((item)=>( 
-            <div class="flex flex-col justify-start items-start gap-2 px-4 py-2 xl:p-4 rounded-0 xl:rounded-[4px] border border-[#D9D9D9] max-w-none xl:max-w-[170px] js-content-white-item">
+            <div class="flex flex-col justify-start items-start gap-2 px-4 py-2 xl:p-4 rounded-0 xl:rounded-[4px] border border-[#D9D9D9] max-w-none xl:max-w-[170px] js-content-white-item hover:scale-102 transition-transform duration-300 ease-in-out cursor-pointer">
               <h3 class="text-primary paragraph-bold">{item.title}</h3>
               <p class="text-paragraph paragraph" set:html={item.description}></p>
             </div>
@@ -163,7 +163,7 @@ const { content } = Astro.props as Props;
         duration: 2,
         ease: "none"
       }, "slide")
-      .to({}, { duration: 0.3 }); 
+      .to({}, { duration: 0.5 }); 
     });
 
     // ==========================================
