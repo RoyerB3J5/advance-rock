@@ -180,7 +180,7 @@ const isProjectPage = normalized === "/projects";
 </header>
 
 <div
-  class="fixed top-0 right-0 bottom-0 lg:hidden flex items-start bg-primary-back text-white flex-col justify-center h-full z-60 py-6 gap-12 transform translate-x-full transition-transform duration-300 ease-out w-[80%]"
+  class="fixed top-0 right-0 bottom-0 lg:hidden flex items-start bg-primary-back text-white flex-col justify-center h-[85%] z-60 py-6 gap-12 transform -translate-y-full transition-transform duration-300 ease-out w-full"
   id="mobile-menu"
 >
   <img
@@ -342,14 +342,14 @@ const isProjectPage = normalized === "/projects";
 
     function openMenu() {
       if (isMobile() && menu) {
-        menu.classList.replace("translate-x-full", "translate-x-0");
+        menu.classList.replace("-translate-y-full", "translate-y-0");
         body.classList.add("overflow-hidden");
       }
     }
 
     function closeMenu() {
       if (isMobile() && menu) {
-        menu.classList.replace("translate-x-0", "translate-x-full");
+        menu.classList.replace("translate-y-0", "-translate-y-full");
         body.classList.remove("overflow-hidden");
       }
     }
