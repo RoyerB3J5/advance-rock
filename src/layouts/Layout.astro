@@ -308,23 +308,5 @@ const { lang, t, showLoader = true } = Astro.props;
     animationElements.forEach((element) => {
       animationObserver.observe(element);
     });
-
-    const carousels = Array.from(document.querySelectorAll(".hero-carousel[data-interval]"));
-
-    if (carousels.length > 0 && "IntersectionObserver" in window) {
-      const carouselObserver = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.dispatchEvent(new CustomEvent("carouselVisible"));
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { root: null, rootMargin: "400px" }
-      );
-
-      carousels.forEach((c) => carouselObserver.observe(c));
-    }
   });
 </script>
