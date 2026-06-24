@@ -12,7 +12,17 @@ const { content } = Astro.props as Props;
       <h2 class="text-primary title-sm">{content.second.title}</h2>
       <p class="text-paragraph subtitle">{content.second.subtitle}</p>
     </div>
-    <div class="w-full h-auto xl:h-full xl:w-auto 3xl:w-[50%] 3xl:h-auto bg-accent js-second-video" style="aspect-ratio: 628/740;"></div>
+    <div class="w-full h-auto xl:h-full xl:w-auto 3xl:w-[50%] 3xl:h-auto bg-accent js-second-video relative overflow-hidden" style="aspect-ratio: 628/740;">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/images/video-2.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="w-full xl:w-[25%] grow flex flex-col justify-center xl:justify-between items-start js-right-content gap-6">
       <div class="flex flex-col justify-center items-start gap-6">
         <p class="text-paragraph paragraph">{content.second.description}</p>
