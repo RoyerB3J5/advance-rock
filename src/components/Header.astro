@@ -26,157 +26,117 @@ const isProjectPage = normalized === "/projects";
   id="site-header"
   style="background-color: transparent; transition: background-color 0.3s ease-out;"
 >
-  <div class="container-full flex flex-col justify-center items-center">
-    {/* Cambio 1: Se agregó 'hidden md:flex' para ocultarlo de md para abajo */}
-    <div
-      class="hidden md:flex py-2.5 w-full justify-end items-center gap-4 border-b border-white/20 header-container-1"
+  <div
+      class="hidden md:flex py-3 w-full justify-center items-center bg-primary-back header-container-1"
     >
-      {
-        isProjectPage ? (
-          <img
-            src="/images/pin-map-dark.svg"
-            alt="Pin Map"
-            width="16"
-            height="16"
-            class="w-4 h-4"
-          />
-        ) : (
-          <img
-            src="/images/pin-map.svg"
-            alt="Pin Map"
-            width="16"
-            height="16"
-            class="w-4 h-4"
-          />
-        )
-      }
-      <p class={`paragraph ${isProjectPage ? "text-primary" : "text-white"}`}>
-        Charlotte, NC
-      </p>
-      <div class={`w-[1px] h-6 ${isProjectPage ? "bg-primary" : "bg-white"}`}>
-      </div>
-      <p class={`paragraph ${isProjectPage ? "text-primary" : "text-white"}`}>
-        Greenville, SC
+      <p class="text-white text-[15px] leading-[150%] font-paragraph text-center uppercase">
+        {content?.promociones}
       </p>
     </div>
-    <div class={`w-full flex justify-between items-center relative py-6`}>
-      <a
-        href={`/${lang}`}
-        aria-label="Ir a la página principal"
-        title="Advance Rock Concrete - Init"
-      >
-        {
-          isContactPage || isProjectPage ? (
-            <img
-              src="/images/logo-color.svg"
-              alt="Logo de Advance Rock Concrete"
-              width="180"
-              height="36"
-              class="cursor-pointer w-40 md:w-45 h-auto "
-            />
-          ) : (
-            <img
-              src="/images/logo.svg"
-              alt="Logo de Advance Rock Concrete"
-              width="180"
-              height="36"
-              class="cursor-pointer w-40 md:w-45 h-auto "
-            />
-          )
-        }
-      </a>
-      <div
-        class="relative bg-transparent flex flex-row justify-center items-center h-auto w-auto z-10 transform translate-x-0 transition-transform duration-300 ease-out"
-      >
-        <nav>
-          <ul
-            class="hidden relative lg:flex items-center flex-row justify-center w-auto gap-6"
-          >
-            {
-              content?.nav.map((item, index) => {
-                const itemPathWithoutHash = item.href.split("#")[0];
-                const isActive =
-                  normalized === itemPathWithoutHash ||
-                  (index === 1 && normalized.startsWith("/services"));
-                const isServices = index === 1;
-                return (
-                  <li
-                    class={`flex flex-row items-center justify-center group hover:text-accent w-auto text-center ${isServices ? "relative dropdown-parent" : ""} ${isActive ? "bg-transparent " : ""}`}
-                    id={`services-${index}`}
-                  >
-                    <a
-                      href={`/${lang}${item.href}`}
-                      class=" relative transition-colors duration-300 flex justify-center items-center"
-                    >
-                      <p
-                        class={`paragraph  transition-all duration-300 ease-in-out ${isProjectPage ? "text-primary" : "text-white"}`}
-                        set:html={item.label}
-                      />
-                      {isServices && (
-                        <img
-                          src={
-                            isProjectPage
-                              ? "/images/arrow-d-g-color.svg"
-                              : "/images/arrow-d-g.svg"
-                          }
-                          alt="Arrow"
-                          class="inline-block w-6 h-6 ml-1"
-                        />
-                      )}
-                      <span
-                        class={`absolute -bottom-2 left-1/2 h-0.5 bg-accent transition-all duration-300 ease-out -translate-x-1/2 ${isActive ? "w-8" : "w-0 group-hover:w-8 group-hover:bg-accent"}`}
-                      />
-                    </a>
-                    {isServices && (
-                      <div class="dropdown-menu absolute top-9 left-0 mt-0 w-[283px] flex-col items-center bg-primary-back z-40 hidden group-hover:flex opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 ease-out -translate-x-[25%] overflow-hidden ">
-                        {content.services.map((sub) => (
-                          <div class="text-[17px] leading-[150%] text-white hover:text-secondary transition-colors duration-200 ease-in-out cursor-pointer px-4 w-full text-center py-3 flex justify-between items-center hover:bg-[#001A1F] w-full font-normal font-paragraph">
-                            <a href={`${sub.href}`} >
-                              {sub.label}
-                            </a>
-                            <img
-                              src="/images/arrow-red.svg"
-                              alt="Arrow"
-                              class="inline-block w-6 h-6 "
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </li>
-                );
-              })
-            }
-          </ul>
-        </nav>
-      </div>
-      <div class="flex justify-center items-center gap-6">
-        <Button
-          text={content?.buttons[0].label}
-          href={content?.buttons[0].href}
-          textClass="text-[17px]"
-          extraBtnClass="hidden xl:block"
-        />
-        <ChangeLanguage isProjectPage={isProjectPage} />
-        <button
-          type="button"
-          aria-label="Abrir menú de navegación"
-          title="Abrir menú"
-          class="flex lg:hidden items-center justify-center cursor-pointer w-8 h-8 bg-accent rounded-sm"
-          id="hamburger-btn"
+    <div class="w-full flex justify-center items-center bg-white">
+      <div class={`container-full flex justify-between items-center relative py-4`}>
+        <a
+          href={`/${lang}`}
+          aria-label="Ir a la página principal"
+          title="Advance Rock Concrete - Init"
         >
           <img
-            src="/images/hamburger.svg"
-            alt="Menú"
-            width="18"
-            height="12"
-            class="w-3 h-auto block"
+                src="/images/logo-color.svg"
+                alt="Logo de Advance Rock Concrete"
+                width="180"
+                height="36"
+                class="cursor-pointer w-40 md:w-45 h-auto "
+              />
+        </a>
+        <div
+          class="relative bg-transparent flex flex-row justify-center items-center h-auto w-auto z-10 transform translate-x-0 transition-transform duration-300 ease-out"
+        >
+          <nav>
+            <ul
+              class="hidden relative lg:flex items-center flex-row justify-center w-auto gap-6"
+            >
+              {
+                content?.nav.map((item, index) => {
+                  const itemPathWithoutHash = item.href.split("#")[0];
+                  const isActive =
+                    normalized === itemPathWithoutHash ||
+                    (index === 1 && normalized.startsWith("/services"));
+                  const isServices = index === 1;
+                  return (
+                    <li
+                      class={`flex flex-row items-center justify-center group hover:text-accent w-auto text-center ${isServices ? "relative dropdown-parent" : ""} ${isActive ? "bg-transparent " : ""}`}
+                      id={`services-${index}`}
+                    >
+                      <a
+                        href={`/${lang}${item.href}`}
+                        class=" relative transition-colors duration-300 flex justify-center items-center"
+                      >
+                        <p
+                          class={`paragraph  transition-all duration-300 ease-in-out text-primary`}
+                          set:html={item.label}
+                        />
+                        {isServices && (
+                          <img
+                            src="/images/arrow-red.svg"
+                            alt="Arrow"
+                            class="inline-block w-6 h-6 ml-1 rotate-90"
+                          />
+                        )}
+                        <span
+                          class={`absolute -bottom-2 left-1/2 h-0.5 bg-accent transition-all duration-300 ease-out -translate-x-1/2 ${isActive ? "w-8" : "w-0 group-hover:w-8 group-hover:bg-accent"}`}
+                        />
+                      </a>
+                      {isServices && (
+                        <div class="dropdown-menu absolute top-9 left-0 mt-0 w-[283px] flex-col items-center bg-primary-back z-40 hidden group-hover:flex opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 ease-out -translate-x-[25%] overflow-hidden ">
+                          {content.services.map((sub) => (
+                            <div class="text-[17px] leading-[150%] text-white hover:text-secondary transition-colors duration-200 ease-in-out cursor-pointer px-4 w-full text-center py-3 flex justify-between items-center hover:bg-[#001A1F] w-full font-normal font-paragraph">
+                              <a href={`${sub.href}`} >
+                                {sub.label}
+                              </a>
+                              <img
+                                src="/images/arrow-red.svg"
+                                alt="Arrow"
+                                class="inline-block w-6 h-6 "
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </li>
+                  );
+                })
+              }
+            </ul>
+          </nav>
+        </div>
+        <div class="flex justify-center items-center gap-6">
+          <Button
+            text={content?.buttons[0].label}
+            href={content?.buttons[0].href}
+            textClass="text-[17px]"
+            extraBtnClass="hidden xl:block"
           />
-          <span class="sr-only">Abrir menú de navegación</span>
-        </button>
+          <ChangeLanguage isProjectPage={isProjectPage} />
+          <button
+            type="button"
+            aria-label="Abrir menú de navegación"
+            title="Abrir menú"
+            class="flex lg:hidden items-center justify-center cursor-pointer w-8 h-8 bg-accent rounded-sm"
+            id="hamburger-btn"
+          >
+            <img
+              src="/images/hamburger.svg"
+              alt="Menú"
+              width="18"
+              height="12"
+              class="w-3 h-auto block"
+            />
+            <span class="sr-only">Abrir menú de navegación</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+    
 </header>
 
 <div
@@ -269,7 +229,6 @@ const isProjectPage = normalized === "/projects";
   <div class="flex flex-col justify-center items-center gap-5 w-full px-4">
     <Button
       text={content?.buttons[0].label}
-      textClass="text-[17px]"
       href={content?.buttons[0].href}
       target="_blank"
       extraBtnClass={`bg-accent w-full`}

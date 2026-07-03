@@ -1,5 +1,6 @@
 export default {
   header: {
+    promociones: "Promotions",
     nav: [
       {
         label: "About",
@@ -65,18 +66,19 @@ export default {
   },
   main: {
     hero: {
-      title:
-        "Concreto Confiable. <br/> Resultados <br class='block md:hidden'/> Comprobados. ",
-      subtitle:'ESTAMOS TOTALMENTE LICENCIADOS Y ASEGURADOS',
+      title: "Estamos Licenciados <br/> y Asegurados",
+      subtitle: "Concreto de primera categoría",
       button: {
-        label: "Get Your Free Quote",
-        href: "/en/contact",
+        label: "Cotización Gratis",
+        href: "/es/contact",
       },
+      back: "hero-main",
+      video: "",
     },
     information: {
       first: {
         title:
-          '<span class="text-secondary">Trusted By Builders</span> Across Carolina',
+          '<span class="text-secondary">Constructores de todaS LAS CarolinaS</span> Confían en Nosotros',
         description:
           "Built on reliability, powered by experience, and trusted for lasting results.",
       },
@@ -106,6 +108,7 @@ export default {
         para2:
           "We bring together technical expertise, strategic planning, and a commitment to excellence to deliver concrete solutions tailored to every project.",
         link: "Learn More About Us",
+        siguenos: "Síguenos",
         items: [
           {
             title: "Client-Focused Approach",
@@ -238,6 +241,7 @@ export default {
         href: "/en/contact",
       },
       back: "about",
+      video: "",
     },
     who: {
       title: "WHO ARE WE?",
@@ -247,7 +251,7 @@ export default {
         "From the distribution of quality concrete to the reconstruction of homes, through financial investments and rental of specialized tools, we offer complete solutions for construction projects.",
       description2:
         "Our commitment to excellence, diversity of services and customer satisfaction sets us apart in the market. Trust us to make your projects a reality.",
-      medias:'Sigue nuestras historias'
+      medias: "Sigue nuestras historias",
     },
     brands: {
       title: "OUR BRANDS",
@@ -291,6 +295,7 @@ export default {
         href: "/en/contact",
       },
       back: "services-hero",
+      video: "",
     },
     items: [
       {
@@ -374,6 +379,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-1-hero",
+        video: "",
       },
       info: {
         title: "Espacios Diseñados Para Disfrutar",
@@ -443,6 +449,12 @@ export default {
               "Construimos piscinas residenciales, recreativas y personalizadas en distintos tamaños, formas y acabados.",
           },
           {
+            question:
+              "¿Se adaptan a mi presupuesto para construir una piscina?",
+            answer:
+              "Sí, diseñamos cada piscina según sus necesidades y presupuesto, ofreciendo soluciones personalizadas y de alta calidad.",
+          },
+          {
             question: "¿Cuánto tiempo toma construir una piscina?",
             answer:
               "El tiempo depende del diseño y alcance del proyecto, pero siempre trabajamos con una planificación clara y eficiente.",
@@ -463,6 +475,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-2-hero",
+        video: "",
       },
       info: {
         title: "Renueva Espacios Que Han Perdido Su Potencial",
@@ -552,6 +565,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-3-hero",
+        video: "",
       },
       info: {
         title: "El Material Correcto En El Momento Correcto",
@@ -641,6 +655,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-4-hero",
+        video: "",
       },
       info: {
         title: "Una Solución Completa Desde El Inicio",
@@ -731,6 +746,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-6-hero",
+        video: "",
       },
       info: {
         title: "Recursos Que Mantienen Tu Operación En Movimiento",
@@ -822,6 +838,7 @@ export default {
         href: "/en/contact",
       },
       back: "services-5-hero",
+      video: "",
     },
     info: {
       title: "Más Que Un Negocio, Un Sistema Completo",
@@ -970,6 +987,7 @@ export default {
         href: "/en/contact",
       },
       back: "branchs-hero",
+      video: "",
     },
   },
   contact: {

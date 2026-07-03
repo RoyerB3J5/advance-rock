@@ -8,63 +8,84 @@ interface Props {
 }
 const { content } = Astro.props as Props;
 ---
-<section data-scroll-snap class="relative flex w-full h-screen justify-center items-center hero-main-section overflow-hidden">
-  {/* <img src="/images/hero-main.webp" alt="Hero Image" width="2500" height="1563" class="hero-main-image object-cover z-0 pointer-events-none" decoding="async" loading="eager"/>*/}
+<section data-hero-section data-scroll-snap class="relative flex w-full h-screen justify-center items-end hero-main-section overflow-hidden">
   <div class="hero-main-image absolute w-full h-full inset-0 pointer-events-none">
     <img 
-      id="hero-poster" 
-      src="/images/hero-main.webp" 
+      data-poster
+      src={`/images/${content.back}.webp`} 
       alt="Hero Background" 
-      class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-300"
+      class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-300 object-top"
+      fetchpriority="high"
+      loading="eager"
     />
 
     <video
-      id="hero-video"
+      data-video
       muted={true}
       loop={true}
       playsinline={true}
       x-webkit-playsinline={true}
       preload="auto"
-      class="absolute inset-0 w-full h-full object-cover opacity-0 z-0 transition-opacity duration-300"
+      class="absolute inset-0 w-full h-full object-cover opacity-0 z-20 transition-opacity duration-300 object-top"
     >
       <source src="/images/video.mp4" type="video/mp4" />
     </video>
   </div>
   
-  <div class="container-full flex flex-col justify-end items-start py-10 md:py-12 z-10 h-full gap-6 md:gap-4">
-    <h1 class="text-[36px] md:text-[72px] font-extrabold leading-[110%] md:leading-[100%] text-white uppercase" set:html={content.title}></h1>
-    <p class="text-[17px] md:text-[24px] font-bold leading-[120%] md:leading-[150%] uppercase text-white" set:html={content.subtitle}></p>
-    <Button
-      text={content.button.label}
-      href={content.button.href}
-      textClass="text-[17px]"
-      extraBtnClass="w-full md:w-auto"
-    />
+  <div class="container-full py-10 md:py-8 3xl:py-12 z-10  flex justify-between items-start xl:items-end ">
+    <div class="flex flex-col justify-end items-start  gap-6 md:gap-4">
+      <h1 class="text-[36px] md:text-[64px] font-extrabold leading-[110%] md:leading-[100%] text-white uppercase" set:html={content.title}></h1>
+      <p class="text-[17px] md:text-[24px] font-bold leading-[120%] md:leading-[150%] uppercase text-white" set:html={content.subtitle}></p>
+      <Button
+        text={content.button.label}
+        href={content.button.href}
+        textClass="text-[17px]"
+        extraBtnClass="w-full md:w-auto"
+      />
+    </div>
+    <img src="/images/license.webp" alt="License" class="w-auto h-20 lg:h-[100px] hidden md:block" width="237" height="100" decoding="async" loading="eager"/>
   </div>
 </section>
 
-<script is:inline>
-  const container = document.querySelector('.hero-main-image');
-  const video = document.getElementById('hero-video');
-  const poster = document.getElementById('hero-poster');
+<script>
+  // Esta función inicializa CADA componente Hero de manera aislada
+  function initHeroComponents() {
+    const sections = document.querySelectorAll('[data-hero-section]');
 
-  if (container && video && poster) {
-    container.addEventListener('animationend', (e) => {
-      if (e.animationName === 'heroExpandFullscreen') {
-        
-        // 1. Iniciamos el video
-        video.play().then(() => {
-          // 2. Cuando el video empiece a reproducirse con éxito, hacemos el intercambio
-          video.classList.remove('opacity-0');
-          video.classList.add('opacity-100');
-          
-          poster.classList.remove('opacity-100');
-          poster.classList.add('opacity-0');
-          
-          container.style.zIndex = "0";
-        }).catch(err => console.log("Error de reproducción:", err));
+    sections.forEach((section) => {
+      // Buscamos los elementos exclusivamente DENTRO de esta sección actual
+      const container = section.querySelector('.hero-main-image');
+      const video = section.querySelector('[data-video]') as HTMLVideoElement;
+      const poster = section.querySelector('[data-poster]');
 
+      if (container && video && poster) {
+        container.addEventListener('animationend', (e) => {
+          if ((e as AnimationEvent).animationName === 'heroExpandFullscreen') {
+            video.play().catch(err => console.log("Error de reproducción:", err));
+          }
+        });
+
+        video.addEventListener('timeupdate', function onFirstFrame() {
+          if (video.currentTime > 0) {
+            video.classList.remove('opacity-0');
+            video.classList.add('opacity-100');
+            
+            setTimeout(() => {
+              poster.classList.remove('opacity-100');
+              poster.classList.add('opacity-0');
+              (container as HTMLElement).style.zIndex = "0";
+            }, 300);
+
+            video.removeEventListener('timeupdate', onFirstFrame);
+          }
+        });
       }
     });
   }
+
+  // 1. Se ejecuta en la carga inicial de la página
+  initHeroComponents();
+
+  // 2. Se ejecuta si usas ClientRouter/ViewTransitions de Astro al cambiar de página
+  document.addEventListener('astro:page-load', initHeroComponents);
 </script>
