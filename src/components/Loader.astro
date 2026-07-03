@@ -1,21 +1,19 @@
 ---
-// Sin props, es puramente visual y auto-animado
+// Video loader
 ---
 
 <div id="page-loader">
-  <div class="flex flex-col justify-center items-center gap-6">
-    <img
-      src="/images/logo.svg"
-      alt="Logo de Advance Rock Concrete"
-      width="180"
-      height="36"
-      class="cursor-pointer w-40 md:w-73 h-auto"
-    />
-    <div class="w-[275px] h-[15px] bg-[#00303A] rounded-full overflow-hidden">
-      <div id="loader-progress-bar" class="h-full bg-primary-back rounded-full w-0"></div>
-    </div>
-    <p id="loader-percentage-text" class="text-white paragraph">0%</p>
-  </div>
+  <video
+    muted={true}
+    autoplay={true}
+    loop={true}
+    playsinline={true}
+    x-webkit-playsinline={true}
+    preload="auto"
+    class="absolute inset-0 w-full h-full object-cover object-top"
+  >
+    <source src="/images/video-3.mp4" type="video/mp4" />
+  </video>
 </div>
 
 <style>
@@ -24,58 +22,5 @@
     inset: 0;
     z-index: 9999;
     background: #003b46;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Animación para rellenar la barra en 1.4 segundos de 0 a 100% */
-  #loader-progress-bar {
-    animation: fillProgress 1.4s linear forwards;
-  }
-
-  @keyframes fillProgress {
-    from {
-      width: 0%;
-    }
-    to {
-      width: 100%;
-    }
   }
 </style>
-
-<script>
-  function startLoaderCounter() {
-    const textElement = document.getElementById('loader-percentage-text') as HTMLElement ;
-    if (!textElement) return;
-
-    const duration = 1400; // 1.4 segundos en milisegundos
-    const target = 100;
-    const startTime = performance.now();
-
-    function updateCounter(currentTime: number) {
-      const elapsedTime = currentTime - startTime;
-      
-      // Calculamos el progreso actual basándonos en el tiempo transcurrido (de 0 a 1)
-      const progress = Math.min(elapsedTime / duration, 1);
-      
-      // Calculamos el valor actual del porcentaje
-      const currentValue = Math.floor(progress * target);
-      
-      textElement.textContent = `${currentValue}%`;
-
-      if (progress < 1) {
-        requestAnimationFrame(updateCounter);
-      }
-    }
-
-    requestAnimationFrame(updateCounter);
-  }
-
-  // Se ejecuta cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startLoaderCounter);
-  } else {
-    startLoaderCounter();
-  }
-</script>

@@ -200,20 +200,23 @@ const { lang, t, showLoader = true } = Astro.props;
           console.warn("GSAP no inicializado aún:", e);
         }
 
-        // FASE 0: Quitar Loader agregando un retraso artificial de 1.5s
+        // FASE 0: Quitar Loader agregando un retraso artificial de 1.4s
         function removeLoaderAndStart() {
           if (loader && showLoader) {
-            // Espera 1.5 segundos antes de comenzar a desvanecer el loader
+            // Espera 1.4 segundos antes de comenzar
             setTimeout(() => {
-              loader.style.transition = 'opacity 0.4s ease';
-              loader.style.opacity = '0';
+              // 1. Pausar el video para congelarlo en el fotograma actual
+              const loaderVideo = loader.querySelector('video');
+              if (loaderVideo) {
+                loaderVideo.pause();
+              }
+
+              // 2. Colocar el loader en el fondo (detrás de la animación del Hero)
+              loader.style.zIndex = '0';
               
-              setTimeout(() => {
-                loader.remove();
-                body.style.background = ''; 
-                checkHeroAndProceed();
-              }, 400); // 400ms que tarda la transición en terminar
-            }, 1500); // Retraso de 1.5s (1500 milisegundos)
+              // 3. Comenzar la animación del Hero inmediatamente
+              checkHeroAndProceed();
+            }, 1400); // Retraso de 1.4s (1400 milisegundos)
           } else {
             if (loader) loader.remove();
             body.style.background = '';
@@ -256,6 +259,12 @@ const { lang, t, showLoader = true } = Astro.props;
         function revealContent() {
           animationPhase = 3;
           body.classList.add('content-reveal');
+          
+          // Eliminar el loader por completo ahora que la animación ha terminado
+          if (loader) {
+            loader.remove();
+            body.style.background = '';
+          }
           
           setTimeout(() => {
             const header = document.getElementById('site-header');
