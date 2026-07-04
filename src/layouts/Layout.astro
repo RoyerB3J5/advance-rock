@@ -26,7 +26,7 @@ const { lang, t, showLoader = true } = Astro.props;
       /* Estado inicial del body */
       body { background: #003b46; } 
 
-      /* ESTADO INICIAL: Imagen del hero */
+      /* Imagen/video de fondo del hero en su estado normal */
       .hero-main-image {
         position: absolute;
         top: 0;
@@ -34,51 +34,8 @@ const { lang, t, showLoader = true } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        z-index: 100;
-        opacity: 0;
+        z-index: 0;
         pointer-events: none;
-        clip-path: inset(calc(50% - 258px) calc(50% - 200px));
-        transform: scale(0);
-      }
-
-      /* ESTADO 1: Aparece y crece la "caja" de 400x516 */
-      body.hero-scale-up .hero-main-image {
-        position: fixed;
-        animation: heroScaleUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      }
-
-      @keyframes heroScaleUp {
-        from {
-          opacity: 0;
-          transform: scale(0);
-          clip-path: inset(calc(50% - 258px) calc(50% - 200px));
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-          clip-path: inset(calc(50% - 258px) calc(50% - 200px));
-        }
-      }
-
-      /* ESTADO 2: La máscara se expande revelando toda la imagen */
-      body.hero-fullscreen .hero-main-image {
-        position: fixed;
-        animation: heroExpandFullscreen 0.8s ease-in-out forwards;
-      }
-
-      @keyframes heroExpandFullscreen {
-        from {
-          opacity: 1;
-          transform: scale(1);
-          clip-path: inset(calc(50% - 258px) calc(50% - 200px));
-          z-index: 100;
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-          clip-path: inset(0 0 0 0);
-          z-index: 0;
-        }
       }
 
       /* Estilos de revelado de contenido */
@@ -142,13 +99,6 @@ const { lang, t, showLoader = true } = Astro.props;
         }
       }
 
-      /* Revelado normal de la imagen si se salta la animación */
-      body.content-reveal .hero-main-image {
-        opacity: 1;
-        transform: scale(1);
-        clip-path: inset(0 0 0 0);
-        z-index: 0;
-      }
     </style>
 
     <meta name="geo.region" content="US-FL" />
@@ -166,35 +116,35 @@ const { lang, t, showLoader = true } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>Advance Rock Concrete</title>
     <meta name="description" content="Advance Rock Concrete provides the best concrete solutions for your construction needs." />
-    <meta name="keywords" content="Tree Services, Lead Generation, Growth System, Marketing Automation" />
-    <meta name="author" content="Treehubly" />
+    <meta name="keywords" content="Concrete Solutions, Construction, Building Materials" />
+    <meta name="author" content="Advance Rock Concrete" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://treehubly.com/" />
+    <link rel="canonical" href="https://advance-rock-concrete.com/" />
 
-    <link rel="alternate" hreflang="en" href="https://treehubly.com/en/" />
-    <link rel="alternate" hreflang="es" href="https://treehubly.com/es/" />
-    <link rel="alternate" hreflang="x-default" href="https://treehubly.com/en/" />
+    <link rel="alternate" hreflang="en" href="https://advance-rock-concrete.com/en/" />
+    <link rel="alternate" hreflang="es" href="https://advance-rock-concrete.com/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://advance-rock-concrete.com/en/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Advance Rock Concrete - The Ultimate Solution" />
     <meta property="og:description" content="Advance Rock Concrete provides the best concrete solutions for your construction needs." />
-    <meta property="og:url" content="https://treehubly.com/" />
+    <meta property="og:url" content="https://advance-rock-concrete.com/" />
     <meta property="og:image" content="/images/fondo.png" />
     <meta property="og:locale" content={lang === "es" ? "es_US" : "en_US"} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Treehubly" />
-    <meta name="twitter:title" content="Treehubly - The Growth System" />
-    <meta name="twitter:description" content="Treehubly helps tree companies generate better leads." />
+    <meta name="twitter:site" content="@AdvanceRock" />
+    <meta name="twitter:title" content="Advance Rock Concrete - The Ultimate Solution" />
+    <meta name="twitter:description" content="Advance Rock Concrete provides the best concrete solutions for your construction needs." />
     <meta name="twitter:image" content="/images/fondo.png" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Treehubly",
-        "url": "https://treehubly.com/",
-        "logo": "https://treehubly.com/favicon.svg"
+        "name": "Advance Rock Concrete",
+        "url": "https://advance-rock-concrete.com/",
+        "logo": "https://advance-rock-concrete.com/favicon.svg"
       }
     </script>
   </head>
@@ -223,7 +173,6 @@ const { lang, t, showLoader = true } = Astro.props;
       function setupSequence() {
         const body = document.body;
         const showLoader = body.getAttribute('data-show-loader') === 'true';
-        const heroImage = document.querySelector('.hero-main-image') as HTMLElement | null;
         
         const loader = document.getElementById('page-loader') || 
                        document.querySelector('.loader') || 
@@ -249,73 +198,18 @@ const { lang, t, showLoader = true } = Astro.props;
                 loaderVideo.pause();
               }
 
-              // Determine if we are at the top of the page / in the hero section
-              const inHeroSection = heroImage && (window.scrollY < 100);
-
-              if (inHeroSection) {
-                // Colocar el loader en el fondo (detrás de la animación del Hero)
-                loader.style.zIndex = '0';
-                checkHeroAndProceed(true);
-              } else {
-                // Dejar el loader al frente para que la animación del recorte sea visible sobre la página
-                checkHeroAndProceed(false);
-              }
+              // Dejar el loader al frente para que la animación del recorte sea visible sobre la página
+              startLoaderCutoutScale();
             }, 1400); // Retraso de 1.4s (1400 milisegundos)
           } else {
             if (loader) loader.remove();
             body.style.background = '';
-            checkHeroAndProceed(false);
-          }
-        }
-
-        // FASE 1: Validar si existe la imagen del Hero y si estamos en ella
-        function checkHeroAndProceed(useHeroAnimation: boolean) {
-          if (useHeroAnimation && heroImage) {
-            startHeroScaleUp();
-          } else {
-            if (loader && showLoader) {
-              startLoaderCutoutScale();
-            } else {
-              revealContent();
-            }
-          }
-        }
-
-        // --- ANIMACIÓN DE HERO (VÍA IMAGEN) ---
-        // FASE 2: Animación de escala inicial de la imagen
-        function startHeroScaleUp() {
-          animationPhase = 1;
-          heroImage?.addEventListener('animationend', handleHeroAnimationEnd);
-          body.classList.add('hero-scale-up');
-
-          setTimeout(() => {
-            if (animationPhase === 1) startHeroFullscreen();
-          }, 700);
-        }
-
-        // FASE 3: Expansión a pantalla completa
-        function startHeroFullscreen() {
-          animationPhase = 2;
-          body.classList.remove('hero-scale-up'); 
-          body.classList.add('hero-fullscreen');
-
-          setTimeout(() => {
-            if (animationPhase === 2) revealContent();
-          }, 900);
-        }
-
-        // Manejador de eventos de animación CSS para el Hero
-        function handleHeroAnimationEnd(e: AnimationEvent) {
-          if (animationPhase === 1 && e.animationName === 'heroScaleUp') {
-            startHeroFullscreen();
-          } else if (animationPhase === 2 && e.animationName === 'heroExpandFullscreen') {
             revealContent();
-            heroImage?.removeEventListener('animationend', handleHeroAnimationEnd);
           }
         }
 
         // --- ANIMACIÓN DE CUTOUT (VÍA OVERLAY LOADER) ---
-        // FASE 2: Animación de escala inicial del recorte del loader
+        // FASE 1: Animación de escala inicial del recorte del loader
         function startLoaderCutoutScale() {
           animationPhase = 11;
           loader?.addEventListener('animationend', handleLoaderAnimationEnd);
@@ -326,7 +220,7 @@ const { lang, t, showLoader = true } = Astro.props;
           }, 700);
         }
 
-        // FASE 3: Expansión del recorte a pantalla completa
+        // FASE 2: Expansión del recorte a pantalla completa
         function startLoaderCutoutExpand() {
           animationPhase = 12;
           if (loader) {
@@ -349,7 +243,7 @@ const { lang, t, showLoader = true } = Astro.props;
           }
         }
 
-        // FASE 4: Revelar el Header y el Contenido restante
+        // FASE 3: Revelar el Header y el Contenido restante
         function revealContent() {
           animationPhase = 3;
           body.classList.add('content-reveal');
@@ -359,6 +253,9 @@ const { lang, t, showLoader = true } = Astro.props;
             loader.remove();
             body.style.background = '';
           }
+
+          // Despachar un evento personalizado para notificar que la animación terminó
+          document.dispatchEvent(new CustomEvent('loader-complete'));
           
           setTimeout(() => {
             const header = document.getElementById('site-header');
@@ -383,7 +280,7 @@ const { lang, t, showLoader = true } = Astro.props;
 <script is:inline >
   document.addEventListener("DOMContentLoaded", () => {
     const animationElements = document.querySelectorAll(
-      ".animation-up-fast, .animation-zoom-in, .animation-up-fast-2, .animation-zoom-in-2, .animation-fade-down, .animation-fade-left, .animation-zoom-out, .animation-fade-right, .animation-fade-left-2, .animation-up-fast-3 , .animation-zoom-in-3, .animation-fade-left-3, .container-image-fade, .image-fade"
+      ".animation-up-fast, .animation-fade-down, .animation-fade-left, .animation-fade-right"
     );
 
     const animationObserver = new IntersectionObserver(

@@ -20,7 +20,7 @@ const { content } = Astro.props as Props;
         
         return (
           <div
-            class={`accordion-item w-full flex justify-between items-start p-4 md:p-6 bg-[#001E23] border border-white/20 transition-all duration-300 ease-in-out ${isPar ? 'animation-fade-right' : 'animation-fade-left-2'}`}
+            class={`accordion-item w-full flex justify-between items-start p-4 md:p-6 bg-[#001E23] border border-white/20 transition-all duration-300 ease-in-out ${isPar ? 'animation-fade-right' : 'animation-fade-left'}`}
             data-open={isOpenDefault ? "true" : "false"}
           >
             <div

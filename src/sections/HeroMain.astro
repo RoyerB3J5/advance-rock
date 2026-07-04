@@ -10,15 +10,6 @@ const { content } = Astro.props as Props;
 ---
 <section data-hero-section data-scroll-snap class="relative flex w-full h-screen justify-center items-end hero-main-section overflow-hidden">
   <div class="hero-main-image absolute w-full h-full inset-0 pointer-events-none">
-    <img 
-      data-poster
-      src={`/images/${content.back}.webp`} 
-      alt="Hero Background" 
-      class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-300 object-top"
-      fetchpriority="high"
-      loading="eager"
-    />
-
     <video
       data-video
       muted={true}
@@ -26,7 +17,7 @@ const { content } = Astro.props as Props;
       playsinline={true}
       x-webkit-playsinline={true}
       preload="auto"
-      class="absolute inset-0 w-full h-full object-cover opacity-0 z-20 transition-opacity duration-300 object-top"
+      class="absolute inset-0 w-full h-full object-cover object-top"
     >
       <source src="/images/video.mp4" type="video/mp4" />
     </video>
@@ -53,32 +44,24 @@ const { content } = Astro.props as Props;
     const sections = document.querySelectorAll('[data-hero-section]');
 
     sections.forEach((section) => {
-      // Buscamos los elementos exclusivamente DENTRO de esta sección actual
-      const container = section.querySelector('.hero-main-image');
       const video = section.querySelector('[data-video]') as HTMLVideoElement;
-      const poster = section.querySelector('[data-poster]');
 
-      if (container && video && poster) {
-        container.addEventListener('animationend', (e) => {
-          if ((e as AnimationEvent).animationName === 'heroExpandFullscreen') {
-            video.play().catch(err => console.log("Error de reproducción:", err));
-          }
-        });
+      if (video) {
+        // Asegurar que el video empiece pausado
+        video.pause();
 
-        video.addEventListener('timeupdate', function onFirstFrame() {
-          if (video.currentTime > 0) {
-            video.classList.remove('opacity-0');
-            video.classList.add('opacity-100');
-            
-            setTimeout(() => {
-              poster.classList.remove('opacity-100');
-              poster.classList.add('opacity-0');
-              (container as HTMLElement).style.zIndex = "0";
-            }, 300);
+        const playVideo = () => {
+          video.play().catch(err => console.log("Error de reproducción:", err));
+        };
 
-            video.removeEventListener('timeupdate', onFirstFrame);
-          }
-        });
+        // Escuchar el evento personalizado de carga/animación completada
+        document.addEventListener('loader-complete', playVideo);
+
+        // Fallback: si el loader ya no existe en el DOM, reproducir inmediatamente
+        const loader = document.getElementById('page-loader');
+        if (!loader) {
+          playVideo();
+        }
       }
     });
   }
