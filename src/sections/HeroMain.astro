@@ -32,7 +32,8 @@ const { content } = Astro.props as Props;
     </video>
   </div>
   
-  <div class="container-full py-10 md:py-8 3xl:py-12 z-10  flex justify-between items-start xl:items-end ">
+  <div class="container-full pb-10 md:pb-8 3xl:pb-12 z-10  flex flex-col justify-between items-start h-full pt-(--header-height)">
+    <img src="/images/license.webp" alt="License" class="w-auto h-20 lg:h-[100px] mt-5" width="237" height="100" decoding="async" loading="eager"/>
     <div class="flex flex-col justify-end items-start  gap-6 md:gap-4">
       <h1 class="text-[36px] md:text-[64px] font-extrabold leading-[110%] md:leading-[100%] text-white uppercase" set:html={content.title}></h1>
       <p class="text-[17px] md:text-[24px] font-bold leading-[120%] md:leading-[150%] uppercase text-white" set:html={content.subtitle}></p>
@@ -43,7 +44,6 @@ const { content } = Astro.props as Props;
         extraBtnClass="w-full md:w-auto"
       />
     </div>
-    <img src="/images/license.webp" alt="License" class="w-auto h-20 lg:h-[100px] hidden md:block" width="237" height="100" decoding="async" loading="eager"/>
   </div>
 </section>
 

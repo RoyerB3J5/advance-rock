@@ -43,6 +43,7 @@ const { lang, t, showLoader = true } = Astro.props;
 
       /* ESTADO 1: Aparece y crece la "caja" de 400x516 */
       body.hero-scale-up .hero-main-image {
+        position: fixed;
         animation: heroScaleUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       }
 
@@ -61,6 +62,7 @@ const { lang, t, showLoader = true } = Astro.props;
 
       /* ESTADO 2: La máscara se expande revelando toda la imagen */
       body.hero-fullscreen .hero-main-image {
+        position: fixed;
         animation: heroExpandFullscreen 0.8s ease-in-out forwards;
       }
 
@@ -110,6 +112,42 @@ const { lang, t, showLoader = true } = Astro.props;
       @keyframes fadeDown {
         from { opacity: 0; transform: translateY(-30px); }
         to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ESTADO INICIAL del recorte del loader */
+      #page-loader.loader-cutout-scale {
+        animation: loaderCutoutScale 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      @keyframes loaderCutoutScale {
+        from {
+          clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+        }
+        to {
+          clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, calc(50% - 200px) calc(50% - 258px), calc(50% + 200px) calc(50% - 258px), calc(50% + 200px) calc(50% + 258px), calc(50% - 200px) calc(50% + 258px), calc(50% - 200px) calc(50% - 258px));
+        }
+      }
+
+      /* ESTADO 2: Expansión del recorte del loader */
+      #page-loader.loader-cutout-expand {
+        animation: loaderCutoutExpand 0.8s ease-in-out forwards;
+      }
+
+      @keyframes loaderCutoutExpand {
+        from {
+          clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, calc(50% - 200px) calc(50% - 258px), calc(50% + 200px) calc(50% - 258px), calc(50% + 200px) calc(50% + 258px), calc(50% - 200px) calc(50% + 258px), calc(50% - 200px) calc(50% - 258px));
+        }
+        to {
+          clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%);
+        }
+      }
+
+      /* Revelado normal de la imagen si se salta la animación */
+      body.content-reveal .hero-main-image {
+        opacity: 1;
+        transform: scale(1);
+        clip-path: inset(0 0 0 0);
+        z-index: 0;
       }
     </style>
 
@@ -211,32 +249,43 @@ const { lang, t, showLoader = true } = Astro.props;
                 loaderVideo.pause();
               }
 
-              // 2. Colocar el loader en el fondo (detrás de la animación del Hero)
-              loader.style.zIndex = '0';
-              
-              // 3. Comenzar la animación del Hero inmediatamente
-              checkHeroAndProceed();
+              // Determine if we are at the top of the page / in the hero section
+              const inHeroSection = heroImage && (window.scrollY < 100);
+
+              if (inHeroSection) {
+                // Colocar el loader en el fondo (detrás de la animación del Hero)
+                loader.style.zIndex = '0';
+                checkHeroAndProceed(true);
+              } else {
+                // Dejar el loader al frente para que la animación del recorte sea visible sobre la página
+                checkHeroAndProceed(false);
+              }
             }, 1400); // Retraso de 1.4s (1400 milisegundos)
           } else {
             if (loader) loader.remove();
             body.style.background = '';
-            checkHeroAndProceed();
+            checkHeroAndProceed(false);
           }
         }
 
-        // FASE 1: Validar si existe la imagen del Hero
-        function checkHeroAndProceed() {
-          if (!heroImage) {
-            revealContent();
-            return;
+        // FASE 1: Validar si existe la imagen del Hero y si estamos en ella
+        function checkHeroAndProceed(useHeroAnimation: boolean) {
+          if (useHeroAnimation && heroImage) {
+            startHeroScaleUp();
+          } else {
+            if (loader && showLoader) {
+              startLoaderCutoutScale();
+            } else {
+              revealContent();
+            }
           }
-          startHeroScaleUp();
         }
 
+        // --- ANIMACIÓN DE HERO (VÍA IMAGEN) ---
         // FASE 2: Animación de escala inicial de la imagen
         function startHeroScaleUp() {
           animationPhase = 1;
-          heroImage?.addEventListener('animationend', handleAnimationEnd);
+          heroImage?.addEventListener('animationend', handleHeroAnimationEnd);
           body.classList.add('hero-scale-up');
 
           setTimeout(() => {
@@ -253,6 +302,51 @@ const { lang, t, showLoader = true } = Astro.props;
           setTimeout(() => {
             if (animationPhase === 2) revealContent();
           }, 900);
+        }
+
+        // Manejador de eventos de animación CSS para el Hero
+        function handleHeroAnimationEnd(e: AnimationEvent) {
+          if (animationPhase === 1 && e.animationName === 'heroScaleUp') {
+            startHeroFullscreen();
+          } else if (animationPhase === 2 && e.animationName === 'heroExpandFullscreen') {
+            revealContent();
+            heroImage?.removeEventListener('animationend', handleHeroAnimationEnd);
+          }
+        }
+
+        // --- ANIMACIÓN DE CUTOUT (VÍA OVERLAY LOADER) ---
+        // FASE 2: Animación de escala inicial del recorte del loader
+        function startLoaderCutoutScale() {
+          animationPhase = 11;
+          loader?.addEventListener('animationend', handleLoaderAnimationEnd);
+          loader?.classList.add('loader-cutout-scale');
+
+          setTimeout(() => {
+            if (animationPhase === 11) startLoaderCutoutExpand();
+          }, 700);
+        }
+
+        // FASE 3: Expansión del recorte a pantalla completa
+        function startLoaderCutoutExpand() {
+          animationPhase = 12;
+          if (loader) {
+            loader.classList.remove('loader-cutout-scale');
+            loader.classList.add('loader-cutout-expand');
+          }
+
+          setTimeout(() => {
+            if (animationPhase === 12) revealContent();
+          }, 900);
+        }
+
+        // Manejador de eventos de animación CSS para el Loader
+        function handleLoaderAnimationEnd(e: AnimationEvent) {
+          if (animationPhase === 11 && e.animationName === 'loaderCutoutScale') {
+            startLoaderCutoutExpand();
+          } else if (animationPhase === 12 && e.animationName === 'loaderCutoutExpand') {
+            revealContent();
+            loader?.removeEventListener('animationend', handleLoaderAnimationEnd);
+          }
         }
 
         // FASE 4: Revelar el Header y el Contenido restante
@@ -272,16 +366,6 @@ const { lang, t, showLoader = true } = Astro.props;
               header.style.animation = 'none';
             }
           }, 650);
-        }
-
-        // Manejador de eventos de animación CSS
-        function handleAnimationEnd(e: AnimationEvent) {
-          if (animationPhase === 1 && e.animationName === 'heroScaleUp') {
-            startHeroFullscreen();
-          } else if (animationPhase === 2 && e.animationName === 'heroExpandFullscreen') {
-            revealContent();
-            heroImage?.removeEventListener('animationend', handleAnimationEnd);
-          }
         }
 
         removeLoaderAndStart();
