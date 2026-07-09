@@ -9,7 +9,7 @@ interface Props {
 const { content } = Astro.props as Props;
 ---
 <section data-hero-section data-scroll-snap class="relative flex w-full h-screen justify-center items-end hero-main-section overflow-hidden">
-  <div class="hero-main-image absolute w-full h-full inset-0 pointer-events-none">
+  {/*<div class="hero-main-image absolute w-full h-full inset-0 pointer-events-none">
     <video
       data-video
       muted={true}
@@ -21,7 +21,9 @@ const { content } = Astro.props as Props;
     >
       <source src="/images/video.mp4" type="video/mp4" />
     </video>
-  </div>
+  </div> */}
+  
+  <img src={`/images/hero-main.webp`} alt="Hero Image" width="2500" height="1563" class="object-cover z-0 pointer-events-none w-full h-full absolute inset-0 object-top hero-main-image" decoding="async" loading="eager"/>
   
   <div class="container-full pb-10 md:pb-8 3xl:pb-12 z-10  flex flex-col justify-between items-start h-full pt-(--header-height)">
     <img src="/images/license.webp" alt="License" class="w-auto h-20 lg:h-[100px] mt-5" width="237" height="100" decoding="async" loading="eager"/>
