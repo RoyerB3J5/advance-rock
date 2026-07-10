@@ -15,15 +15,15 @@ export default {
         href: "/projects",
       },
       {
-        label: "Branches",
-        href: "/branches",
+        label: "Locations",
+        href: "/locations",
       },
       {
         label: "MEDO",
         href: "/services/medo",
       },
       {
-        label: "Contact",
+        label: "Contact Us",
         href: "/contact",
       },
     ],
@@ -59,18 +59,18 @@ export default {
     },
     buttons: [
       {
-        label: "Get a Quote",
+        label: "Free Estimate",
         href: "/en/contact",
       },
     ],
   },
   main: {
     hero: {
-      title: "Estamos Licenciados <br/> y Asegurados",
-      subtitle: "Concreto de primera categoría",
+      title: "RELIABLE CONCRETE. <br/> PROVEN RESULTS.",
+      subtitle: "BUILT TO LAST. GUARANTEED.",
       button: {
-        label: "Cotización Gratis",
-        href: "/es/contact",
+        label: "Free Estimate",
+        href: "/en/contact",
       },
       back: "hero-main",
       video: "",
@@ -78,9 +78,9 @@ export default {
     information: {
       first: {
         title:
-          '<span class="text-secondary">Constructores de todaS LAS CarolinaS</span> Confían en Nosotros',
+          '<span class="text-secondary">Builders Across the Carolinas</span> Rely on Advance Rock',
         description:
-          "Built on reliability, powered by experience, and trusted for lasting results.",
+          "Built on reliability, driven by experience, and backed by long-lasting results",
       },
       second: [
         {
@@ -88,44 +88,43 @@ export default {
           description: "Efficient scheduling for every project.",
         },
         {
-          title: "Expert Craftsmanship",
+          title: "Modern Fleet",
+          description: " Reliable equipment built for high performance.",
+        },
+        {
+          title: "Expert Craftsmanship ",
           description: "Precision in every pour.",
         },
         {
-          title: "Modern Fleet",
-          description: "Reliable equipment built for performance.",
-        },
-        {
           title: "Proven Results",
-          description: "Concrete solutions that last.",
+          description: "Concrete solutions made to last.",
         },
       ],
       third: {
         title:
-          "Building Concrete <span class='text-secondary'>Excellence</span>",
+          "QUALITY CONCRETE FOR <span class='text-secondary'>YOUR HOME OR BUSINESS</span>",
         para1:
-          "Delivering dependable concrete solutions through expert craftsmanship and lasting quality.",
+          "We deliver reliable concrete solutions backed by experience, precision, and proven quality.",
         para2:
-          "We bring together technical expertise, strategic planning, and a commitment to excellence to deliver concrete solutions tailored to every project.",
+          "We combine technical expertise, strategic planning, and a strong commitment to excellence to create solutions tailored to the specific needs of every project.",
         link: "Learn More About Us",
-        siguenos: "Síguenos",
+        siguenos: "Follow Us",
         items: [
           {
-            title: "Client-Focused Approach",
-            description: "Soluciones de presupuesto a tu medida",
+            title: "Customer-Focused ",
+            description: "Built around you",
           },
           {
             title: "Long-Term Performance",
-            description:
-              "Built for <br class='hidden md:block'/> durability and lasting value",
+            description: "Designed to stand the test of time.",
           },
           {
-            title: "Quality-Driven Process",
-            description: "Every phase executed with attention to detail",
+            title: "Guaranteed Quality",
+            description: "Precision in every detail.",
           },
           {
             title: "Strategic Planning",
-            description: "Careful coordination from start to finish",
+            description: "Efficiency from start to finish.",
           },
         ],
       },
@@ -133,7 +132,7 @@ export default {
     services: {
       title: "Our Concrete Services",
       description:
-        "Comprehensive concrete solutions designed to deliver <br/> strength, durability, and precision for every project.",
+        "Complete concrete solutions designed to deliver <br/> strength, durability, and precision in every project.",
       button: {
         label: "Explore Our Services",
         href: "/en/services",
@@ -141,74 +140,77 @@ export default {
       items: [
         {
           title: "Pool Construction",
-          description: "Custom pools built for life.",
+          description: "Custom pools designed and built to last.",
           button: {
-            label: "More Information",
+            label: "Learn More",
             href: "/pool-construction",
           },
           first: "Pool Construction",
         },
         {
           title: "Concrete Remodeling",
-          description: "Upgrade spaces with strength.",
+          description:
+            "We transform your spaces with smart concrete solutions.",
           button: {
-            label: "More Information",
+            label: "Learn More",
             href: "/concrete-remodeling",
           },
           first: "Concrete Remodeling",
         },
         {
           title: "Concrete Supply",
-          description: "Reliable mix, delivered on time.",
+          description:
+            "Reliable concrete, delivered on time, straight from our plants",
           button: {
-            label: "More Information",
+            label: "Learn More",
             href: "/concrete-supply",
           },
           first: "Concrete Supply",
         },
         {
-          title: "Turnkey Projects",
-          description: "Complete solutions, zero hassle.",
+          title: "Full-Service Projects",
+          description: "Complete solutions for a smooth, stress-free execution",
           button: {
-            label: "More Information",
+            label: "Learn More",
             href: "/turnkey-projects",
           },
-          first: "Turnkey Projects",
+          first: "Full-Service Projects",
         },
         {
           title: "MEDO & Virtual Branches",
-          description: "Grow with our proven system.",
+          description: "Grow your business with our proven system.",
           button: {
-            label: "More Information",
+            label: "Learn More",
             href: "/medo",
           },
           first: "MEDO",
         },
         {
-          title: "Equipment and yard rental",
-          description: "Equipos y espacios para impulsar tus proyectos.",
+          title: "Equipment & Yard Rentals",
+          description:
+            "Equipment and spaces designed to move your projects forward.",
           button: {
-            label: "More Information",
+            label: "Learn More",
             href: "/rental-equipment",
           },
-          first: "Equipment and yard rental",
+          first: "Equipment & Yard Rentals",
         },
       ],
     },
     projects: {
       first: {
-        title: "Modern Fleet, Proven Performance",
+        title: "MODERN FLEET. PROVEN RESULTS.",
         description:
-          "Advanced equipment and reliable logistics designed to deliver efficiency, precision, and consistency on every project.",
+          "Next-generation equipment, advanced technology, and smart logistics designed to deliver precision, reliability, and peak performance on every concrete job.",
         description2:
           "Our fleet supports projects of every scale with dependable scheduling, accurate delivery, and seamless coordination.",
       },
       second: {
-        title: "Built To Showcase Excellence",
+        title: "BUILT TO OUTLAST AND OUTPERFORM",
         subtitle:
-          "Real projects that reflect our commitment to quality, precision, and dependable execution.",
+          "Every job reflects our relentless focus on precision, innovation, and uncompromising quality.",
         description:
-          "From residential foundations to commercial developments, our completed work demonstrates the strength and reliability behind every project we deliver.",
+          "From residential foundations to complex commercial builds, we use advanced technologyand smart planning to deliver concrete built to stand strong for decades",
         button: {
           label: "View Our Projects",
           href: "/en/projects",
@@ -220,11 +222,11 @@ export default {
       title1:
         "Start  <br class='block md:hidden'/> Building <br class='block md:hidden'/> <span class='text-white'>With <br class='hidden md:block'/> Confidence</span>",
       description:
-        "Partner with a team committed to precision, reliability, and results built to last.",
+        "Experience, innovation, precision, and advanced technology in every square foot. ",
       description2:
-        "Let’s bring your project to life with expert concrete solutions designed <br class='hidden md:block'/> for strength, efficiency, and exceptional performance.",
+        "We turn your vision into high-performance surfaces: <br class='hidden md:block'/>  durable, functional, and built to last for decades",
       button: {
-        label: "Get Your Free Quote",
+        label: "Request Your Free Estimate",
         href: "/en/contact",
       },
       img: "hero-confidence",
@@ -235,52 +237,59 @@ export default {
   },
   about: {
     hero: {
-      title: "Building Concrete <br/> Excellence",
+      title: "QUALITY AND EXCELLENCE <br/> IN EVERY BUILD",
       button: {
-        label: "Get Your Free Quote",
+        label: "Free Estimate",
         href: "/en/contact",
       },
       back: "about",
       video: "",
     },
     who: {
-      title: "WHO ARE WE?",
+      title: "Who We Are",
       subtitle:
-        "We are a comprehensive company dedicated to meeting multiple needs in the field of construction.",
+        "We are a full-service company dedicated to meeting multiple needs within the construction industry.",
       description:
-        "From the distribution of quality concrete to the reconstruction of homes, through financial investments and rental of specialized tools, we offer complete solutions for construction projects.",
+        "From quality concrete distribution to home reconstruction, financial investment opportunities, and specialized equipment rentals, we provide complete solutions for construction projects of every scale.",
       description2:
-        "Our commitment to excellence, diversity of services and customer satisfaction sets us apart in the market. Trust us to make your projects a reality.",
+        "Excellence. Commitment to quality. Full-service support. Satisfied clients. Advance Rock Concrete: we bring your project to life.",
       medias: "Sigue nuestras historias",
+      list: [
+        "Excelencia.",
+        "Compromiso con la calidad.",
+        "Servicio integral.",
+        "Clientes satisfechos.",
+        "Advance Rock Concrete: Hacemos realidad tu proyecto.",
+      ],
     },
     brands: {
       title: "OUR BRANDS",
       items: [
         {
-          title: "CALIDAD",
+          title: "QUALITY",
           description:
-            "Compromiso con la excelencia en todos los aspectos de nuestros servicios, desde la distribución de concreto hasta la reconstrucción de viviendas y el alquiler de herramientas. Nos esforzamos por superar las expectativas de nuestros clientes en términos de calidad y durabilidad",
+            "We are committed to excellence in every part of our service, from concrete distribution to home reconstruction and equipment rentals. Our goal is simple: exceed client expectations with durable, reliable, high-quality results.",
           icon: "check-2",
           image: "calidad",
         },
         {
-          title: "SERVICIO AL CLIENTE",
+          title: "Customer Service",
           description:
-            "Ponemos las necesidades e inquietudes de nuestros clientes en el centro de todo lo que hacemos. Nos esforzamos por brindar un servicio personalizado y una atención excepcional, garantizando una experiencia positiva en cada interacción",
+            "Your needs come first. Every client receives personalized attention, direct communication,and results delivered with zero surprises.",
           icon: "customer",
           image: "servicio-cliente",
         },
         {
-          title: "INTEGRIDAD",
+          title: "INTEGRITY",
           description:
-            "Actuamos con honestidad, transparencia y ética en todas nuestras operaciones. Estamos comprometidos a mantener la confianza de nuestros clientes, empleados y socios comerciales en todo momento",
+            "We operate with honesty, transparency, and strong business ethics. No shortcuts. No exceptions. The trust of our clients, employees, and business partners is earned through action, not promises. We protect that trust on every project, every single day",
           icon: "shield",
           image: "integridad",
         },
         {
-          title: "INNOVACIÓN",
+          title: "INNOVATION",
           description:
-            "Adoptamos la innovación y la creatividad en nuestra constante búsqueda de mejorar nuestros servicios y procesos. Estamos abiertos a nuevas ideas y enfoques que nos permitan mantenernos a la vanguardia de la industria",
+            "We embrace innovation and creativity as part of our ongoing commitment to improving our services, systems, and processes. We stay open to new ideas and smarter approaches that help us remain at the front of the construction industry.",
           icon: "boxs",
           image: "innovacion",
         },
@@ -291,7 +300,7 @@ export default {
     hero: {
       title: "Our Concrete <br/> Services",
       button: {
-        label: "Get Your Free Quote",
+        label: " Free Estimate",
         href: "/en/contact",
       },
       back: "services-hero",
@@ -301,70 +310,72 @@ export default {
       {
         title: "Pool Construction",
         subtitle:
-          "We design and build custom pools, tailored to each <br class='block lg:hidden xl:block'/> space and lifestyle.",
+          "We design and build custom pools tailored to every space, <br class='block lg:hidden xl:block'/> property, and lifestyle",
         description:
-          "We design and build custom pools, tailored to each space and <br class='hidden md:block lg:hidden xl:block'/> lifestyle. We handle the entire process: from site preparation to final <br class='hidden md:block lg:hidden xl:block'/> delivery.",
+          "Our team manages the full process,from site preparation to final delivery,  <br class='hidden md:block lg:hidden xl:block'/> lifestyle.so every project is built with precision, beauty, and long-term performance <br class='hidden md:block lg:hidden xl:block'/> in mind.",
         image: "services-1",
         button: {
-          label: "More Information",
+          label: "Learn More",
           href: "/en/services/pool-construction",
         },
       },
       {
         title: "Concrete Remodeling",
         subtitle:
-          "We transform outdoor spaces with high-quality concrete <br class='hidden md:block lg:hidden xl:block'/> solutions: Patios, Driveways, Walkways, Extensions.",
+          "We transform outdoor spaces with high-quality concrete <br class='hidden md:block lg:hidden xl:block'/> solutions, including patios, driveways, walkways, extensions, and more.",
         description:
-          "We create functional, durable areas with high visual impact.",
+          "We create functional, durable areas with strong visual impact and long-lasting value.",
         image: "services-2",
         button: {
-          label: "More Information",
+          label: "Learn More",
           href: "/en/services/concrete-remodeling",
         },
       },
       {
         title: "Concrete Supply",
         subtitle:
-          "We offer ready-mix concrete for residential and <br class='hidden md:block lg:hidden xl:block'/> commercial projects, with efficient logistics and on- <br class='hidden md:block lg:hidden xl:block'/> time delivery.",
-        description: "Ideal for: Contractors, Builders, Independent Projects.",
+          "We offer ready-mix concrete for residential and <br class='hidden md:block lg:hidden xl:block'/> commercial projects, supported by efficient logistics and reliable  on- <br class='hidden md:block lg:hidden xl:block'/> time delivery.",
+        description:
+          "Ideal for contractors, builders, and independent projects.",
         image: "services-3",
         button: {
-          label: "More Information",
+          label: "Learn More",
           href: "/en/services/concrete-supply",
         },
       },
       {
-        title: "Turnkey Projects",
+        title: "FULL-SERVICE PROJECTS",
         subtitle:
-          "We execute complete projects combining design, <br class='hidden md:block lg:hidden xl:block'/> material supply, and construction.",
-        description: "One team, one process, zero complications.",
+          "Our integrated approach centralizes every stage  <br class='hidden md:block lg:hidden xl:block'/> of the project under one team, one plan, and one clear line of responsibility.",
+        description:
+          "Managing multiple vendors can lead to delays, cost overruns, and coordination problems",
         image: "services-4",
         button: {
-          label: "More Information",
+          label: "Learn More",
           href: "/en/services/turnkey-projects",
         },
       },
       {
-        title: "MEDO & Virtual Branches: ",
+        title: "MEDO & Virtual Branches",
         subtitle:
-          "Become part of our business ecosystem and generate <br class='hidden md:block lg:hidden xl:block'/> income in the construction industry without starting <br class='hidden md:block lg:hidden xl:block'/> from scratch.",
+          "Become part of our business ecosystem and generate<br class='hidden md:block lg:hidden xl:block'/>  income in the construction industry without starting <br class='hidden md:block lg:hidden xl:block'/> from zero.",
         description:
-          ". Operate your own truck (MEDO) <br/> . Open your own branch office <br/> . Access our network and operating system",
+          ". Operate your own mixer truck through MEDO. <br/> . Open your own virtual branch. <br/> .Access our network, structure, and operating system.",
         image: "services-5",
         button: {
-          label: "More Information",
+          label: "Learn More",
           href: "/en/services/medo",
         },
       },
       {
-        title: "Equipment and Yard Rental",
+        title: "Equipment & Yard Rental",
         subtitle:
-          "Having the right equipment and spaces can make <br class='hidden md:block lg:hidden xl:block'/> a difference in the productivity of any project.",
+          "The right equipment and space can make <br class='hidden md:block lg:hidden xl:block'/> all the difference in the productivity of any project.",
         description:
-          "We offer flexible solutions to support <br class='hidden md:block lg:hidden xl:block5'/> construction, storage and logistics operations.",
+          "We offer flexible rental solutions to <br class='hidden md:block lg:hidden xl:block'/> support construction operations, storage, and logistics.",
         image: "services-6",
         button: {
-          label: "More Information",
+          label: "Learn More",
           href: "/en/services/rental-equipment",
         },
       },
@@ -373,458 +384,451 @@ export default {
   services: {
     "pool-construction": {
       hero: {
-        title: "Diseñamos Tu <br/> Piscina Ideal",
+        title: "WE DESIGN  <br/> YOUR IDEAL POOL",
         button: {
-          label: "Cotización gratuita",
+          label: "Free Estimate",
           href: "/en/contact",
         },
         back: "services-1-hero",
         video: "",
       },
       info: {
-        title: "Espacios Diseñados Para Disfrutar",
+        title: "SPACES DESIGNED TO ENJOY",
         subtitle:
-          "Cada propiedad es única, y la piscina ideal debe adaptarse a su espacio, estilo y forma de vida.",
+          "Every property is unique, and the ideal pool should fit its space, style, and lifestyle.",
         description:
-          "Desde diseños compactos para patios residenciales hasta proyectos completamente personalizados, nuestro equipo gestiona cada etapa para garantizar un resultado funcional, atractivo y duradero.",
+          "From compact designs for residential backyards to fully customized projects, our team manages every stage to deliver a functional, beautiful, and long-lasting result.",
         image: "services-1-info",
       },
       examples: {
-        title: "Piscinas Que Se Adaptan A Tu <br/> Estilo De Vida",
+        title: "POOLS BUILT AROUND <br/> YOUR LIFESTYLE",
         description:
-          "Descubre soluciones diseñadas para maximizar la belleza, <br/> comodidad y valor de tu propiedad.",
+          "Discover solutions designed to maximize the beauty, <br/> comfort, and value of your property",
         items: [
           {
             image: "services-1-exp-1",
-            title: "Construcción Integral",
+            title: "Full-Service Construction",
             description:
-              "Nos encargamos de todo el proceso para que disfrutes una <br class='hidden md:block'/> experiencia sin complicaciones.",
+              "We handle the entire process so you can enjoy a smooth <br class='hidden md:block'/>, stress-free experience",
             list: [
-              "Gestión completa del proyecto",
-              "Coordinación de cada etapa",
-              "Acabados de alta calidad",
+              "Complete project management",
+              "Coordination of every stage",
+              "High-quality finishes",
             ],
           },
           {
             image: "services-1-exp-2",
-            title: "Piscinas Personalizadas",
+            title: "Custom Pools",
             description:
-              "Diseñamos y construimos piscinas adaptadas a las características <br class='hidden md:block'/> de cada terreno, combinando funcionalidad, estética y confort.",
+              "We design and build pools tailored to the characteristics of <br class='hidden md:block'/> each property, combining functionality, aesthetics, and comfort. ",
             list: [
-              "Diseños adaptados a cada espacio",
-              "Integración armoniosa con el entorno",
-              "Soluciones totalmente personalizadas",
+              "Designs tailored to each space",
+              "Seamless integration with the surroundings",
+              "Fully customized solutions",
             ],
           },
         ],
       },
       confidence: {
         title1:
-          "Convierte Tu <br class='block md:hidden'/> Patio <br class='block md:hidden'/> <span class='text-white'>En Un <br class='hidden md:block'/> Espacio <br class='block md:hidden'/> Único</span>",
-        description: "Piscinas diseñadas para tu estilo de vida.",
+          "TURN YOUR  <br class='block md:hidden'/> BACKYARD <br class='block md:hidden'/> <span class='text-white'>INTO A <br class='hidden md:block'/>  ONE-OF-A-KIND<br class='block md:hidden'/>  SPACE </span>",
+        description: "Pools designed for your lifestyle.",
         description2:
-          "Creamos piscinas funcionales, elegantes y duraderas <br class='hidden md:block'/> que  transforman cualquier espacio exterior.",
+          "We create functional, elegant, and <br class='hidden md:block'/> durable pools that transform any outdoor space.",
         button: {
-          label: "Cotización gratuita",
+          label: "Request Your Free Estimate",
           href: "/en/contact",
         },
         img: "serv-1-confidence",
       },
       questions: {
-        title: "Preguntas <br/> Frecuentes",
+        title: "Frequently <br/> Asked Questions",
         items: [
           {
-            question: "¿Diseñan piscinas personalizadas?",
+            question: "Do you design custom pools?",
             answer:
-              "Sí. Diseñamos cada piscina según el espacio disponible, el estilo de la propiedad y las necesidades específicas de cada cliente.",
+              "Yes. Each pool is designed around the available space, the style of the property, and the specific needs of the client.",
           },
           {
-            question: "¿Se encargan de todo el proceso?",
+            question: "Do you handle the entire process?",
             answer:
-              "Sí. Gestionamos cada etapa del proyecto, desde la preparación del terreno hasta los acabados finales.",
+              "Yes. We manage every stage of the project, from site preparation to the final finishes.",
           },
           {
-            question: "¿Qué tipos de piscinas construyen?",
+            question: "What types of pools do you build?",
             answer:
-              "Construimos piscinas residenciales, recreativas y personalizadas en distintos tamaños, formas y acabados.",
+              "We build residential, recreational, and custom pools in various sizes, shapes, and finishes.",
           },
           {
-            question:
-              "¿Se adaptan a mi presupuesto para construir una piscina?",
+            question: "Do you adapt to my budget for building a pool?",
             answer:
               "Sí, diseñamos cada piscina según sus necesidades y presupuesto, ofreciendo soluciones personalizadas y de alta calidad.",
           },
           {
-            question: "¿Cuánto tiempo toma construir una piscina?",
+            question: "How long does it take to build a pool?",
             answer:
-              "El tiempo depende del diseño y alcance del proyecto, pero siempre trabajamos con una planificación clara y eficiente.",
+              "The timeline depends on the design and scope of the project, but we always work with clear and efficient planning.",
           },
           {
-            question: "¿También remodelan piscinas existentes?",
+            question: "Do you remodel existing pools?",
             answer:
-              "Sí. Realizamos renovaciones, ampliaciones y mejoras para modernizar cualquier piscina.",
+              "Yes. We handle renovations, expansions, and upgrades to modernize existing pools.",
           },
         ],
       },
     },
     "concrete-remodeling": {
       hero: {
-        title: "Transformamos <br/> Espacios Concretos",
+        title: "We Transform <br/> Concrete Spaces",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         back: "services-2-hero",
         video: "",
       },
       info: {
-        title: "Renueva Espacios Que Han Perdido Su Potencial",
+        title: "Renew Spaces That Have Lost Their Potential",
         subtitle:
-          "Las superficies deterioradas afectan la apariencia y funcionalidad de cualquier propiedad.",
+          "Damaged concrete affects more than appearance: it puts your safety and your property value at risk.",
         description:
-          "Transformamos patios, accesos, aceras y áreas exteriores mediante soluciones modernas que mejoran tanto la estética como el rendimiento.",
+          "We repair and transform patios, driveways, and sidewalks with modern designs that not only look incredible, but are made to last.",
         image: "services-2-info",
       },
       examples: {
-        title: "Soluciones Diseñadas <br class='hidden md:block'/> Para Durar",
+        title: "Solutions Designed <br class='hidden md:block'/> To Last",
         description:
-          "Creamos espacios resistentes que combinan <br class='hidden md:block'/> funcionalidad y diseño.",
+          "We create durable spaces that combine <br class='hidden md:block'/> functionality and design.",
         items: [
           {
             image: "services-2-exp-1",
-            title: "Renovación De Superficies",
+            title: "Surface Renovation",
             description:
-              "Recuperamos áreas desgastadas para devolverles seguridad y atractivo visual.",
+              "We restore worn areas to bring back safety and visual appeal.",
             list: [
-              "Mejora inmediata de apariencia",
-              "Soluciones adaptadas al uso diario",
-              "Mayor valor para la propiedad",
+              "Immediate visual improvement",
+              "Solutions adapted to daily use",
+              "Higher property value",
             ],
           },
           {
             image: "services-2-exp-2",
-            title: "Acabados Decorativos",
+            title: "Decorative Finishes",
             description:
-              "Incorporamos elementos que elevan la estética de cada proyecto.",
+              "We turn simple surfaces into details that elevate your entire property.  ",
             list: [
-              "Diseños modernos y elegantes",
-              "Opciones personalizadas",
-              "Acabados de larga duración",
+              "Modern and elegant designs",
+              "Custom options",
+              "Long-lasting finishes",
             ],
           },
         ],
       },
       confidence: {
         title1:
-          "Renueva Tus <br/> <span class='text-white'>Espacios Con <br/> Estilo</span>",
-        description: "Soluciones en concreto con impacto duradero.",
+          "Renew Your <br/> <span class='text-white'>Spaces With <br/> Style</span>",
+        description: "Concrete solutions with lasting impact.",
         description2:
-          "Transformamos áreas exteriores en espacios <br/> modernos, funcionales y resistentes.",
+          "We transform outdoor areas into <br/> modern, functional, and durable spaces.",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         img: "serv-2-confidence",
       },
       questions: {
-        title: "Preguntas <br/> Frecuentes",
+        title: "Frequently Asked <br/> Questions",
         items: [
           {
-            question: "¿Qué áreas pueden remodelar?",
+            question: "What areas can you remodel?",
             answer:
-              "Trabajamos en patios, entradas vehiculares, aceras, ampliaciones y todo tipo de superficies de concreto.",
+              "We work on patios, driveways, sidewalks, extensions, and any concrete surface.",
           },
           {
-            question: "¿Pueden reemplazar concreto deteriorado?",
+            question: "Do you replace damaged concrete?",
             answer:
-              "Sí. Evaluamos el estado de la superficie y proponemos la mejor solución para restaurarla o renovarla.",
+              "Of course. We assess the condition and tell you whether repair or replacement is the better option. We always look for the best solution for your budget.",
           },
           {
-            question: "¿Ofrecen acabados decorativos?",
+            question: "Do you offer decorative finishes?",
             answer:
-              "Sí. Contamos con diferentes opciones para mejorar la estética y funcionalidad de cada proyecto.",
+              "Yes. We do not make boring concrete. We offer colors, textures, and designs so your project looks unique and lasts for years.",
           },
           {
-            question: "¿Las remodelaciones aumentan el valor de una propiedad?",
+            question: "Does remodeling increase my home's value?",
             answer:
-              "Sí. Un espacio exterior renovado puede mejorar significativamente la apariencia y el valor del inmueble.",
+              "Absolutely. A renovated exterior not only looks better, it also increases your property value and improves first impressions.",
           },
           {
-            question: "¿Atienden proyectos residenciales y comerciales?",
+            question: "Do you do residential and commercial work?",
             answer:
-              "Sí. Adaptamos nuestras soluciones a proyectos de cualquier tamaño.",
+              "Yes. From your home patio to full parking lots. We adapt the project to the size you need.",
           },
         ],
       },
     },
     "concrete-supply": {
       hero: {
-        title: "Concreto Listo <br/> Para Construir",
+        title: "CONCRETE READY <br/> To Build",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         back: "services-3-hero",
         video: "",
       },
       info: {
-        title: "El Material Correcto En El Momento Correcto",
+        title: "The Right Material At The Right Time",
         subtitle:
-          "La calidad del concreto y la puntualidad en la entrega son fundamentales para el éxito de cualquier proyecto.",
+          "Concrete quality and timely delivery are essential to the success of any project.",
         description:
-          "Contamos con la capacidad operativa necesaria para abastecer obras residenciales, comerciales e industriales.",
+          "We have the operational capacity needed to supply residential, commercial, and industrial projects.",
         image: "services-3-info",
       },
       examples: {
-        title: "Concreto Confiable Para <br/> Cada Proyecto",
+        title: "Reliable Concrete For <br/> Every Project",
         description:
-          "Suministramos materiales diseñados para ofrecer <br/> rendimiento y consistencia.",
+          "We supply materials designed to deliver <br/> performance and consistency.",
         items: [
           {
             image: "services-3-exp-1",
-            title: "Concreto Premezclado",
+            title: "Ready-Mix Concrete",
             description:
-              "Soluciones listas para usar que optimizan tiempos y recursos.",
+              "Ready-to-use solutions that optimize time and resources.",
             list: [
-              "Calidad uniforme",
-              "Excelente trabajabilidad",
-              "Mayor eficiencia en obra",
+              "Uniform quality",
+              "Excellent workability",
+              "Greater on-site efficiency",
             ],
           },
           {
             image: "services-3-exp-2",
-            title: "Logística Especializada",
+            title: "Specialized Logistics",
             description:
-              "Coordinamos entregas precisas para mantener el ritmo de construcción.",
+              "We coordinate precise deliveries to keep construction on pace.",
             list: [
-              "Entregas programadas",
-              "Cobertura amplia",
-              "Capacidad para grandes volúmenes",
+              "Scheduled deliveries",
+              "Wide coverage",
+              "Large volume capacity",
             ],
           },
         ],
       },
       confidence: {
         title1:
-          "Concreto Listo <span class='text-white'>Cuando <br/> Lo Necesitas</span>",
-        description: "Calidad, puntualidad y eficiencia garantizadas.",
+          "CONCRETE READY WHEN <span class='text-white'>When <br/> You Need It</span>",
+        description: "Guaranteed quality, punctuality, and efficiency",
         description2:
-          "Recibe concreto premezclado con entregas confiables para <br/> mantener tu proyecto en marcha.",
+          "Get ready-mix concrete with dependable delivery designed <br/> keep your project moving.",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         img: "serv-3-confidence",
       },
       questions: {
-        title: "Preguntas <br/> Frecuentes",
+        title: "Frequently <br/> Asked  Questions",
         items: [
           {
-            question: "¿Ofrecen concreto premezclado?",
+            question: "Do you offer ready-mix concrete?",
             answer:
-              "Sí. Suministramos concreto listo para usar con calidad uniforme para todo tipo de proyectos.",
+              "Yes. We supply ready-to-use concrete with uniform quality for all types of projects.",
           },
           {
-            question: "¿Atienden proyectos pequeños y grandes?",
+            question: "Do you handle both small and large projects?",
             answer:
-              "Sí. Trabajamos con propietarios, contratistas y constructoras en proyectos de distintas escalas.",
+              "Yes. We work with homeowners, contractors, and builders on projects of various scales.",
           },
           {
-            question: "¿Garantizan entregas puntuales?",
+            question: "Do you guarantee on-time deliveries?",
             answer:
-              "Sí. Nuestra logística está diseñada para cumplir con los tiempos establecidos de cada obra.",
+              "Yes. Our logistics are designed to meet the established timelines of each project.",
           },
           {
-            question: "¿Pueden suministrar grandes volúmenes?",
+            question: "Can you supply large volumes?",
             answer:
-              "Sí. Contamos con la capacidad operativa para atender proyectos residenciales, comerciales e industriales.",
+              "Yes. We have the operational capacity to handle residential, commercial, and industrial projects.",
           },
           {
-            question: "¿Cómo solicito una entrega?",
+            question: "How do I request a delivery?",
             answer:
-              "Solo debe contactarnos y coordinaremos la cantidad, ubicación y fecha requerida.",
+              "Just contact us and we will coordinate the quantity, location, and required date.",
           },
         ],
       },
     },
     "turnkey-projects": {
       hero: {
-        title: "Todo Tu Proyecto,  <br/> Un Solo Equipo",
+        title: "Your Entire Project,  <br/> One Team",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         back: "services-4-hero",
         video: "",
       },
       info: {
-        title: "Una Solución Completa Desde El Inicio",
+        title: "A Complete Solution From The Start",
         subtitle:
-          "Gestionar múltiples proveedores puede generar retrasos, sobrecostos y problemas de coordinación.",
+          "Managing multiple suppliers can cause delays, cost overruns, and coordination issues. With us, responsibility starts and ends here.",
         description:
-          "Nuestro enfoque integral centraliza cada etapa del proyecto bajo una sola gestión.",
+          "Our comprehensive approach centralizes every project stage under a single management. The blame game ends here.",
         image: "services-4-info",
       },
       examples: {
-        title:
-          "Todo Lo Que Necesitas En <br class='hidden md:block'/> Un Solo Equipo",
+        title: "Everything You Need In <br class='hidden md:block'/> One Team",
         description:
-          "Descubre soluciones diseñadas para maximizar la <br class='hidden md:block'/> belleza, comodidad y valor de tu propiedad.",
+          "We leave your property more valuable, stronger, and ready on time.",
         items: [
           {
             image: "services-4-exp-1",
-            title: "Planificación Estratégica",
+            title: "PLANNING THAT DOESN'T FAIL.",
             description:
-              "Diseñamos cada proyecto considerando objetivos, recursos y tiempos.",
-            list: [
-              "Mayor control operativo",
-              "Optimización de costos",
-              "Procesos organizados",
-            ],
+              "We don't improvise. We design every meter of concrete with objective, budget, and delivery date in hand. You have control. We execute. Zero cost surprises. Zero delays from poor planning.",
+            list: [],
           },
           {
             image: "services-4-exp-2",
-            title: "Ejecución Integral",
+            title: "TOTAL EXECUTION. TOTAL RESPONSIBILITY.",
             description:
-              "Supervisamos cada fase para asegurar calidad y cumplimiento.",
+              "We supervise every phase to ensure quality and compliance.",
             list: [
-              "Coordinación continua",
-              "Seguimiento permanente",
-              "Resultados consistentes",
+              "Continuous coordination",
+              "Permanent monitoring",
+              "Consistent results",
             ],
           },
         ],
       },
       confidence: {
         title1:
-          "Todo Tu <br/> Proyecto <br/> <span class='text-white'>En Un Solo <br class='hidden md:block'/> Lugar</span>",
-        description: "Una solución completa, sin complicaciones.",
+          "Your Entire <br/> Project <br/> <span class='text-white'>In One <br class='hidden md:block'/> Place</span>",
+        description: "A complete solution, without complications.",
         description2:
-          "Nos encargamos de cada etapa para que puedas <br/> enfocarte en los resultados.",
+          "We handle every stage so you can <br/> focus on the results. <br/> <br/> End the delays. Get a free estimate.→ One team. One invoice. Zero blame games.",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         img: "serv-4-confidence",
       },
       questions: {
-        title: "Preguntas <br/> Frecuentes",
+        title: "Frequently Asked <br/> Questions",
         items: [
           {
-            question: "¿Qué incluye un proyecto integral?",
+            question: "What does a turnkey project include?",
             answer:
-              "Incluye planificación, suministro de materiales, gestión y ejecución completa de la obra.",
+              "It includes planning, material supply, management, and complete project execution.",
           },
           {
-            question: "¿Qué ventajas ofrece este servicio?",
+            question: "What advantages does this service offer?",
             answer:
-              "Centraliza todo el proyecto en un solo equipo, optimizando tiempos, costos y coordinación.",
+              "It centralizes the entire project under one team, optimizing time, costs, and coordination.",
           },
           {
-            question: "¿Qué tipo de proyectos realizan?",
+            question: "What type of projects do you handle?",
             answer:
-              "Desarrollamos proyectos residenciales, comerciales e industriales adaptados a cada necesidad.",
+              "We develop residential, commercial, and industrial projects tailored to each need.",
           },
           {
-            question: "¿Puedo personalizar mi proyecto?",
+            question: "Can I customize my project?",
             answer:
-              "Sí. Diseñamos soluciones a medida según los objetivos y requerimientos de cada cliente.",
+              "100%. We don't do packages. We sit down with you, take your blueprint, and build it to your measure, your budget, and your timeline. If it doesn't exist, we design it.",
           },
           {
-            question: "¿Supervisan todas las etapas?",
+            question: "Do you supervise all stages?",
             answer:
-              "Sí. Nuestro equipo coordina y supervisa cada fase para garantizar resultados de calidad.",
+              "Yes. Our team coordinates and supervises every phase to guarantee quality results.",
           },
         ],
       },
     },
     "rental-equipment": {
       hero: {
-        title: "Los Recursos Que <br/> Impulsan Tu Proyecto",
+        title: "The Resources That <br/> Drive Your Project",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         back: "services-6-hero",
         video: "",
       },
       info: {
-        title: "Recursos Que Mantienen Tu Operación En Movimiento",
+        title: "Resources That Keep Your Operation Moving",
         subtitle:
-          "Contar con los equipos y espacios adecuados puede marcar la diferencia en la productividad de cualquier proyecto.",
+          "Having the right equipment and space can make the difference in the productivity of any project.",
         description:
-          "Ofrecemos soluciones flexibles para apoyar operaciones de construcción, almacenamiento y logística.",
+          "We offer flexible solutions to support construction, storage, and logistics operations.",
         image: "services-6-info",
       },
       examples: {
         title:
-          "Equipamiento Y Espacios <br class='hidden md:block'/> Para Cada Necesidad",
+          "Equipment And Space <br class='hidden md:block'/> For Every Need",
         description:
-          "Soluciones diseñadas para maximizar eficiencia y rendimiento.",
+          "Solutions designed to maximize efficiency and performance.",
         items: [
           {
             image: "services-6-exp-1",
-            title: "Alquiler De Equipos",
+            title: "Equipment Rental",
             description:
-              "Accede a recursos listos para operar cuando más los necesites.",
+              "Access resources ready to operate when you need them most.",
             list: [
-              "Equipos inspeccionados",
-              "Disponibilidad flexible",
-              "Soporte confiable",
+              "Inspected equipment",
+              "Flexible availability",
+              "Reliable support",
             ],
           },
           {
             image: "services-6-exp-2",
-            title: "Alquiler De Patios",
-            description:
-              "Espacios estratégicos para almacenamiento y operaciones.",
+            title: "Yard Rental",
+            description: "Strategic spaces for storage and operations.",
             list: [
-              "Ubicaciones funcionales",
-              "Flexibilidad operativa",
-              "Optimización logística",
+              "Functional locations",
+              "Operational flexibility",
+              "Logistics optimization",
             ],
           },
         ],
       },
       confidence: {
         title1:
-          "Los Recursos <br class='hidden md:block'/> Que <br/> <span class='text-white'>Tu Proyecto <br/> Necesita</span>",
-        description: "Equipos y espacios listos para trabajar.",
+          "The Resources <br class='hidden md:block'/> That <br/> <span class='text-white'>Your Project <br/> Needs</span>",
+        description: "Equipment and spaces ready to work.",
         description2:
-          "Impulsa tus operaciones con soluciones flexibles, <br/> confiables y  adaptadas a tus necesidades.",
+          "Boost your operations with flexible, <br/> reliable solutions tailored to your needs.",
         button: {
-          label: "Cotización gratuita",
+          label: "FREE estimate",
           href: "/en/contact",
         },
         img: "serv-6-confidence",
       },
       questions: {
-        title: "Preguntas <br/> Frecuentes",
+        title: "Frequently Asked <br/> Questions",
         items: [
           {
-            question: "¿Qué equipos tienen disponibles para alquiler?",
+            question: "What equipment do you have available for rent?",
             answer:
-              "Ofrecemos equipos y recursos diseñados para apoyar proyectos de construcción de distintas magnitudes.",
+              "We offer equipment and resources designed to support construction projects of various sizes.",
           },
           {
-            question: "¿Puedo alquilar por periodos cortos?",
+            question: "Can I rent for short periods?",
             answer:
-              "Sí. Disponemos de opciones flexibles adaptadas a las necesidades de cada proyecto.",
+              "Yes. We have flexible options tailored to the needs of each project.",
           },
           {
-            question: "¿Los equipos reciben mantenimiento?",
+            question: "Do the equipment receive maintenance?",
             answer:
-              "Sí. Todos nuestros equipos son inspeccionados y mantenidos regularmente.",
+              "Yes. All our equipment is inspected and maintained regularly.",
           },
           {
-            question: "¿Qué son los patios disponibles para alquiler?",
+            question: "What are the yards available for rent?",
             answer:
-              "Son espacios estratégicos destinados al almacenamiento, operaciones o apoyo logístico.",
+              "They are strategic spaces for storage, operations, or logistical support.",
           },
           {
-            question: "¿Cómo puedo consultar disponibilidad?",
+            question: "How can I check availability?",
             answer:
-              "Puede comunicarse con nuestro equipo para conocer disponibilidad, condiciones y tarifas.",
+              "You can contact our team to learn about availability, terms, and rates.",
           },
         ],
       },
@@ -832,158 +836,157 @@ export default {
   },
   medo: {
     hero: {
-      title: "Construye Tu Futuro <br class='hidden md:block'/> Con Nosotros",
+      title: "Build Your Future <br class='hidden md:block'/> With Us",
       button: {
-        label: "Cotización gratuita",
+        label: "FREE estimate",
         href: "/en/contact",
       },
       back: "services-5-hero",
       video: "",
     },
     info: {
-      title: "Más Que Un Negocio, Un Sistema Completo",
+      title: "More Than A Business, A Complete System",
       subtitle:
-        "No está adquiriendo una oportunidad aislada. Está ingresando a una estructura diseñada para generar crecimiento sostenible.",
+        "You are not acquiring an isolated opportunity. You are entering a structure designed to generate sustainable growth.",
       description:
-        "Advance Rock ha desarrollado un ecosistema empresarial que integra servicios de concreto, construcción, renta de equipos y logística. Esto permite a los participantes operar dentro de una red activa, respaldada por experiencia, infraestructura y procesos establecidos.",
+        "Advance Rock has developed a business ecosystem that integrates concrete services, construction, equipment rental, and logistics. This allows participants to operate within an active network, backed by experience, infrastructure, and established processes.",
       image: "services-5-info",
     },
     textMove: "Drive Your Own Success",
     examples: {
-      title: "Crece Con Un Modelo Probado",
+      title: "Grow With A Proven Model",
       description:
-        "Aprovecha herramientas y recursos que facilitan el desarrollo de tu negocio.",
+        "Leverage tools and resources that facilitate your business development.",
       items: [
         {
           image: "services-5-exp-1",
-          title: "Operación Activa",
-          description: "Forme parte de una estructura que ya funciona.",
+          title: "Active Operation",
+          description: "Be part of a structure that already works.",
           list: [],
         },
         {
           image: "services-5-exp-2",
-          title: "Diversificación Comercial",
-          description: "Acceda a múltiples líneas de negocio.",
+          title: "Business Diversification",
+          description: "Access multiple business lines.",
           list: [],
         },
         {
           image: "services-5-exp-3",
-          title: "Respaldo Empresarial",
-          description: "Aproveche experiencia y soporte operativo.",
+          title: "Business Support",
+          description: "Leverage experience and operational support.",
           list: [],
         },
       ],
     },
     info2: {
-      title: "Conviértase En Operador MEDO",
+      title: "Become A MEDO Operator",
       subtitle:
-        "Una oportunidad para generar ingresos dentro de una operación real de transporte de concreto.",
+        "An opportunity to generate income within a real concrete transportation operation.",
       description:
-        "El programa MEDO permite participar en el negocio del transporte de concreto mediante un modelo respaldado por una estructura operativa consolidada. Usted se integra a un sistema diseñado para generar actividad comercial desde el inicio.",
+        "The MEDO program allows you to participate in the concrete transportation business through a model backed by a consolidated operational structure. You integrate into a system designed to generate commercial activity from the start.",
       second: [
         {
-          title: "Operación De Camiones Mixer",
+          title: "Mixer Truck Operation",
           description:
-            "Participe en el transporte de concreto dentro del sistema.",
+            "Participate in concrete transportation within the system.",
         },
         {
-          title: "Generación De Ingresos",
-          description: "Equipos confiables diseñados para un alto rendimiento.",
+          title: "Income Generation",
+          description: "Reliable equipment designed for high performance.",
         },
         {
-          title: "Soporte Operativo",
-          description:
-            "Trabaje con el respaldo de una organización establecida.",
+          title: "Operational Support",
+          description: "Work with the backing of an established organization.",
         },
       ],
       image: "services-5-info-1",
     },
     info3: {
-      title: "Venda Sin Infraestructura",
+      title: "Sell Without Infrastructure",
       subtitle:
-        "Desarrolle oportunidades comerciales utilizando una plataforma ya estructurada.",
+        "Develop business opportunities using an already structured platform.",
       description:
-        "Las Sucursales Virtuales permiten comercializar servicios de concreto, construcción y renta sin la necesidad de realizar grandes inversiones en instalaciones o equipos. El modelo está diseñado para facilitar la expansión comercial y acelerar el crecimiento.",
+        "Virtual Branches allow you to market concrete, construction, and rental services without the need for large investments in facilities or equipment. The model is designed to facilitate commercial expansion and accelerate growth.",
       image: "services-5-info-2",
     },
     examples2: {
       items: [
         {
           image: "services-5-exp-4",
-          title: "Acceso A Clientes",
-          description: "Conéctese con una red comercial activa.",
+          title: "Access To Clients",
+          description: "Connect with an active commercial network.",
           list: [],
         },
         {
           image: "services-5-exp-5",
-          title: "Plataforma Estructurada",
-          description: "AUtilice procesos y herramientas ya desarrollados.",
+          title: "Structured Platform",
+          description: "Use already developed processes and tools.",
           list: [],
         },
         {
           image: "services-5-exp-6",
-          title: "Menor Inversión Inicial",
-          description: "Inicie operaciones sin infraestructura pesada.",
+          title: "Lower Initial Investment",
+          description: "Start operations without heavy infrastructure.",
           list: [],
         },
       ],
     },
     info4: {
-      title: "Construya Su Futuro Con Un Modelo Probado",
+      title: "Build Your Future With A Proven Model",
       subtitle:
-        "Una oportunidad diseñada para quienes buscan crecer dentro de la industria de la construcción en Estados Unidos.",
+        "An opportunity designed for those looking to grow within the construction industry in the United States.",
       description:
-        "Ya sea a través del programa MEDO o de una Sucursal Virtual, tendrá acceso a una estructura empresarial creada para impulsar el desarrollo comercial, reducir barreras de entrada y aprovechar oportunidades reales de negocio.",
+        "Whether through the MEDO program or a Virtual Branch, you will have access to a business structure created to drive commercial development, reduce entry barriers, and seize real business opportunities.",
       image: "services-5-info-3",
     },
     confidence: {
       title1:
-        "Haz Crecer Tu <br/> <span class='text-white'>Futuro Con <br/> MEDO</span>",
-      description: "Únete a una red con oportunidades reales.",
+        "Grow Your <br/> <span class='text-white'>Future With <br/> MEDO</span>",
+      description: "Join a network with real opportunities.",
       description2:
-        "Accede a un modelo probado y desarrolla tu negocio <br/> con el  respaldo de nuestra experiencia.",
+        "Access a proven model and develop your business <br/> with the backing of our experience.",
       button: {
-        label: "Cotización gratuita",
+        label: "FREE estimate",
         href: "/en/contact",
       },
       img: "serv-5-confidence",
     },
     questions: {
-      title: "Preguntas <br/> Frecuentes",
+      title: "Frequently Asked <br/> Questions",
       items: [
         {
-          question: "¿Qué es el programa MEDO?",
+          question: "What is the MEDO program?",
           answer:
-            "Es una oportunidad para formar parte de nuestro ecosistema empresarial dentro de la industria de la construcción.",
+            "It is an opportunity to become part of our business ecosystem within the construction industry.",
         },
         {
-          question: "¿Necesito experiencia previa?",
+          question: "Do I need prior experience?",
           answer:
-            "No necesariamente. Brindamos orientación y acceso a nuestro modelo operativo.",
+            "Not necessarily. We provide guidance and access to our operational model.",
         },
         {
-          question: "¿Puedo operar mi propio camión?",
+          question: "Can I operate my own truck?",
           answer:
-            "Sí. Nuestro programa permite desarrollar oportunidades mediante la operación de unidades dentro de nuestra red.",
+            "Yes. Our program allows you to develop opportunities by operating units within our network.",
         },
         {
-          question: "¿Qué es una sucursal virtual?",
+          question: "What is a virtual branch?",
           answer:
-            "Es un modelo que permite generar oportunidades comerciales utilizando nuestra estructura y respaldo.",
+            "It is a model that allows you to generate business opportunities using our structure and backing.",
         },
         {
-          question: "¿Qué beneficios obtengo al unirme?",
+          question: "What benefits do I get by joining?",
           answer:
-            "Acceso a una red consolidada, soporte operativo y oportunidades reales de crecimiento.",
+            "Access to a consolidated network, operational support, and real growth opportunities.",
         },
       ],
     },
   },
   branchs: {
     hero: {
-      title: "operadores de <br/> sucursales  virtuales",
+      title: "OUR LOCATIONS",
       button: {
-        label: "Cotización gratuita",
+        label: "FREE estimate",
         href: "/en/contact",
       },
       back: "branchs-hero",
@@ -992,39 +995,39 @@ export default {
   },
   contact: {
     questions: {
-      title: "Preguntas <br/> Frecuentes",
+      title: "Frequently Asked <br/> Questions",
       items: [
         {
-          question: "¿Qué tipos de servicios de concreto ofrecen?",
+          question: "What types of concrete services do you offer?",
           answer:
-            "Ofrecemos una amplia variedad de soluciones en concreto, incluyendo cimentaciones, entradas vehiculares, aceras, bombeo de concreto, proyectos residenciales, desarrollos comerciales y proyectos llave en mano.",
+            "We offer a wide variety of concrete solutions, including foundations, driveways, sidewalks, concrete pumping, residential projects, commercial developments, and turnkey projects.",
         },
         {
-          question: "¿Trabajan en proyectos residenciales y comerciales?",
+          question: "Do you work on residential and commercial projects?",
           answer:
-            "Sí. Contamos con la experiencia, el equipo y los recursos necesarios para desarrollar proyectos de cualquier escala, desde mejoras residenciales hasta construcciones comerciales de gran envergadura.",
+            "Yes. We have the experience, equipment, and resources needed to develop projects of any scale, from residential improvements to large-scale commercial construction.",
         },
         {
-          question: "¿Cómo puedo solicitar una cotización?",
+          question: "How can I request a quote?",
           answer:
-            "Puede completar nuestro formulario de contacto o comunicarse directamente con nuestro equipo. Analizaremos los requerimientos de su proyecto y le proporcionaremos una cotización personalizada.",
+            "You can complete our contact form or contact our team directly by text or phone call. We will analyze your project requirements and provide you with a personalized quote.",
         },
         {
-          question: "¿En qué áreas brindan servicio?",
+          question: "What areas do you serve?",
           answer:
-            "Atendemos proyectos en Carolina del Norte y Carolina del Sur, ofreciendo soluciones de concreto confiables, ejecución profesional y entregas puntuales.",
+            "We serve North Carolina and South Carolina with concrete solutions you can trust: flawless execution and guaranteed punctuality.",
         },
         {
-          question: "¿Por qué elegirnos para su proyecto?",
+          question: "Why choose us for your project?",
           answer:
-            "Trabajamos de la mano con las principales empresas de concreto de las Carolinas, contando con más de 360 puntos de abastecimiento, y ponemos a tu disposición nuestro conocimiento profesional para asesorar tu proyecto con las últimas tecnologías y soluciones innovadoras del sector.",
+            "Because quality is not improvised. Years of experience + cutting-edge technology + precise planning = durable, precise concrete solutions 100% customized to what you need.",
         },
       ],
     },
   },
   footer: {
     description:
-      "Reliable concrete solutions across North & South Carlina. Built on precision, driven by performance, trusted for results that last.",
+      "Reliable concrete solutions in North and South Carolina. Built on precision, driven by performance, trusted for lasting results.",
     quickLinks: {
       title: "QUICK LINKS",
       links: [
@@ -1033,7 +1036,7 @@ export default {
           href: "en/",
         },
         {
-          label: "About",
+          label: "About Us",
           href: "en/about",
         },
         {
@@ -1041,15 +1044,15 @@ export default {
           href: "en/services",
         },
         {
-          label: "Branches",
-          href: "en/branches",
+          label: "Locations",
+          href: "en/locations",
         },
         {
           label: "MEDO",
           href: "en/services/medo",
         },
         {
-          label: "Contact",
+          label: "Contact Us",
           href: "en/contact",
         },
       ],
@@ -1074,7 +1077,7 @@ export default {
           href: "en/services/turnkey-projects",
         },
         {
-          label: "MEDO & Virtual Branches",
+          label: "MEDO & Virtual Branch Business Opportunities",
           href: "en/services/medo",
         },
         {
@@ -1085,13 +1088,14 @@ export default {
     },
     servicesArea: {
       title: "SERVICE AREAS",
-      description: "Proudly serving North and South Carolina including:",
+      description:
+        "We provide our services in North Carolina and South Carolina, including:",
       areas: ["Charlotte, NC", "Greenville, SC"],
     },
     touch: {
-      title: "GET IN TOUCH",
+      title: "CONTACT US",
       button: {
-        label: "Get Your Free Quote",
+        label: "FREE estimate",
         href: "/en/contact",
       },
     },

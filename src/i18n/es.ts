@@ -16,7 +16,7 @@ export default {
       },
       {
         label: "Sucursales",
-        href: "/branches",
+        href: "/locations",
       },
       {
         label: "MEDO",
@@ -112,7 +112,7 @@ export default {
         items: [
           {
             title: "Enfoque en el cliente",
-            description: "Soluciones de presupuesto a tu medida",
+            description: "Construido en torno a Ti",
           },
           {
             title: "Rendimiento duradero",
@@ -149,8 +149,7 @@ export default {
         },
         {
           title: "Remodelaciones en Concreto",
-          description:
-            "Renovamos espacios con soluciones resistentes y funcionales.",
+          description: "Transformamos tus espacios con concreto inteligente.",
           button: {
             label: "Más Información",
             href: "/concrete-remodeling",
@@ -200,14 +199,14 @@ export default {
       first: {
         title: "FLOTA MODERNA, RESULTADOS COMPROBADOS",
         description:
-          "Equipos de última generación y una logística eficiente para garantizar precisión, puntualidad y rendimiento en cada proyecto.",
+          "Equipos de última generación con tecnología de vanguardia y logística avanzada para garantizar precisión milimétrica, cero retrasos y máximo rendimiento en cada obra de concreto.",
         description2:
           "Nuestra flota respalda proyectos de cualquier escala con entregas confiables y una coordinación eficiente.",
       },
       second: {
         title: "CONSTRUYENDO PARA DURAR",
         subtitle:
-          "Trabajos reales que demuestran nuestro compromiso con la calidad, la precisión y una ejecución confiable.",
+          "Cada obra demuestra nuestro enfoque por la precisión, la calidad y la innovación sin excusas.",
         description:
           "Desde cimentaciones residenciales hasta desarrollos comerciales, cada proyecto refleja nuestro compromiso con la calidad, la resistencia y la confiabilidad.",
         button: {
@@ -218,11 +217,11 @@ export default {
       text: "<span class='hidden md:inline'>Drive Your Own </span> Success",
     },
     confidence: {
-      title1:
-        "COMIENZA TU PROYECTO <span class='text-white'>CON <br/> CONFIANZA</span>",
-      description: "Experiencia, precisión y compromiso en cada proyecto.",
+      title1: "TU PROYECTO <br/>  <span class='text-white'>EMPIEZA AQUÍ</span>",
+      description:
+        "Experiencia, innovación y tecnología avanzada en cada metro cuadrado.",
       description2:
-        "Hagamos realidad tu proyecto con soluciones de concreto diseñadas <br/> para  ofrecer resistencia, eficiencia y un desempeño excepcional.",
+        "Convertimos tu idea en superficies de alto rendimiento: resistentes, <br/> funcionales y diseñadas para durar décadas.",
       button: {
         label: "Cotización gratuita",
         href: "/es/contact",
@@ -238,7 +237,7 @@ export default {
     hero: {
       title: "Calidad y excelencia en <br/> cada construcción",
       button: {
-        label: "Cotización gratuita",
+        label: "Quiero mi cotización",
         href: "/es/contact",
       },
       back: "about",
@@ -253,6 +252,13 @@ export default {
       description2:
         "Nuestro compromiso con la excelencia, la diversidad de servicios y la satisfacción del cliente nos distingue en el mercado. Confíe en nosotros para hacer realidad sus proyectos.",
       medias: "Sigue nuestras historias",
+      list: [
+        "Excelencia. ",
+        "Compromiso de calidad.",
+        "Servicio integral.",
+        "Clientes satisfechos.",
+        "Advance Rock Concrete: Hacemos realidad tu proyecto.",
+      ],
     },
     brands: {
       title: "OUR BRANDS",
@@ -292,7 +298,7 @@ export default {
     hero: {
       title: "Nuestros Servicios <br/> de Concreto",
       button: {
-        label: "Cotización gratuita",
+        label: "Quiero mi cotización",
         href: "/es/contact",
       },
       back: "services-hero",
@@ -304,7 +310,7 @@ export default {
         subtitle:
           "Diseñamos y construimos piscinas a medida, adaptadas <br class='block lg:hidden xl:block'/> a cada espacio y estilo de vida.",
         description:
-          "Diseñamos y construimos piscinas a medida, adaptadas a cada espacio y estilo de vida. Nos encargamos de todo el proceso: desde la preparación del terreno hasta la entrega final.",
+          "Nos encargamos de todo el proceso: desde la preparación del terreno hasta la entrega final.",
         image: "services-1",
         button: {
           label: "Más Información",
@@ -378,7 +384,7 @@ export default {
       hero: {
         title: "Diseñamos Tu <br/> Piscina Ideal",
         button: {
-          label: "Cotización gratuita",
+          label: "Quiero mi cotización",
           href: "/es/contact",
         },
         back: "services-1-hero",
@@ -474,7 +480,7 @@ export default {
       hero: {
         title: "Transformamos <br/> Espacios Concretos",
         button: {
-          label: "Cotización gratuita",
+          label: "Quiero mi cotización",
           href: "/es/contact",
         },
         back: "services-2-hero",
@@ -483,9 +489,9 @@ export default {
       info: {
         title: "Renueva Espacios Que Han Perdido Su Potencial",
         subtitle:
-          "Las superficies deterioradas afectan la apariencia y funcionalidad de cualquier propiedad.",
+          "El concreto dañado afecta más que la apariencia: pone en riesgo tu seguridad y el valor de tu propiedad.",
         description:
-          "Transformamos patios, accesos, aceras y áreas exteriores mediante soluciones modernas que mejoran tanto la estética como el rendimiento.",
+          "Reparamos y transformamos patios, accesos y aceras con diseños modernos que no solo se ven increíbles, sino que están hechos para durar.",
         image: "services-2-info",
       },
       examples: {
@@ -508,7 +514,7 @@ export default {
             image: "services-2-exp-2",
             title: "Acabados Decorativos",
             description:
-              "Incorporamos elementos que elevan la estética de cada proyecto.",
+              "Convertimos superficies simples en detalles que elevan toda tu propiedad.  ",
             list: [
               "Diseños modernos y elegantes",
               "Opciones personalizadas",
@@ -535,27 +541,27 @@ export default {
           {
             question: "¿Qué áreas pueden remodelar?",
             answer:
-              "Trabajamos en patios, entradas vehiculares, aceras, ampliaciones y todo tipo de superficies de concreto.",
+              "Trabajamos patios, entradas, aceras, ampliaciones y cualquier superficie de concreto.",
           },
           {
-            question: "¿Pueden reemplazar concreto deteriorado?",
+            question: "¿Reemplazan concreto dañado?",
             answer:
-              "Sí. Evaluamos el estado de la superficie y proponemos la mejor solución para restaurarla o renovarla.",
+              "Claro. Revisamos el estado y te decimos si conviene reparar o reemplazar. Siempre buscamos la mejor solución para tu presupuesto.",
           },
           {
-            question: "¿Ofrecen acabados decorativos?",
+            question: "¿Tienen acabados decorativos?",
             answer:
-              "Sí. Contamos con diferentes opciones para mejorar la estética y funcionalidad de cada proyecto.",
+              "Sí. No hacemos concreto aburrido. Tenemos colores, texturas y diseños para que tu proyecto se vea único y dure años.",
           },
           {
-            question: "¿Las remodelaciones aumentan el valor de una propiedad?",
+            question: "¿Remodelar aumenta el valor de mi casa?",
             answer:
-              "Sí. Un espacio exterior renovado puede mejorar significativamente la apariencia y el valor del inmueble.",
+              "Definitivo. Un exterior renovado no solo se ve mejor, también sube el valor de tu propiedad y mejora la primera impresión.",
           },
           {
-            question: "¿Atienden proyectos residenciales y comerciales?",
+            question: "¿Hacen trabajos residenciales y comerciales?",
             answer:
-              "Sí. Adaptamos nuestras soluciones a proyectos de cualquier tamaño.",
+              "Sí. Desde el patio de tu casa hasta estacionamientos completos. Adaptamos el proyecto al tamaño que necesites.",
           },
         ],
       },
@@ -564,7 +570,7 @@ export default {
       hero: {
         title: "Concreto Listo <br/> Para Construir",
         button: {
-          label: "Cotización gratuita",
+          label: "Quiero mi cotización",
           href: "/es/contact",
         },
         back: "services-3-hero",
@@ -654,7 +660,7 @@ export default {
       hero: {
         title: "Todo Tu Proyecto,  <br/> Un Solo Equipo",
         button: {
-          label: "Cotización gratuita",
+          label: "Quiero mi cotización",
           href: "/es/contact",
         },
         back: "services-4-hero",
@@ -663,31 +669,27 @@ export default {
       info: {
         title: "Una Solución Completa Desde El Inicio",
         subtitle:
-          "Gestionar múltiples proveedores puede generar retrasos, sobrecostos y problemas de coordinación.",
+          "Gestionar múltiples proveedores puede generar retrasos, sobrecostos y problemas de coordinación.Con nosotros, la responsabilidad empieza y termina aquí.",
         description:
-          "Nuestro enfoque integral centraliza cada etapa del proyecto bajo una sola gestión.",
+          "Nuestro enfoque integral centraliza cada etapa del proyecto bajo una sola gestión. Aquí se acaba el juego de culpas.",
         image: "services-4-info",
       },
       examples: {
         title:
           "Todo Lo Que Necesitas En <br class='hidden md:block'/> Un Solo Equipo",
         description:
-          "Descubre soluciones diseñadas para maximizar la <br class='hidden md:block'/> belleza, comodidad y valor de tu propiedad.",
+          "Dejamos tu propiedad más valiosa, más fuerte y lista a tiempo.",
         items: [
           {
             image: "services-4-exp-1",
-            title: "Planificación Estratégica",
+            title: "PLANIFICACIÓN QUE NO FALLA.",
             description:
-              "Diseñamos cada proyecto considerando objetivos, recursos y tiempos.",
-            list: [
-              "Mayor control operativo",
-              "Optimización de costos",
-              "Procesos organizados",
-            ],
+              "No improvisamos. Diseñamos cada metro de concreto con objetivo, presupuesto y fecha de entrega en mano. Tú tienes el control. Nosotros ejecutamos.Cero sorpresas en costos. Cero retrasos por mala planificación",
+            list: [],
           },
           {
             image: "services-4-exp-2",
-            title: "Ejecución Integral",
+            title: "EJECUCIÓN TOTAL. RESPONSABILIDAD TOTAL.",
             description:
               "Supervisamos cada fase para asegurar calidad y cumplimiento.",
             list: [
@@ -703,7 +705,7 @@ export default {
           "Todo Tu <br/> Proyecto <br/> <span class='text-white'>En Un Solo <br class='hidden md:block'/> Lugar</span>",
         description: "Una solución completa, sin complicaciones.",
         description2:
-          "Nos encargamos de cada etapa para que puedas <br/> enfocarte en los resultados.",
+          "Nos encargamos de cada etapa para que puedas <br/> enfocarte en los resultados. <br/> <br/> Termina con los retrasos. Cotiza gratis.→ Un solo equipo. Una sola factura. Cero juegos de culpas.",
         button: {
           label: "Cotización gratuita",
           href: "/es/contact",
@@ -731,7 +733,7 @@ export default {
           {
             question: "¿Puedo personalizar mi proyecto?",
             answer:
-              "Sí. Diseñamos soluciones a medida según los objetivos y requerimientos de cada cliente.",
+              "100%. No hacemos “paquetes”. Nos sentamos contigo, agarramos tu plano y lo construimos a tu medida, a tu presupuesto y a tu fecha. Si no existe, lo diseñamos.",
           },
           {
             question: "¿Supervisan todas las etapas?",
@@ -745,7 +747,7 @@ export default {
       hero: {
         title: "Los Recursos Que <br/> Impulsan Tu Proyecto",
         button: {
-          label: "Cotización gratuita",
+          label: "Quiero mi cotización",
           href: "/es/contact",
         },
         back: "services-6-hero",
@@ -837,7 +839,7 @@ export default {
     hero: {
       title: "Construye Tu Futuro <br class='hidden md:block'/> Con Nosotros",
       button: {
-        label: "Cotización gratuita",
+        label: "Quiero mi cotización",
         href: "/es/contact",
       },
       back: "services-5-hero",
@@ -1010,17 +1012,17 @@ export default {
         {
           question: "¿Cómo puedo solicitar una cotización?",
           answer:
-            "Puede completar nuestro formulario de contacto o comunicarse directamente con nuestro equipo. Analizaremos los requerimientos de su proyecto y le proporcionaremos una cotización personalizada.",
+            "Puede completar nuestro formulario de contacto o comunicarse directamente con nuestro equipo por texto o llamada telefónica. Analizaremos los requerimientos de su proyecto y le proporcionaremos una cotización personalizada.",
         },
         {
           question: "¿En qué áreas brindan servicio?",
           answer:
-            "Atendemos proyectos en Carolina del Norte y Carolina del Sur, ofreciendo soluciones de concreto confiables, ejecución profesional y entregas puntuales.",
+            "Atendemos Carolina del Norte y Carolina del Sur con soluciones de concreto en las que puedes confiar: ejecución impecable y puntualidad garantizada.",
         },
         {
           question: "¿Por qué elegirnos para su proyecto?",
           answer:
-            "Trabajamos de la mano con las principales empresas de concreto de las Carolinas, contando con más de 360 puntos de abastecimiento, y ponemos a tu disposición nuestro conocimiento profesional para asesorar tu proyecto con las últimas tecnologías y soluciones innovadoras del sector.",
+            "Porque la calidad no se improvisa. Años de experiencia + tecnología de punta + planeación exacta = soluciones de concreto duraderas, precisas y 100% personalizadas a lo que necesitas.",
         },
       ],
     },
@@ -1045,7 +1047,7 @@ export default {
         },
         {
           label: "Sucursales",
-          href: "es/branches",
+          href: "es/locations",
         },
         {
           label: "MEDO",

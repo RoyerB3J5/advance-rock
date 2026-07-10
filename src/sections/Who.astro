@@ -9,7 +9,7 @@ const { content } = Astro.props as Props;
 const socialMedia = [
   {
     icon: "facebook-2",
-    href: "#",
+    href: "https://www.facebook.com/advancerockconcreteusa",
   },
   {
     icon: "instagram-2",
@@ -48,7 +48,14 @@ const socialMedia = [
 
       <div class="w-full flex flex-col lg:flex-row justify-center lg:justify-start xl:justify-between items-start lg:items-end gap-6 xl:gap-0 js-who-second">
         <img src="/images/logo-4.svg" alt="Logo" width="250" height="244" class="w-[200px]  3xl:w-[250px] h-auto" decoding="async" loading="lazy"/>
-        <p class="text-paragraph subtitle lg:w-[40%]">{content.description2}</p>
+        <ul class="flex flex-col justify-start items-start gap-2 lg:w-[50%]">
+          {content.list.map((item) => (
+            <li class="text-paragraph subtitle flex justify-start items-start gap-2">
+              <img src="/images/check-red.svg" alt="Check" width="20" height="20" class="w-6 h-6" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
 
     </div>
