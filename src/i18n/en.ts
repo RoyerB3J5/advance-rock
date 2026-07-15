@@ -66,8 +66,8 @@ export default {
   },
   main: {
     hero: {
-      title: "RELIABLE CONCRETE. <br/> PROVEN RESULTS.",
-      subtitle: "BUILT TO LAST. GUARANTEED.",
+      title: "Reliable Concrete, <br/> Proven Results",
+      subtitle: "Build to Last Guaranteed",
       button: {
         label: "Free Estimate",
         href: "/en/contact",
