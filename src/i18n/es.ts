@@ -59,7 +59,7 @@ export default {
     },
     buttons: [
       {
-        label: "Cotización Gratis",
+        label: "Estimado Gratis",
         href: "/es/contact",
       },
     ],
@@ -69,7 +69,7 @@ export default {
       title: "Estamos Licenciados <br/> y Asegurados",
       subtitle: "Concreto de primera categoría",
       button: {
-        label: "Cotización Gratis",
+        label: "Estimado Gratis",
         href: "/es/contact",
       },
       back: "hero-main",
@@ -223,7 +223,7 @@ export default {
       description2:
         "Convertimos tu idea en superficies de alto rendimiento: resistentes, <br/> funcionales y diseñadas para durar décadas.",
       button: {
-        label: "Cotización gratuita",
+        label: "Estimado gratis",
         href: "/es/contact",
       },
       img: "hero-confidence",
@@ -237,7 +237,7 @@ export default {
     hero: {
       title: "Calidad y excelencia en <br/> cada construcción",
       button: {
-        label: "Quiero mi cotización",
+        label: "Estimado gratis",
         href: "/es/contact",
       },
       back: "about",
@@ -298,7 +298,7 @@ export default {
     hero: {
       title: "Nuestros Servicios <br/> de Concreto",
       button: {
-        label: "Quiero mi cotización",
+        label: "Estimado gratis",
         href: "/es/contact",
       },
       back: "services-hero",
@@ -384,7 +384,7 @@ export default {
       hero: {
         title: "Diseñamos Tu <br/> Piscina Ideal",
         button: {
-          label: "Quiero mi cotización",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         back: "services-1-hero",
@@ -434,7 +434,7 @@ export default {
         description2:
           "Creamos piscinas funcionales, elegantes y duraderas <br class='hidden md:block'/> que  transforman cualquier espacio exterior.",
         button: {
-          label: "Cotización gratuita",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         img: "serv-1-confidence",
@@ -480,7 +480,7 @@ export default {
       hero: {
         title: "Transformamos <br/> Espacios Concretos",
         button: {
-          label: "Quiero mi cotización",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         back: "services-2-hero",
@@ -530,7 +530,7 @@ export default {
         description2:
           "Transformamos áreas exteriores en espacios <br/> modernos, funcionales y resistentes.",
         button: {
-          label: "Cotización gratuita",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         img: "serv-2-confidence",
@@ -570,7 +570,7 @@ export default {
       hero: {
         title: "Concreto Listo <br/> Para Construir",
         button: {
-          label: "Quiero mi cotización",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         back: "services-3-hero",
@@ -620,7 +620,7 @@ export default {
         description2:
           "Recibe concreto premezclado con entregas confiables para <br/> mantener tu proyecto en marcha.",
         button: {
-          label: "Cotización gratuita",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         img: "serv-3-confidence",
@@ -660,7 +660,7 @@ export default {
       hero: {
         title: "Todo Tu Proyecto,  <br/> Un Solo Equipo",
         button: {
-          label: "Quiero mi cotización",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         back: "services-4-hero",
@@ -707,7 +707,7 @@ export default {
         description2:
           "Nos encargamos de cada etapa para que puedas <br/> enfocarte en los resultados. <br/> <br/> Termina con los retrasos. Cotiza gratis.→ Un solo equipo. Una sola factura. Cero juegos de culpas.",
         button: {
-          label: "Cotización gratuita",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         img: "serv-4-confidence",
@@ -747,7 +747,7 @@ export default {
       hero: {
         title: "Los Recursos Que <br/> Impulsan Tu Proyecto",
         button: {
-          label: "Quiero mi cotización",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         back: "services-6-hero",
@@ -798,7 +798,7 @@ export default {
         description2:
           "Impulsa tus operaciones con soluciones flexibles, <br/> confiables y  adaptadas a tus necesidades.",
         button: {
-          label: "Cotización gratuita",
+          label: "Estimado gratis",
           href: "/es/contact",
         },
         img: "serv-6-confidence",
@@ -839,7 +839,7 @@ export default {
     hero: {
       title: "Construye Tu Futuro <br class='hidden md:block'/> Con Nosotros",
       button: {
-        label: "Quiero mi cotización",
+        label: "Estimado gratis",
         href: "/es/contact",
       },
       back: "services-5-hero",
@@ -948,7 +948,7 @@ export default {
       description2:
         "Accede a un modelo probado y desarrolla tu negocio <br/> con el  respaldo de nuestra experiencia.",
       button: {
-        label: "Cotización gratuita",
+        label: "Estimado gratis",
         href: "/es/contact",
       },
       img: "serv-5-confidence",
@@ -988,7 +988,7 @@ export default {
     hero: {
       title: "operadores de <br/> sucursales virtuales",
       button: {
-        label: "Cotización gratuita",
+        label: "Estimado gratis",
         href: "/es/contact",
       },
       back: "branchs-hero",
@@ -1097,7 +1097,7 @@ export default {
     touch: {
       title: "CONTÁCTANOS",
       button: {
-        label: "Cotización gratuita",
+        label: "Estimado gratis",
         href: "/es/contact",
       },
     },

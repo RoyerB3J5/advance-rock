@@ -13,17 +13,33 @@ const currentLang = match ? match[1] : 'en';
 ---
 <div class="relative flex justify-center items-center gap-2 lang-switch-toggle" data-current-lang={currentLang}>
   <button class="lang-switch-button flex justify-center items-center gap-2 cursor-pointer group transition-opacity" aria-label="Cambiar idioma" aria-expanded="false">
-    <p class={`text-[16px] text-primary group-hover:font-extrabold font-semibold leading-[150%] uppercase transition-all duration-300 ease-in-out`}>{currentLang}</p>
+    <div class={`text-[14px] text-primary group-hover:font-extrabold font-bold leading-[150%] uppercase transition-all duration-300 ease-in-out flex justify-center items-center gap-2`}>{currentLang === 'en' ? (
+      <>
+        <img src="/images/usa.svg" alt="English" class="w- h-6" />
+        <p>ENGLISH</p>
+      </>
+    ) : (
+      <>
+        <img src="/images/es.svg" alt="Spanish" class="w- h-6" />
+        <p>ESPAÑOL</p>
+      </>
+    )}</div>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M7 10L12 15L17 10"  stroke='var(--color-primary)' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   </button>
-  <div class="lang-switch-menu absolute top-[150%] left-1/2 transform -translate-x-1/2 bg-secondary rounded-lg shadow-lg flex flex-col justify-center items-center duration-300 z-10 text-white opacity-0 invisible pointer-events-none">
+  <div class="lang-switch-menu absolute top-[150%] left-1/2 transform -translate-x-1/2 bg-primary rounded-lg shadow-lg flex flex-col justify-center items-center duration-300 z-10 text-white opacity-0 invisible pointer-events-none">
     <button data-lang="en" class={`py-3 px-8 flex justify-center items-center cursor-pointer w-full hover:opacity-80 transition-opacity`} aria-pressed={currentLang === 'en' ? 'true' : 'false'}>
-      <p class={` leading-[150%] ${currentLang === 'en' ? 'text-accent font-bold text-[16px]' : 'font-normal text-[16px]'}`}>EN</p>
+      <div class={`text-[14px] text-white group-hover:font-extrabold font-bold leading-[150%] uppercase transition-all duration-300 ease-in-out gap-2 flex justify-center items-center`}>
+        <img src="/images/usa.svg" alt="English" class="w- h-6" />
+        <p>ENGLISH</p>
+      </div>
     </button>
     <button data-lang="es" class={`cursor-pointer py-3 px-8 flex justify-center items-center w-full hover:opacity-80 transition-opacity`} aria-pressed={currentLang === 'es' ? 'true' : 'false'}>
-      <p class={` leading-[150%] ${currentLang === 'es' ? 'text-accent font-bold text-[16px]' : 'font-normal text-[16px]'}`}>ES</p>
+      <div class={`text-[14px] text-white group-hover:font-extrabold font-bold leading-[150%] uppercase transition-all duration-300 ease-in-out gap-2 flex justify-center items-center`}>
+        <img src="/images/es.svg" alt="Spanish" class="w- h-6" />
+        <p>ESPAÑOL</p>
+      </div>
     </button>
   </div>
 </div>

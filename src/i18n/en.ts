@@ -226,7 +226,7 @@ export default {
       description2:
         "We turn your vision into high-performance surfaces: <br class='hidden md:block'/>  durable, functional, and built to last for decades",
       button: {
-        label: "Request Your Free Estimate",
+        label: "Free Estimate",
         href: "/en/contact",
       },
       img: "hero-confidence",
@@ -436,7 +436,7 @@ export default {
         description2:
           "We create functional, elegant, and <br class='hidden md:block'/> durable pools that transform any outdoor space.",
         button: {
-          label: "Request Your Free Estimate",
+          label: "Free Estimate",
           href: "/en/contact",
         },
         img: "serv-1-confidence",
