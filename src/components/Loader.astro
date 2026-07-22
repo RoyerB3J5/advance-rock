@@ -1,5 +1,6 @@
 ---
 // Video loader
+const R2_BASE = import.meta.env.PUBLIC_R2_URL;
 ---
 
 <div id="page-loader">
@@ -12,7 +13,7 @@
     preload="auto"
     class="absolute inset-0 w-full h-full object-cover object-top"
   >
-    <source src="/images/video-3.mp4" type="video/mp4" />
+    <source src={`${R2_BASE}/videos/logo.mp4`} type="video/mp4" />
   </video>
 </div>
 

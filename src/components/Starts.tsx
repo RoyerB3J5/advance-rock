@@ -7,7 +7,8 @@ function Starts() {
   const [rating, setRating] = useState<number | null>(null);
   const showForm = rating !== null && rating <= 3;
   const total = 5;
-  const reviewLink = "/";
+  const reviewLink =
+    "https://www.google.com/search?sca_esv=70e0bba46e72b857&biw=2048&bih=1017&sxsrf=APpeQnuzVbw5UJLaNgr-YSf-uoTCMs1_0A:1784238673074&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_8mMaNiGGgmNS4Yp8p3yrR06ImX2rs2vxJO5ddMVkbT4LOWFEj9fV43jm1xYMur41wJGnrDeZ-SuEwqx-Hmn19peFDrnfkAy3_2VxD9cxD6WslhQoA%3D%3D&q=Advanced+Concrete+USA,+Inc.+Reviews&sa=X&ved=2ahUKEwiy_bWCl9iVAxVWs5UCHQiXEtsQ0bkNegQIJhAI&cshid=1784238683212646";
 
   // Move any client-only side effects (redirect) into useEffect so SSR won't break.
   useEffect(() => {
@@ -43,13 +44,13 @@ function Starts() {
               {isActive ? (
                 <FaStar size={24} className="text-accent" />
               ) : (
-                <FaRegStar size={24} className="text-primary" />
+                <FaRegStar size={24} className="text-accent" />
               )}
             </button>
           );
         })}
       </div>
-      {/*showForm && <FormReview />*/}
+      {showForm && <FormReview />}
     </>
   );
 }

@@ -5,10 +5,24 @@ interface Props {
   content: ProjectsContent;
 }
 const { content } = Astro.props as Props;
+const R2_BASE = import.meta.env.PUBLIC_R2_URL;
 ---
 <section id="fleet-section" class="w-full flex flex-col  justify-center items-center pt-16  xl:pt-12 3xl:pt-20 pb-4 xl:pb-8.5 h-auto xl:h-screen 3xl:h-auto bg-white overflow-hidden relative z-10">
   <div  class="container-full flex flex-col xl:flex-row justify-center items-center xl:items-stretch gap-6 h-full">
-    <div class="h-auto xl:h-full w-full xl:w-auto 3xl:w-[52%] 3xl:h-auto bg-secondary js-panel-growth" style="aspect-ratio: 628/740;"></div>
+    <div class="h-auto xl:h-full w-full xl:w-auto 3xl:w-[52%] 3xl:h-autojs-panel-growth overflow-hidden relative" style="aspect-ratio: 628/740;">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        controlslist="nodownload no remoteplayback"
+        disablepictureinpicture
+        oncontextmenu="return false;"
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none object-center"
+      >
+        <source src={`${R2_BASE}/videos/Flota_moderna.mp4`} type="video/mp4" />
+      </video>
+    </div>
     <div class="w-full xl:w-[48%]  flex flex-col justify-between items-start grow gap-6">
       <div class="flex flex-col justify-center items-start gap-6 js-content-block-1">
         <h2 class="text-primary title-sm">{content.first.title}</h2>

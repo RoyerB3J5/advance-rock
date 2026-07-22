@@ -7,9 +7,25 @@ interface Props {
   content: HeroContent;
 }
 const { content } = Astro.props as Props;
+const R2_BASE = import.meta.env.PUBLIC_R2_URL;
 ---
-<section class="relative flex w-full h-screen  justify-center items-center overflow-hidden hero-main-section">
-  <img src={`/images/${content.back}.webp`} alt="Hero Image" width="2500" height="1563" class="object-cover z-0 pointer-events-none w-full h-full absolute inset-0 object-top hero-main-image" decoding="async" loading="eager"/>
+<section data-hero-section data-scroll-snap  class="relative flex w-full h-screen  justify-center items-center overflow-hidden hero-main-section">
+  <div class="hero-main-image absolute w-full h-full inset-0 pointer-events-none">
+    <video
+      data-video
+      muted={true}
+      loop={true}
+      playsinline={true}
+      x-webkit-playsinline={true}
+      preload="auto"
+      controlslist="nodownload no remoteplayback" 
+      disablepictureinpicture 
+      oncontextmenu="return false;"
+      class="absolute inset-0 w-full h-full object-cover object-top"
+    >
+      <source src={`${R2_BASE}/videos/${content.video}.mp4`} type="video/mp4" />
+    </video>
+  </div>  
   <div class="container-full flex flex-col justify-end items-start py-10 md:py-12 z-10 h-full gap-6 md:gap-4">
     <h1 class="text-[36px] md:text-[64px]  font-extrabold leading-[110%] md:leading-[100%] text-white uppercase" set:html={content.title}></h1>
     <Button
@@ -20,3 +36,29 @@ const { content } = Astro.props as Props;
     />
   </div>
 </section>
+
+<script>
+  function initHeroVideo() {
+    const section = document.querySelector('[data-hero-section]');
+    if (!section) return;
+
+    const video = section.querySelector('[data-video]') as HTMLVideoElement | null;
+    if (!video) return;
+
+    video.pause();
+
+    const playVideo = () => {
+      video.play().catch(err => console.log('Error de reproducción:', err));
+    };
+
+    document.addEventListener('loader-complete', playVideo, { once: true });
+
+    const loader = document.getElementById('page-loader');
+    if (!loader) {
+      playVideo();
+    }
+  }
+
+  initHeroVideo();
+  document.addEventListener('astro:page-load', initHeroVideo);
+</script>

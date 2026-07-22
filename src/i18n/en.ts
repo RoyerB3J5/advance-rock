@@ -243,7 +243,7 @@ export default {
         href: "/en/contact",
       },
       back: "about",
-      video: "",
+      video: "about",
     },
     who: {
       title: "Who We Are",
@@ -253,13 +253,13 @@ export default {
         "From quality concrete distribution to home reconstruction, financial investment opportunities, and specialized equipment rentals, we provide complete solutions for construction projects of every scale.",
       description2:
         "Excellence. Commitment to quality. Full-service support. Satisfied clients. Advance Rock Concrete: we bring your project to life.",
-      medias: "Sigue nuestras historias",
+      medias: "Follow our stories daily",
       list: [
-        "Excelencia.",
-        "Compromiso con la calidad.",
-        "Servicio integral.",
-        "Clientes satisfechos.",
-        "Advance Rock Concrete: Hacemos realidad tu proyecto.",
+        "Excellence.",
+        "Commitment to quality work",
+        "All-in-one service.",
+        "Delighted customers.",
+        "Advance Rock Concrete: We make your project a reality.",
       ],
     },
     brands: {
@@ -304,7 +304,7 @@ export default {
         href: "/en/contact",
       },
       back: "services-hero",
-      video: "",
+      video: "servicios",
     },
     items: [
       {
@@ -390,7 +390,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-1-hero",
-        video: "",
+        video: "construccion-piscinas",
       },
       info: {
         title: "SPACES DESIGNED TO ENJOY",
@@ -431,7 +431,7 @@ export default {
       },
       confidence: {
         title1:
-          "TURN YOUR  <br class='block md:hidden'/> BACKYARD <br class='block md:hidden'/> <span class='text-white'>INTO A <br class='hidden md:block'/>  ONE-OF-A-KIND<br class='block md:hidden'/>  SPACE </span>",
+          "TURN YOUR  <br class='block md:hidden'/> BACKYARD <br class='block md:hidden'/> <span class='text-white'>INTO A ONE-OF-A-KIND<br class='block md:hidden'/>  SPACE </span>",
         description: "Pools designed for your lifestyle.",
         description2:
           "We create functional, elegant, and <br class='hidden md:block'/> durable pools that transform any outdoor space.",
@@ -485,7 +485,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-2-hero",
-        video: "",
+        video: "remodelacion-concreto",
       },
       info: {
         title: "Renew Spaces That Have Lost Their Potential",
@@ -575,7 +575,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-3-hero",
-        video: "",
+        video: "suministro-concreto",
       },
       info: {
         title: "The Right Material At The Right Time",
@@ -616,7 +616,7 @@ export default {
       },
       confidence: {
         title1:
-          "CONCRETE READY WHEN <span class='text-white'>When <br/> You Need It</span>",
+          "CONCRETE <br/> READY WHEN <span class='text-white'>  You Need It</span>",
         description: "Guaranteed quality, punctuality, and efficiency",
         description2:
           "Get ready-mix concrete with dependable delivery designed <br/> keep your project moving.",
@@ -665,7 +665,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-4-hero",
-        video: "",
+        video: "proyectos-integrales",
       },
       info: {
         title: "A Complete Solution From The Start",
@@ -751,7 +751,7 @@ export default {
           href: "/en/contact",
         },
         back: "services-6-hero",
-        video: "",
+        video: "alquiler-equipos",
       },
       info: {
         title: "Resources That Keep Your Operation Moving",
@@ -792,7 +792,7 @@ export default {
       },
       confidence: {
         title1:
-          "The Resources <br class='hidden md:block'/> That <br/> <span class='text-white'>Your Project <br/> Needs</span>",
+          "The Resources <br class='hidden md:block'/> That  <span class='text-white'>Your <br/> Project <br/> Needs</span>",
         description: "Equipment and spaces ready to work.",
         description2:
           "Boost your operations with flexible, <br/> reliable solutions tailored to your needs.",
@@ -842,7 +842,7 @@ export default {
         href: "/en/contact",
       },
       back: "services-5-hero",
-      video: "",
+      video: "medo",
     },
     info: {
       title: "More Than A Business, A Complete System",
@@ -879,7 +879,7 @@ export default {
       ],
     },
     info2: {
-      title: "Become A MEDO Operator",
+      title: "Become A MEDO <br class='hidden md:block'/> Operator",
       subtitle:
         "An opportunity to generate income within a real concrete transportation operation.",
       description:
@@ -990,7 +990,7 @@ export default {
         href: "/en/contact",
       },
       back: "branchs-hero",
-      video: "",
+      video: "sucursales",
     },
   },
   contact: {
@@ -1077,7 +1077,7 @@ export default {
           href: "en/services/turnkey-projects",
         },
         {
-          label: "MEDO & Virtual Branch Business Opportunities",
+          label: "MEDO & Virtual Branch ",
           href: "en/services/medo",
         },
         {

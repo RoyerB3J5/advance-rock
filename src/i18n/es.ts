@@ -241,7 +241,7 @@ export default {
         href: "/es/contact",
       },
       back: "about",
-      video: "",
+      video: "about",
     },
     who: {
       title: "¿Quiénes somos?",
@@ -302,7 +302,7 @@ export default {
         href: "/es/contact",
       },
       back: "services-hero",
-      video: "",
+      video: "servicios",
     },
     items: [
       {
@@ -388,7 +388,7 @@ export default {
           href: "/es/contact",
         },
         back: "services-1-hero",
-        video: "",
+        video: "construccion-piscinas",
       },
       info: {
         title: "Espacios Diseñados Para Disfrutar",
@@ -484,7 +484,7 @@ export default {
           href: "/es/contact",
         },
         back: "services-2-hero",
-        video: "",
+        video: "remodelacion-concreto",
       },
       info: {
         title: "Renueva Espacios Que Han Perdido Su Potencial",
@@ -574,7 +574,7 @@ export default {
           href: "/es/contact",
         },
         back: "services-3-hero",
-        video: "",
+        video: "suministro-concreto",
       },
       info: {
         title: "El Material Correcto En El Momento Correcto",
@@ -664,7 +664,7 @@ export default {
           href: "/es/contact",
         },
         back: "services-4-hero",
-        video: "",
+        video: "proyectos-integrales",
       },
       info: {
         title: "Una Solución Completa Desde El Inicio",
@@ -751,7 +751,7 @@ export default {
           href: "/es/contact",
         },
         back: "services-6-hero",
-        video: "",
+        video: "alquiler-equipos",
       },
       info: {
         title: "Recursos Que Mantienen Tu Operación En Movimiento",
@@ -843,7 +843,7 @@ export default {
         href: "/es/contact",
       },
       back: "services-5-hero",
-      video: "",
+      video: "medo",
     },
     info: {
       title: "Más Que Un Negocio, Un Sistema Completo",
@@ -992,7 +992,7 @@ export default {
         href: "/es/contact",
       },
       back: "branchs-hero",
-      video: "",
+      video: "sucursales",
     },
   },
   contact: {
@@ -1079,7 +1079,7 @@ export default {
           href: "es/services/turnkey-projects",
         },
         {
-          label: "Oportunidades de Negocio MEDO & Sucursales Virtuales",
+          label: "MEDO & Sucursales Virtuales",
           href: "es/services/medo",
         },
         {

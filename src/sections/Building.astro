@@ -5,6 +5,7 @@ interface Props {
   content: ProjectsContent;
 }
 const { content } = Astro.props as Props;
+const R2_BASE = import.meta.env.PUBLIC_R2_URL;
 ---
 <section id="fleet-section-2" class="w-full flex flex-col justify-center items-center pb-16 xl:pb-12 3xl:pb-20 pt-4 xl:pt-8.5 h-auto xl:h-screen bg-white overflow-hidden relative z-20">
   <div class="container-full flex flex-col xl:flex-row justify-center xl:justify-between 3xl:justify-center items-stretch gap-6 h-full">
@@ -18,9 +19,12 @@ const { content } = Astro.props as Props;
         loop
         muted
         playsinline
+        controlslist="nodownload no remoteplayback"
+        disablepictureinpicture
+        oncontextmenu="return false;"
         class="absolute inset-0 w-full h-full object-cover pointer-events-none object-[60%_50%]"
       >
-        <source src="/images/video-2.mp4" type="video/mp4" />
+        <source src={`${R2_BASE}/videos/Construyendo_para_durar.mp4`} type="video/mp4" />
       </video>
     </div>
     <div class="w-full xl:w-[25%] grow flex flex-col justify-center xl:justify-between items-start js-right-content gap-6">

@@ -25,9 +25,9 @@ const { content, styleType, list } = Astro.props as Props;
     >
       <div class="w-3 h-3 bg-accent"></div>
       <h2
-        class={`title text-left ${styleType == "bg-and-order" ? "text-secondary" : "text-primary"}`}
+        class={`title text-left ${styleType == "bg-and-order" ? "text-secondary" : "text-primary"}`} set:html={content.title}
       >
-        {content.title}
+        
       </h2>
       <p
         set:html={content.subtitle}
